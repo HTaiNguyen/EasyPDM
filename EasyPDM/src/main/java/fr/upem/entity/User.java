@@ -18,7 +18,6 @@ import javax.persistence.Table;
  * @author Tai
  */
 @Entity
-@Table(name="USER")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,8 +28,11 @@ public class User implements Serializable {
     private String email;
     private String login;
     private String password;
-    private Integer newAttr;
 
+    public User() {
+        
+    }
+    
     public User(String firstname, String lastname, String email, String login, String password) {
         this.firstname = Objects.requireNonNull(firstname);
         this.lastname = Objects.requireNonNull(lastname);
@@ -69,14 +71,6 @@ public class User implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public Integer getNewAttr() {
-        return newAttr;
-    }
-
-    public void setNewAttr(Integer newAttr) {
-        this.newAttr = newAttr;
     }
 
     public Long getId() {

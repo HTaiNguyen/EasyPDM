@@ -18,7 +18,6 @@ import javax.persistence.Table;
  * @author Tai
  */
 @Entity
-@Table(name="ORGANISATION")
 public class Organisation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -28,6 +27,10 @@ public class Organisation implements Serializable {
     private String name;
     private String description;
 
+    public Organisation() {
+        
+    }
+    
     public Organisation(String name, String description) {
         this.name = Objects.requireNonNull(name);
         this.description = description;

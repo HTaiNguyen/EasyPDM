@@ -20,7 +20,6 @@ import javax.persistence.Table;
  * @author Tai
  */
 @Entity
-@Table(name="WORKPACKAGE")
 public class WorkPackage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,6 +33,10 @@ public class WorkPackage implements Serializable {
     private Long workSpaceID;
     private Timestamp editStamp;
 
+    public WorkPackage() {
+        
+    }
+    
     public WorkPackage(String name, String creator, String lastEdit, Long workSpaceID, long version) {
         this.name = Objects.requireNonNull(name);
         this.creator = Objects.requireNonNull(creator);

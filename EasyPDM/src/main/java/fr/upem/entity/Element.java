@@ -19,7 +19,6 @@ import javax.persistence.Table;
  * @author Tai
  */
 @Entity
-@Table(name="ELEMENT")
 public class Element implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,6 +30,10 @@ public class Element implements Serializable {
     private boolean session;
     private Long workSpaceID;
     private Timestamp editStamp;
+    
+    public Element() {
+        
+    }
 
     public Element(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
         this.name = Objects.requireNonNull(name);

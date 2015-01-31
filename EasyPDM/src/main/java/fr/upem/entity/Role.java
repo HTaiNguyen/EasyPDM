@@ -22,7 +22,6 @@ import javax.persistence.Table;
  * @author Tai
  */
 @Entity
-@Table(name="ROLE")
 public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,7 +31,11 @@ public class Role implements Serializable {
     private String description;
     private List<Permission> permissions;
 
-    public Role(String name, String desciption) {
+    public Role() {
+        
+    }
+    
+    public Role(String name, String description) {
         this.name = Objects.requireNonNull(name);
         this.description = description;
         permissions = new ArrayList<>();
