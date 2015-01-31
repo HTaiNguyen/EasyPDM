@@ -11,14 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author Tai
  */
 @Entity
-public class User implements Serializable {
+public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,11 +28,11 @@ public class User implements Serializable {
     private String login;
     private String password;
 
-    public User() {
+    public Users() {
         
     }
     
-    public User(String firstname, String lastname, String email, String login, String password) {
+    public Users(String firstname, String lastname, String email, String login, String password) {
         this.firstname = Objects.requireNonNull(firstname);
         this.lastname = Objects.requireNonNull(lastname);
         this.email = Objects.requireNonNull(email);
@@ -91,10 +90,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Users)) {
             return false;
         }
-        User other = (User) object;
+        Users other = (Users) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -5,10 +5,14 @@
  */
 package fr.upem.entity;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 /**
  *
  * @author mgomes02
  */
 public class Test {
-    
+    @PersistenceContext(unitName = "EasyPDMPU")
+    private  EntityManager em;
 }
