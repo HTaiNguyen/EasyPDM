@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -24,9 +25,11 @@ public class WorkPackage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String name;
     private long version;
     private Maturity maturity;
+    @NotNull
     private String creator;
     private String lastEdit;
     private Long workSpaceID;
