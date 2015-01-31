@@ -8,6 +8,7 @@ package fr.upem.entity;
 import fr.upem.entity.more.Maturity;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,16 @@ public class WorkPackage implements Serializable {
     private Long workSpaceID;
     private Timestamp editStamp;
 
+    public WorkPackage(String name, String creator, String lastEdit, Long workSpaceID, long version) {
+        this.name = Objects.requireNonNull(name);
+        this.creator = Objects.requireNonNull(creator);
+        this.lastEdit = lastEdit;
+        this.workSpaceID = workSpaceID;
+        this.version = version;
+        editStamp = new Timestamp(new java.util.Date().getTime());
+        maturity = Maturity.IN_PROGRESS;
+    }
+    
     public String getName() {
         return name;
     }

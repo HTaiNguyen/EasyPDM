@@ -10,5 +10,5 @@ package fr.upem.entity.more;
  * @author Tai
  */
 public enum Maturity {
-    
+    RELEASE, IN_PROGRESS
 }

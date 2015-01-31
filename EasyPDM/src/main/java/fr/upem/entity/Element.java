@@ -7,6 +7,7 @@ package fr.upem.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,15 @@ public class Element implements Serializable {
     private Long workSpaceID;
     private Timestamp editStamp;
 
+    public Element(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
+        this.name = Objects.requireNonNull(name);
+        this.creator = Objects.requireNonNull(creator);
+        this.lastEditor = lastEditor;
+        this.session = session;
+        this.workSpaceID = workSpaceID;
+        editStamp = new Timestamp(new java.util.Date().getTime());
+    }
+    
     public String getName() {
         return name;
     }

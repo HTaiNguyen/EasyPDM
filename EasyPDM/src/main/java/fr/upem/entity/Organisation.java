@@ -6,6 +6,7 @@
 package fr.upem.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,11 @@ public class Organisation implements Serializable {
     private String name;
     private String description;
 
+    public Organisation(String name, String description) {
+        this.name = Objects.requireNonNull(name);
+        this.description = description;
+    }
+    
     public String getName() {
         return name;
     }

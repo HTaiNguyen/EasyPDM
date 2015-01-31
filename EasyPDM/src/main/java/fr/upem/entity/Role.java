@@ -8,7 +8,9 @@ package fr.upem.entity;
 import fr.upem.entity.more.Operation;
 import fr.upem.entity.more.Permission;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +30,12 @@ public class Role implements Serializable {
     private String description;
     private List<Permission> permissions;
 
+    public Role(String name, String desciption) {
+        this.name = Objects.requireNonNull(name);
+        this.description = description;
+        permissions = new ArrayList<>();
+    }
+    
     public String getName() {
         return name;
     }

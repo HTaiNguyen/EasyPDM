@@ -6,6 +6,7 @@
 package fr.upem.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,8 +26,16 @@ public class User implements Serializable {
     private String lastname;
     private String email;
     private String login;
+    private String password;
     private Integer newAttr;
 
+    public User(String firstname, String lastname, String email, String login, String password) {
+        this.firstname = Objects.requireNonNull(firstname);
+        this.lastname = Objects.requireNonNull(lastname);
+        this.email = Objects.requireNonNull(email);
+        this.login = Objects.requireNonNull(login);
+        this.password = Objects.requireNonNull(password);
+    }
 
     public String getFirstname() {
         return firstname;
