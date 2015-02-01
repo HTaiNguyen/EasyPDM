@@ -8,6 +8,7 @@ package fr.upem.entity;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Departement extends Organisation {
+    @OneToOne
     private Entreprise company;
 
     public Departement() {
