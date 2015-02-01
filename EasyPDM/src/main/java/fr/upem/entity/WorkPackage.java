@@ -34,9 +34,22 @@ public class WorkPackage implements Serializable {
     private String lastEdit;
     private Long workSpaceID;
     private Timestamp editStamp;
+    private Element elementwp;
 
     public WorkPackage() {
         
+    }
+
+    public WorkPackage(Long id, String name, long version, Maturity maturity, String creator, String lastEdit, Long workSpaceID, Timestamp editStamp, Element elementwp) {
+        this.id = id;
+        this.name = name;
+        this.version = version;
+        this.maturity = maturity;
+        this.creator = creator;
+        this.lastEdit = lastEdit;
+        this.workSpaceID = workSpaceID;
+        this.editStamp = editStamp;
+        this.elementwp = elementwp;
     }
     
     public WorkPackage(String name, String creator, String lastEdit, Long workSpaceID, long version) {
@@ -113,6 +126,28 @@ public class WorkPackage implements Serializable {
         this.id = id;
     }
 
+    public Element getElementwp() {
+        return elementwp;
+    }
+
+    public void setElementwp(Element elementwp) {
+        this.elementwp = elementwp;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
