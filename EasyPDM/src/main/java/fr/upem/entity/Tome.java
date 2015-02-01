@@ -5,14 +5,16 @@
  */
 package fr.upem.entity;
 
-import java.sql.Timestamp;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author sybille
  */
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Tome extends Element {
     private Book book;
     
