@@ -32,8 +32,25 @@ public class Paragraph extends Element implements Serializable {
     private boolean session;
     private Long workSpaceID;
     private Timestamp editStamp;
-    
-    
+    private Chapter chapter;
+
+    public Paragraph() {
+    }
+
+    public Paragraph(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
+        super(name, creator, lastEditor, session, workSpaceID);
+    }
+
+    public Paragraph(Long id, String name, String creator, String lastEditor, boolean session, Long workSpaceID, Timestamp editStamp, Chapter chapter) {
+        this.id = id;
+        this.name = name;
+        this.creator = creator;
+        this.lastEditor = lastEditor;
+        this.session = session;
+        this.workSpaceID = workSpaceID;
+        this.editStamp = editStamp;
+        this.chapter = chapter;
+    } 
 
     public Long getId() {
         return id;
@@ -43,6 +60,88 @@ public class Paragraph extends Element implements Serializable {
         this.id = id;
     }
 
+    public Chapter getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
+    @Override
+    public String getCreator() {
+        return super.getCreator(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setCreator(String creator) {
+        super.setCreator(creator); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Timestamp getEditStamp() {
+        return super.getEditStamp(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setEditStamp(Timestamp editStamp) {
+        super.setEditStamp(editStamp); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getLastEditor() {
+        return super.getLastEditor(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setLastEditor(String lastEditor) {
+        super.setLastEditor(lastEditor); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    @Override
+    public String getName() {
+        return super.getName(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Long getWorkSpaceID() {
+        return super.getWorkSpaceID(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setWorkSpaceID(Long workSpaceID) {
+        super.setWorkSpaceID(workSpaceID); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isSession() {
+        return super.isSession(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setSession(boolean session) {
+        super.setSession(session); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+    }
+   
     @Override
     public int hashCode() {
         int hash = 0;

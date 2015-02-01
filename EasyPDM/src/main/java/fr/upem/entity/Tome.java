@@ -31,7 +31,8 @@ public class Tome extends Element implements Serializable {
     private boolean session;
     private Long workSpaceID;
     private Timestamp editStamp; 
-
+    private Book book;
+    
     /**
      *
      */
@@ -68,6 +69,28 @@ public class Tome extends Element implements Serializable {
         this.session = session;
         this.workSpaceID = workSpaceID;
         this.editStamp = editStamp;
+    }
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param creator
+     * @param lastEditor
+     * @param session
+     * @param workSpaceID
+     * @param editStamp
+     * @param book
+     */
+    public Tome(Long id, String name, String creator, String lastEditor, boolean session, Long workSpaceID, Timestamp editStamp, Book book) {
+        this.id = id;
+        this.name = name;
+        this.creator = creator;
+        this.lastEditor = lastEditor;
+        this.session = session;
+        this.workSpaceID = workSpaceID;
+        this.editStamp = editStamp;
+        this.book = book;
     }
      
     public Long getId() {
@@ -128,6 +151,14 @@ public class Tome extends Element implements Serializable {
         super.setWorkSpaceID(workSpaceID); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+    
     @Override
     public void setSession(boolean session) {
         super.setSession(session); //To change body of generated methods, choose Tools | Templates.

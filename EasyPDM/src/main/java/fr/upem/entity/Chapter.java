@@ -23,6 +23,7 @@ public class Chapter extends Element implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Tome tome;
 
     public Chapter() {
     }
@@ -59,6 +60,32 @@ public class Chapter extends Element implements Serializable {
     public Chapter(Long id, String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
         super(name, creator, lastEditor, session, workSpaceID);
         this.id = id;
+    }
+
+    /**
+     *
+     * @param id
+     * @param tome
+     */
+    public Chapter(Long id, Tome tome) {
+        this.id = id;
+        this.tome = tome;
+    }
+
+    /**
+     *
+     * @param id
+     * @param tome
+     * @param name
+     * @param creator
+     * @param lastEditor
+     * @param session
+     * @param workSpaceID
+     */
+    public Chapter(Long id, Tome tome, String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
+        super(name, creator, lastEditor, session, workSpaceID);
+        this.id = id;
+        this.tome = tome;
     }
 
     public static long getSerialVersionUID() {
@@ -121,6 +148,14 @@ public class Chapter extends Element implements Serializable {
     @Override
     public void setWorkSpaceID(Long workSpaceID) {
         super.setWorkSpaceID(workSpaceID); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Tome getTome() {
+        return tome;
+    }
+
+    public void setTome(Tome tome) {
+        this.tome = tome;
     }
 
     @Override
