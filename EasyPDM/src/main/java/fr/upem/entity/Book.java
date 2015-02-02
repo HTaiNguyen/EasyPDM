@@ -30,5 +30,6 @@ public class Book extends Element {
      */
     public Book(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
         super(name, creator, lastEditor, session, workSpaceID);
+        
     }
 }
