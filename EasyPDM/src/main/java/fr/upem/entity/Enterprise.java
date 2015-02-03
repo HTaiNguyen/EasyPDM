@@ -15,12 +15,12 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Entreprise extends Organisation {
+public class Enterprise extends Organisation {
 
-    public Entreprise() {
+    public Enterprise() {
     }
 
-    public Entreprise(String name, String description) {
+    public Enterprise(String name, String description) {
         super(name, description);
     }    
 }

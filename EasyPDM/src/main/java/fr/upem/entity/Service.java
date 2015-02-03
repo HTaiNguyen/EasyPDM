@@ -18,12 +18,12 @@ import javax.persistence.OneToOne;
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Service extends Organisation {
     @OneToOne
-    private Departement department;
+    private Department department;
 
     public Service() {
     }
 
-    public Service(Departement department) {
+    public Service(Department department) {
         this.department = department;
     }
 
@@ -31,16 +31,16 @@ public class Service extends Organisation {
         super(name, description);
     }
 
-    public Service(Departement department, String name, String description) {
+    public Service(Department department, String name, String description) {
         super(name, description);
         this.department = department;
     }
 
-    public Departement getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Departement department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 }

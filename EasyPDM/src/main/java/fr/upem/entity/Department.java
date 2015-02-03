@@ -16,31 +16,31 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Departement extends Organisation {
+public class Department extends Organisation {
     @OneToOne
-    private Entreprise company;
+    private Enterprise company;
 
-    public Departement() {
+    public Department() {
     }
 
-    public Departement(Entreprise company) {
+    public Department(Enterprise company) {
         this.company = company;
     }
 
-    public Departement(String name, String description) {
+    public Department(String name, String description) {
         super(name, description);
     }
 
-    public Departement(Entreprise company, String name, String description) {
+    public Department(Enterprise company, String name, String description) {
         super(name, description);
         this.company = company;
     }
 
-    public Entreprise getCompany() {
+    public Enterprise getCompany() {
         return company;
     }
 
-    public void setCompany(Entreprise company) {
+    public void setCompany(Enterprise company) {
         this.company = company;
     }
 }
