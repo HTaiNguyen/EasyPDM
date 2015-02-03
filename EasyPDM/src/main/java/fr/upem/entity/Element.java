@@ -28,9 +28,12 @@ public class Element implements Serializable {
     private String name;
     @NotNull
     private String creator;
+    @NotNull
     private String lastEditor;
+    @NotNull
     private boolean session;
     private Long workSpaceID;
+    @NotNull
     private Timestamp editStamp;
     
     public Element() {
@@ -40,8 +43,8 @@ public class Element implements Serializable {
     public Element(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
         this.name = Objects.requireNonNull(name);
         this.creator = Objects.requireNonNull(creator);
-        this.lastEditor = lastEditor;
-        this.session = session;
+        this.lastEditor = Objects.requireNonNull(lastEditor);
+        this.session = Objects.requireNonNull(session);
         this.workSpaceID = workSpaceID;
         editStamp = new Timestamp(new java.util.Date().getTime());
     }

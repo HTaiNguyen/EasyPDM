@@ -27,12 +27,16 @@ public class WorkPackage implements Serializable {
     private Long id;
     @NotNull
     private String name;
+    @NotNull
     private long version;
+    @NotNull
     private Maturity maturity;
     @NotNull
     private String creator;
+    @NotNull
     private String lastEdit;
     private Long workSpaceID;
+    @NotNull
     private Timestamp editStamp;
     private Element elementwp;
 
@@ -42,22 +46,22 @@ public class WorkPackage implements Serializable {
 
     public WorkPackage(Long id, String name, long version, Maturity maturity, String creator, String lastEdit, Long workSpaceID, Timestamp editStamp, Element elementwp) {
         this.id = id;
-        this.name = name;
-        this.version = version;
-        this.maturity = maturity;
-        this.creator = creator;
-        this.lastEdit = lastEdit;
+        this.name = Objects.requireNonNull(name);
+        this.version = Objects.requireNonNull(version);
+        this.maturity = Objects.requireNonNull(maturity);
+        this.creator = Objects.requireNonNull(creator);
+        this.lastEdit = Objects.requireNonNull(lastEdit);
         this.workSpaceID = workSpaceID;
-        this.editStamp = editStamp;
+        this.editStamp = Objects.requireNonNull(editStamp);
         this.elementwp = elementwp;
     }
     
     public WorkPackage(String name, String creator, String lastEdit, Long workSpaceID, long version) {
         this.name = Objects.requireNonNull(name);
         this.creator = Objects.requireNonNull(creator);
-        this.lastEdit = lastEdit;
+        this.lastEdit = Objects.requireNonNull(lastEdit);
         this.workSpaceID = workSpaceID;
-        this.version = version;
+        this.version = Objects.requireNonNull(version);
         editStamp = new Timestamp(new java.util.Date().getTime());
         maturity = Maturity.IN_PROGRESS;
     }
