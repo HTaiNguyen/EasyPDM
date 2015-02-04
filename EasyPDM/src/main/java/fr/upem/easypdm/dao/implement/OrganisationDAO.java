@@ -6,15 +6,15 @@
 package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
-import fr.upem.easypdm.entity.Element;
+import fr.upem.easypdm.entity.Organisation;
 
 /**
  *
  * @author Tai
  */
-public class ElementDAO extends DAO <Element> {
+public class OrganisationDAO extends DAO <Organisation> {
     
-    public ElementDAO() {
-        super(Element.class);
+    public OrganisationDAO() {
+        super(Organisation.class);
     }
 }

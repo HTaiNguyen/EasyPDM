@@ -7,36 +7,14 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Paragraph;
-import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class ParagraphDAO implements DAO <Paragraph> {
-
-    @Override
-    public List<Paragraph> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Paragraph find() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void create(Paragraph t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Paragraph t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(Paragraph t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class ParagraphDAO extends DAO <Paragraph> {
+    
+    public ParagraphDAO() {
+        super(Paragraph.class);
     }
 }
