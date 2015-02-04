@@ -5,37 +5,37 @@
  */
 package fr.upem.dao;
 
+import fr.upem.entity.WorkPackage;
 import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class WorkPackageDAO implements DAO {
+public class WorkPackageDAO implements DAO <WorkPackage> {
 
     @Override
-    public List findAll() {
+    public List<WorkPackage> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object find() {
+    public WorkPackage find() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(WorkPackage t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Object t) {
+    public void remove(WorkPackage t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(WorkPackage t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -5,37 +5,37 @@
  */
 package fr.upem.dao;
 
+import fr.upem.entity.Enterprise;
 import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class EnterpriseDAO implements DAO {
+public class EnterpriseDAO implements DAO <Enterprise> {
 
     @Override
-    public List findAll() {
+    public List<Enterprise> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object find() {
+    public Enterprise find() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(Enterprise t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Object t) {
+    public void remove(Enterprise t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(Enterprise t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

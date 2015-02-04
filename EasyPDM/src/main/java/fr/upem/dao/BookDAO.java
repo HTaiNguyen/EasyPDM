@@ -5,37 +5,37 @@
  */
 package fr.upem.dao;
 
+import fr.upem.entity.Book;
 import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class BookDAO implements DAO {
+public class BookDAO implements DAO <Book> {
 
     @Override
-    public List findAll() {
+    public List<Book> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object find() {
+    public Book find() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(Book t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Object t) {
+    public void remove(Book t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(Book t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

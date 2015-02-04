@@ -5,37 +5,37 @@
  */
 package fr.upem.dao;
 
+import fr.upem.entity.Element;
 import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class ElementDAO implements DAO {
+public class ElementDAO implements DAO <Element> {
 
     @Override
-    public List findAll() {
+    public List<Element> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object find() {
+    public Element find() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(Element t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Object t) {
+    public void remove(Element t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(Element t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

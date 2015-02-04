@@ -5,37 +5,37 @@
  */
 package fr.upem.dao;
 
+import fr.upem.entity.Tome;
 import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class TomeDAO implements DAO {
+public class TomeDAO implements DAO <Tome> {
 
     @Override
-    public List findAll() {
+    public List<Tome> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object find() {
+    public Tome find() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(Tome t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Object t) {
+    public void remove(Tome t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(Tome t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -16,22 +16,22 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Equipe extends Organisation {
+public class Team extends Organisation {
     @OneToOne
     private Service service;
 
-    public Equipe() {
+    public Team() {
     }
 
-    public Equipe(Service service) {
+    public Team(Service service) {
         this.service = service;
     }
 
-    public Equipe(String name, String description) {
+    public Team(String name, String description) {
         super(name, description);
     }
 
-    public Equipe(Service service, String name, String description) {
+    public Team(Service service, String name, String description) {
         super(name, description);
         this.service = service;
     }

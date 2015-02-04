@@ -5,37 +5,37 @@
  */
 package fr.upem.dao;
 
-import fr.upem.entity.Users;
+import fr.upem.entity.Team;
 import java.util.List;
 
 /**
  *
  * @author Tai
  */
-public class UserDAO implements DAO <Users> {
+public class TeamDAO implements DAO <Team> {
 
     @Override
-    public List<Users> findAll() {
+    public List<Team> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Users find() {
+    public Team find() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Users t) {
+    public void create(Team t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Users t) {
+    public void remove(Team t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Users t) {
+    public void update(Team t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
