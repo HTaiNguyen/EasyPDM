@@ -17,4 +17,14 @@ public class EnterpriseDAO extends DAO <Enterprise> {
     public EnterpriseDAO() {
         super(Enterprise.class);
     }
+
+    @Override
+    public void create(Enterprise t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Enterprise t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

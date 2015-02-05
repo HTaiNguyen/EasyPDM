@@ -17,4 +17,14 @@ public class DepartmentDAO extends DAO <Department> {
     public DepartmentDAO() {
         super(Department.class);
     }
+
+    @Override
+    public void create(Department t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Department t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

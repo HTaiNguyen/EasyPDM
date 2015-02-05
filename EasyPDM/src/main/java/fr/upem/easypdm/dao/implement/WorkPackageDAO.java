@@ -17,4 +17,14 @@ public class WorkPackageDAO extends DAO <WorkPackage> {
     public WorkPackageDAO() {
         super(WorkPackage.class);
     }
+
+    @Override
+    public void create(WorkPackage t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(WorkPackage t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

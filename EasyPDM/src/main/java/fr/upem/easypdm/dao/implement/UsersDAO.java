@@ -17,4 +17,14 @@ public class UsersDAO extends DAO <Users> {
     public UsersDAO() {
         super(Users.class);
     }
+
+    @Override
+    public void create(Users t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Users t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

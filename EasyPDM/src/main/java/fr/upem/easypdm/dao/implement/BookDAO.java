@@ -17,4 +17,14 @@ public class BookDAO extends DAO <Book> {
     public BookDAO() {
         super(Book.class);
     }
+
+    @Override
+    public void create(Book t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Book t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -17,4 +17,14 @@ public class RoleDAO extends DAO <Role> {
     public RoleDAO() {
         super(Role.class);
     }
+
+    @Override
+    public void create(Role t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Role t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -17,4 +17,14 @@ public class ElementDAO extends DAO <Element> {
     public ElementDAO() {
         super(Element.class);
     }
+
+    @Override
+    public void create(Element t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Element t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

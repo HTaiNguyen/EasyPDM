@@ -17,4 +17,14 @@ public class OrganisationDAO extends DAO <Organisation> {
     public OrganisationDAO() {
         super(Organisation.class);
     }
+
+    @Override
+    public void create(Organisation t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Organisation t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -17,4 +17,14 @@ public class ServiceDAO extends DAO <Service> {
     public ServiceDAO() {
         super(Service.class);
     }
+
+    @Override
+    public void create(Service t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Service t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

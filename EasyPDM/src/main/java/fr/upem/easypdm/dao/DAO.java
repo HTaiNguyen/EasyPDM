@@ -48,12 +48,8 @@ public abstract class DAO <T> {
         return entity;
     }
     
-    public void create(T t) {
-        
-    }
-    public void remove(T t) {
-        
-    }
+    public abstract void create(T t);
+    public abstract void remove(T t);
     
     public T update(T t) {
         T mergeEntity = getEntityManager().merge(t);

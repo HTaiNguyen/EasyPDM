@@ -17,4 +17,14 @@ public class TomeDAO extends DAO <Tome> {
     public TomeDAO() {
         super(Tome.class);
     }
+
+    @Override
+    public void create(Tome t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Tome t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
