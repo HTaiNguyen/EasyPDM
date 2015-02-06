@@ -20,7 +20,15 @@ public class UsersDAO extends DAO <Users> {
 
     @Override
     public void create(Users t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String values = "(" + t.getId() 
+                + "," + t.getEmail() + "," +t.getFirstname() + "," 
+                + t.getLastname() + "," + t.getLogin() 
+                + "," + t.getPassword() + ")";
+        
+        getEntityManager()
+                .createQuery("insert into " + Users.class 
+                        + "(ID, EMAIL, FIRSTNAME, LASTNAME, LOGIN, PASSWORD) values" 
+                        + values);
     }
 
     @Override
