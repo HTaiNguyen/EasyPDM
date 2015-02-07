@@ -20,11 +20,11 @@ public class WorkPackageDAO extends DAO <WorkPackage> {
 
     @Override
     public void create(WorkPackage t) {
-         String values = "(" + t.getId() 
-                + "," + t.getCreator() + ","  + t.getEditStamp() + "," 
-                + t.getLastEdit()+ "," + t.getMaturity()
-                + "," + t.getName() + "," + t.getVersion() 
-                + "," + t.getWorkSpaceID() + ")";
+         String values = "('" + t.getId() 
+                + "','" + t.getCreator() + "','"  + t.getEditStamp() + "','" 
+                + t.getLastEdit()+ "','" + t.getMaturity()
+                + "','" + t.getName() + "','" + t.getVersion() 
+                + "','" + t.getWorkSpaceID() + "')";
         
         getEntityManager()
                 .createQuery("insert into " + WorkPackage.class 

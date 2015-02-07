@@ -20,10 +20,10 @@ public class UsersDAO extends DAO <Users> {
 
     @Override
     public void create(Users t) {
-        String values = "(" + t.getId() 
-                + "," + t.getEmail() + "," +t.getFirstname() + "," 
-                + t.getLastname() + "," + t.getLogin() 
-                + "," + t.getPassword() + ")";
+        String values = "('" + t.getId() 
+                + "','" + t.getEmail() + "','" +t.getFirstname() + "','" 
+                + t.getLastname() + "','" + t.getLogin() 
+                + "','" + t.getPassword() + "')";
         
         getEntityManager()
                 .createQuery("insert into " + Users.class 

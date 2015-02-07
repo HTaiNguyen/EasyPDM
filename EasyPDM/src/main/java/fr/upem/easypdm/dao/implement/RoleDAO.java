@@ -20,9 +20,9 @@ public class RoleDAO extends DAO <Role> {
 
     @Override
     public void create(Role t) {
-         String values = "(" + t.getId() 
-                + "," + t.getDescription() + "," + t.getName() + "," 
-                + t.getPermissions() + ")";
+         String values = "('" + t.getId() 
+                + "','" + t.getDescription() + "','" + t.getName() + "','" 
+                + t.getPermissions() + "')";
         
         getEntityManager()
                 .createQuery("insert into " + Role.class 

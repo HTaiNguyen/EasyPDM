@@ -20,10 +20,10 @@ public class OrganisationDAO extends DAO <Organisation> {
 
     @Override
     public void create(Organisation t) {
-         String values = "(" + t.getId() 
-                + "," + t.getId() + "," 
-                 + t.getDescription() + "," 
-                 + t.getName() + ")";
+         String values = "('" + t.getId() 
+                + "','" + t.getId() + "','" 
+                 + t.getDescription() + "','" 
+                 + t.getName() + "')";
         
         getEntityManager()
                 .createQuery("insert into " + Organisation.class 
