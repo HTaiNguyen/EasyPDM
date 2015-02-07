@@ -20,7 +20,14 @@ public class RoleDAO extends DAO <Role> {
 
     @Override
     public void create(Role t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         String values = "(" + t.getId() 
+                + "," + t.getDescription() + "," + t.getName() + "," 
+                + t.getPermissions() + ")";
+        
+        getEntityManager()
+                .createQuery("insert into " + Role.class 
+                        + "(ID, DESCRIPTION, NAME, PERMISSIONS) values" 
+                        + values);
     }
 
     @Override

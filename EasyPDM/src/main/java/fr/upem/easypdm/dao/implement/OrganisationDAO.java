@@ -20,7 +20,15 @@ public class OrganisationDAO extends DAO <Organisation> {
 
     @Override
     public void create(Organisation t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         String values = "(" + t.getId() 
+                + "," + t.getId() + "," 
+                 + t.getDescription() + "," 
+                 + t.getName() + ")";
+        
+        getEntityManager()
+                .createQuery("insert into " + Organisation.class 
+                        + "(ID, DESCRIPTION, NAME) values" 
+                        + values);
     }
 
     @Override
