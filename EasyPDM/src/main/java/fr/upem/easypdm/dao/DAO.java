@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Tai
  */
 public abstract class DAO <T> {
-    @PersistenceContext
+    @PersistenceContext(unitName = "EasyPDMPU")
     private EntityManager entityManager;
     private Class<T> persistentClass;
     
