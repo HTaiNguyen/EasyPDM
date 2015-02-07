@@ -17,14 +17,4 @@ public class TeamDAO extends DAO <Team> {
     public TeamDAO() {
         super(Team.class);
     }
-
-    @Override
-    public void create(Team t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Team t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

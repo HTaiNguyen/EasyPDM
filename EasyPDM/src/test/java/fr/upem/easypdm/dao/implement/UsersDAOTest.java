@@ -42,7 +42,6 @@ public class UsersDAOTest {
     public void findAll() {
         System.out.println("findAll");
         UsersDAO instance = new UsersDAO();
-        System.out.println("test");
         System.out.println(instance.findAll());
     }
     

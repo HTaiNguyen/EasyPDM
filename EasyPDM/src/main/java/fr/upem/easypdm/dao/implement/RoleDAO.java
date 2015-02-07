@@ -18,7 +18,7 @@ public class RoleDAO extends DAO <Role> {
         super(Role.class);
     }
 
-    @Override
+ /*   @Override
     public void create(Role t) {
          String values = "('" + t.getId() 
                 + "','" + t.getDescription() + "','" + t.getName() + "','" 
@@ -29,9 +29,5 @@ public class RoleDAO extends DAO <Role> {
                         + "(ID, DESCRIPTION, NAME, PERMISSIONS) values" 
                         + values);
     }
-
-    @Override
-    public void remove(Role t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+*/
 }

@@ -18,7 +18,7 @@ public class WorkPackageDAO extends DAO <WorkPackage> {
         super(WorkPackage.class);
     }
 
-    @Override
+ /*@Override
     public void create(WorkPackage t) {
          String values = "('" + t.getId() 
                 + "','" + t.getCreator() + "','"  + t.getEditStamp() + "','" 
@@ -30,10 +30,5 @@ public class WorkPackageDAO extends DAO <WorkPackage> {
                 .createQuery("insert into " + WorkPackage.class 
                         + "(ID, CREATOR, EDITSTAMP, LASTEDIT, MATURITY, NAME, VERSION, WORKSPACEID) values" 
                         + values);
-    }
-
-    @Override
-    public void remove(WorkPackage t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }

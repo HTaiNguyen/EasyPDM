@@ -17,14 +17,4 @@ public class ChapterDAO extends DAO <Chapter> {
     public ChapterDAO() {
         super(Chapter.class);
     }
-
-    @Override
-    public void create(Chapter t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Chapter t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

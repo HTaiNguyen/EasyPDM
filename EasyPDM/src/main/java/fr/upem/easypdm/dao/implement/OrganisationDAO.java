@@ -18,7 +18,7 @@ public class OrganisationDAO extends DAO <Organisation> {
         super(Organisation.class);
     }
 
-    @Override
+ /*   @Override
     public void create(Organisation t) {
          String values = "('" + t.getId() 
                 + "','" + t.getId() + "','" 
@@ -29,10 +29,5 @@ public class OrganisationDAO extends DAO <Organisation> {
                 .createQuery("insert into " + Organisation.class 
                         + "(ID, DESCRIPTION, NAME) values" 
                         + values);
-    }
-
-    @Override
-    public void remove(Organisation t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }

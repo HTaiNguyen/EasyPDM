@@ -8,18 +8,19 @@ package fr.upem.easypdm.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Tai
  */
 public abstract class DAO <T> {
+    @PersistenceContext
     private EntityManager entityManager;
     private Class<T> persistentClass;
     
     public DAO(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
-        entityManager = Persistence.createEntityManagerFactory("EasyPDMPU").createEntityManager();
     }
     
     protected EntityManager getEntityManager() {
@@ -43,9 +44,10 @@ public abstract class DAO <T> {
      * @return a List of result
      */
     public List<T> findAll() {
-        return getEntityManager()
+       /* return getEntityManager()
                 .createQuery("select x from " + getPersistentClass().getSimpleName() + " x")
-                .getResultList();
+                .getResultList();*/
+        return entityManager.createQuery("from " + persistentClass.getName()).getResultList();
     }
     
     /**
@@ -54,7 +56,7 @@ public abstract class DAO <T> {
      * @return 
      */
     public T find(long id) {
-        T entity = (T) getEntityManager().find(getPersistentClass(), id);
+        T entity = (T) entityManager.find(getPersistentClass(), id);
         return entity;
     }
     
@@ -62,13 +64,17 @@ public abstract class DAO <T> {
      * Insert an element into a table
      * @param t 
      */
-    public abstract void create(T t);
+    public void create(T t) {
+        entityManager.persist(t);
+    }
     
     /**
      * Remove an element from a table
      * @param t 
      */
-    public abstract void remove(T t);
+    public void remove(T t) {
+        entityManager.remove(t);
+    }
     
     /**
      * Update table

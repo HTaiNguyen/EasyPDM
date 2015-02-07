@@ -17,14 +17,4 @@ public class ParagraphDAO extends DAO <Paragraph> {
     public ParagraphDAO() {
         super(Paragraph.class);
     }
-
-    @Override
-    public void create(Paragraph t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Paragraph t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
