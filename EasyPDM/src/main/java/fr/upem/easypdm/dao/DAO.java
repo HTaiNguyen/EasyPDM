@@ -37,25 +37,53 @@ public abstract class DAO <T> {
         this.persistentClass = persistentClass;
     }
     
+    /**
+     * Find all the content from a table
+     * @return a List of result
+     */
     public List<T> findAll() {
         return getEntityManager()
                 .createQuery("select x from " + getPersistentClass().getSimpleName() + " x")
                 .getResultList();
     }
     
+    /**
+     * Find an specified row from a table with his id
+     * @param id
+     * @return 
+     */
     public T find(long id) {
         T entity = (T) getEntityManager().find(getPersistentClass(), id);
         return entity;
     }
     
+    /**
+     * Insert an element into a table
+     * @param t 
+     */
     public abstract void create(T t);
+    
+    /**
+     * Remove an element from a table
+     * @param t 
+     */
     public abstract void remove(T t);
     
+    /**
+     * Update table
+     * @param t
+     * @return 
+     */
     public T update(T t) {
         T mergeEntity = getEntityManager().merge(t);
         return mergeEntity;
     }
     
+    /**
+     * Persist 
+     * @param t
+     * @return 
+     */
     public T save(T t) {
         getEntityManager().persist(t);
         return t;
