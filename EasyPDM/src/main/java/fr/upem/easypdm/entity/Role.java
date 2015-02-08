@@ -6,16 +6,12 @@
 package fr.upem.easypdm.entity;
 
 import fr.upem.entity.easypdm.more.Operation;
-import fr.upem.entity.easypdm.more.Permission;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,8 +27,6 @@ public class Role implements Serializable {
     @NotNull
     private String name;
     private String description;
-    @ManyToMany
-    private List<Permission> permissions;
 
     public Role() {
         
@@ -41,7 +35,6 @@ public class Role implements Serializable {
     public Role(String name, String description) {
         this.name = Objects.requireNonNull(name);
         this.description = description;
-        permissions = new ArrayList<>();
     }
     
     public String getName() {
@@ -59,14 +52,6 @@ public class Role implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
     
     public Long getId() {
         return id;
@@ -76,12 +61,10 @@ public class Role implements Serializable {
         this.id = id;
     }
     
-    
     public boolean isPermitOperation(Operation operation, Class<?> clazz) {
         return false;
     }
     
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -106,5 +89,4 @@ public class Role implements Serializable {
     public String toString() {
         return "fr.upem.entity.Role[ id=" + id + " ]";
     }
-    
 }

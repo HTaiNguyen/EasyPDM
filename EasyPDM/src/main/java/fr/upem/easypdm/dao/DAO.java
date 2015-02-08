@@ -7,8 +7,10 @@ package fr.upem.easypdm.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 
 /**
  *
@@ -21,6 +23,9 @@ public abstract class DAO <T> {
     
     public DAO(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
+        if(entityManager == null) {
+            entityManager = Persistence.createEntityManagerFactory("EasyPDMPU").createEntityManager();
+        }
     }
     
     protected EntityManager getEntityManager() {
