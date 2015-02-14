@@ -5,9 +5,10 @@
  */
 package fr.upem.easypdm.entity;
 
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,6 +17,17 @@ import javax.persistence.InheritanceType;
 @Entity
 public class Enterprise extends Organisation {
 
+    @OneToMany(cascade=ALL, mappedBy="enterprise")
+    Set<Department> departments;
+
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
+    }
+    
     public Enterprise() {
     }
 

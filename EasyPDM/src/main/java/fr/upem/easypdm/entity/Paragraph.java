@@ -6,11 +6,8 @@
 package fr.upem.easypdm.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,6 +16,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Paragraph extends Element {
     
+    private String path;
+    
     @ManyToOne
     @JoinColumn(name="chapter_id")
     private Chapter chapter;
@@ -26,17 +25,22 @@ public class Paragraph extends Element {
     public Paragraph() {
     }
 
-    public Paragraph(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
-        super(name, creator, lastEditor, session, workSpaceID);
-    }
-
-    public Paragraph(String name, String creator, String lastEditor, boolean session, Long workSpaceID, Chapter chapter) {
-        super(name, creator, lastEditor, session, workSpaceID);
+    public Paragraph(String name, String creator, String lastEditor, boolean session, Chapter chapter, String path) {
+        super(name, creator, lastEditor, session);
         this.chapter = chapter;
+        this.path = path;
     } 
 
     public Chapter getChapter() {
         return chapter;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public void setChapter(Chapter chapter) {

@@ -5,12 +5,12 @@
  */
 package fr.upem.easypdm.entity;
 
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,9 +19,14 @@ import javax.persistence.OneToOne;
 @Entity
 public class Tome extends Element {
     
+    private String title;
+    
     @ManyToOne
     @JoinColumn(name="book_id")
     private Book book;
+        
+    @OneToMany(cascade=ALL, mappedBy="tome")
+    Set<Chapter> chapters;
     
     /**
      *
@@ -36,23 +41,21 @@ public class Tome extends Element {
      * @param lastEditor
      * @param session
      * @param workSpaceID
+     * @param book
+     * @param title
      */
-    public Tome(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
-        super(name, creator, lastEditor, session, workSpaceID);
+    public Tome(String name, String creator, String lastEditor, boolean session, Long workSpaceID, Book book, String title) {
+        super(name, creator, lastEditor, session);
+        this.book = book;
+        this.title = title;
     }
 
-    /**
-     *
-     * @param name
-     * @param creator
-     * @param lastEditor
-     * @param session
-     * @param workSpaceID
-     * @param book
-     */
-    public Tome(String name, String creator, String lastEditor, boolean session, Long workSpaceID, Book book) {
-        super(name, creator, lastEditor, session, workSpaceID);
-        this.book = book;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Book getBook() {
@@ -62,4 +65,13 @@ public class Tome extends Element {
     public void setBook(Book book) {
         this.book = book;
     }    
+    
+    
+    public Set<Chapter> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(Set<Chapter> chapters) {
+        this.chapters = chapters;
+    }
 }

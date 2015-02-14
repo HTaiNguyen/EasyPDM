@@ -7,12 +7,15 @@ package fr.upem.easypdm.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -29,9 +32,20 @@ public class Organisation implements Serializable {
     @NotNull
     private String name;
     private String description;
+    
+    @OneToMany(cascade=ALL, mappedBy="organisation")
+    Set<WorkPackage> workPackages;
 
     public Organisation() {
         
+    }
+
+    public Set<WorkPackage> getWorkPackages() {
+        return workPackages;
+    }
+
+    public void setWorkPackages(Set<WorkPackage> workPackages) {
+        this.workPackages = workPackages;
     }
     
     public Organisation(String name, String description) {
@@ -62,13 +76,6 @@ public class Organisation implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
     }
    
 }

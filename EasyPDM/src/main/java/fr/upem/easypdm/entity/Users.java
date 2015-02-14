@@ -7,10 +7,13 @@ package fr.upem.easypdm.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -33,7 +36,10 @@ public class Users implements Serializable {
     private String login;
     @NotNull
     private String password;
-
+    
+    @OneToMany(cascade=ALL, mappedBy="user")
+    Set<UseRole> useRoles;
+    
     public Users() {
         
     }
@@ -93,12 +99,13 @@ public class Users implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+
+    public Set<UseRole> getUseRoles() {
+        return useRoles;
+    }
+
+    public void setUseRoles(Set<UseRole> useRoles) {
+        this.useRoles = useRoles;
     }
     
 }

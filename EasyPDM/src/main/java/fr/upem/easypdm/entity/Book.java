@@ -5,9 +5,10 @@
  */
 package fr.upem.easypdm.entity;
 
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,6 +17,11 @@ import javax.persistence.InheritanceType;
 @Entity
 public class Book extends Element {
 
+    private String title;
+    
+    @OneToMany(cascade=ALL, mappedBy="book")
+    Set<Tome> tomes;
+    
     public Book() {
     }
     
@@ -25,10 +31,25 @@ public class Book extends Element {
      * @param creator
      * @param lastEditor
      * @param session
-     * @param workSpaceID
+     * @param title
      */
-    public Book(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
-        super(name, creator, lastEditor, session, workSpaceID);
-        
+    public Book(String name, String creator, String lastEditor, boolean session, String title) {
+        super(name, creator, lastEditor, session);
+        this.title = title;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    public Set<Tome> getTomes() {
+        return tomes;
+    }
+
+    public void setTomes(Set<Tome> tomes) {
+        this.tomes = tomes;
     }
 }

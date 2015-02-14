@@ -5,12 +5,12 @@
  */
 package fr.upem.easypdm.entity;
 
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -18,25 +18,19 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Chapter extends Element { 
+    
+    private String title;
+    
+    @OneToMany(cascade=ALL, mappedBy="chapter")
+    Set<Paragraph> paragraphs;
+    
     @ManyToOne
     @JoinColumn(name="tome_id")
     private Tome tome;
 
     public Chapter() {
     }
-
-    /**
-     *
-     * @param name
-     * @param creator
-     * @param lastEditor
-     * @param session
-     * @param workSpaceID
-     */
-    public Chapter(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
-        super(name, creator, lastEditor, session, workSpaceID);
-    }
-
+    
     /**
      *
      * @param tome
@@ -44,11 +38,20 @@ public class Chapter extends Element {
      * @param creator
      * @param lastEditor
      * @param session
-     * @param workSpaceID
+     * @param title
      */
-    public Chapter(Tome tome, String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
-        super(name, creator, lastEditor, session, workSpaceID);
+    public Chapter(Tome tome, String name, String creator, String lastEditor, boolean session, String title) {
+        super(name, creator, lastEditor, session);
         this.tome = tome;
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Tome getTome() {
@@ -58,4 +61,14 @@ public class Chapter extends Element {
     public void setTome(Tome tome) {
         this.tome = tome;
     }
+    
+    public Set<Paragraph> getParagraphs() {
+        return paragraphs;
+    }
+
+    public void setParagraphs(Set<Paragraph> paragraphs) {
+        this.paragraphs = paragraphs;
+    }
+
+    
 }

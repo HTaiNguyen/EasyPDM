@@ -5,12 +5,12 @@
  */
 package fr.upem.easypdm.entity;
 
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,14 +19,25 @@ import javax.persistence.OneToOne;
 @Entity
 public class Department extends Organisation {
     @ManyToOne
-    @JoinColumn(name="entreprise_id")
-    private Enterprise company;
+    @JoinColumn(name="entreprise_id", nullable=false)
+    private Enterprise enterprise;
 
+    @OneToMany(cascade=ALL, mappedBy="department")
+    Set<Service> services;
+    
     public Department() {
     }
 
-    public Department(Enterprise company) {
-        this.company = company;
+    public Set<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Service> services) {
+        this.services = services;
+    }
+
+    public Department(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     public Department(String name, String description) {
@@ -35,14 +46,14 @@ public class Department extends Organisation {
 
     public Department(Enterprise company, String name, String description) {
         super(name, description);
-        this.company = company;
+        this.enterprise = company;
     }
 
-    public Enterprise getCompany() {
-        return company;
+    public Enterprise getEnterprise() {
+        return enterprise;
     }
 
-    public void setCompany(Enterprise company) {
-        this.company = company;
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 }

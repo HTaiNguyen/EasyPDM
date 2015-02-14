@@ -5,12 +5,12 @@
  */
 package fr.upem.easypdm.entity;
 
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +23,17 @@ public class Service extends Organisation {
     @JoinColumn(name="departement_id")
     private Department department;
 
+    @OneToMany(cascade=ALL, mappedBy="service")
+    Set<Team> teams;
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+    
     public Service() {
     }
 

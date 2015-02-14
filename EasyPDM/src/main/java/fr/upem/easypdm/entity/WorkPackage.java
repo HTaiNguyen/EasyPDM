@@ -9,12 +9,15 @@ import fr.upem.entity.easypdm.more.Maturity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -43,14 +46,9 @@ public class WorkPackage implements Serializable {
     @ManyToOne
     @JoinColumn(name="organisation_id")
     private Organisation organisation;
-
-    public Organisation getOrganisation() {
-        return organisation;
-    }
-
-    public void setOrganisation(Organisation organisation) {
-        this.organisation = organisation;
-    }
+    
+    @OneToMany(cascade=ALL, mappedBy="workPackage")
+    Set<Element> elements;
 
     public WorkPackage() {
         
@@ -129,5 +127,14 @@ public class WorkPackage implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    
+    public Organisation getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
     }
 }

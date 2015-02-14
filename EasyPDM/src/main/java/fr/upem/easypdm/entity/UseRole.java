@@ -38,7 +38,30 @@ public class UseRole implements Serializable {
             this.userId = userId;
             this.organisationId = organisationId;
         }
-        
+
+        public Long getRoleId() {
+            return roleId;
+        }
+
+        public void setRoleId(Long roleId) {
+            this.roleId = roleId;
+        }
+
+        public Long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(Long userId) {
+            this.userId = userId;
+        }
+
+        public Long getOrganisationId() {
+            return organisationId;
+        }
+
+        public void setOrganisationId(Long organisationId) {
+            this.organisationId = organisationId;
+        }
         
     }
     
@@ -85,5 +108,13 @@ public class UseRole implements Serializable {
 
     public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
+    }
+
+    public Pk getPk() {
+        return pk;
+    }
+
+    public void setPk(Pk pk) {
+        this.pk = pk;
     }
 }

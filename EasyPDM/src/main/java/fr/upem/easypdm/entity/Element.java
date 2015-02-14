@@ -36,8 +36,7 @@ public class Element implements Serializable {
     @NotNull
     private String lastEditor;
     @NotNull
-    private boolean session;
-    private Long workSpaceID;
+    private boolean lock;
     @NotNull
     private Timestamp editStamp;
     
@@ -49,12 +48,11 @@ public class Element implements Serializable {
         
     }
 
-    public Element(String name, String creator, String lastEditor, boolean session, Long workSpaceID) {
+    public Element(String name, String creator, String lastEditor, boolean lock) {
         this.name = Objects.requireNonNull(name);
         this.creator = Objects.requireNonNull(creator);
         this.lastEditor = Objects.requireNonNull(lastEditor);
-        this.session = Objects.requireNonNull(session);
-        this.workSpaceID = workSpaceID;
+        this.lock = Objects.requireNonNull(lock);
         editStamp = new Timestamp(new java.util.Date().getTime());
     }
     
@@ -82,20 +80,12 @@ public class Element implements Serializable {
         this.lastEditor = lastEditor;
     }
 
-    public boolean isSession() {
-        return session;
+    public boolean isLock() {
+        return lock;
     }
 
-    public void setSession(boolean session) {
-        this.session = session;
-    }
-
-    public Long getWorkSpaceID() {
-        return workSpaceID;
-    }
-
-    public void setWorkSpaceID(Long workSpaceID) {
-        this.workSpaceID = workSpaceID;
+    public void setLock(boolean lock) {
+        this.lock = lock;
     }
 
     public Timestamp getEditStamp() {

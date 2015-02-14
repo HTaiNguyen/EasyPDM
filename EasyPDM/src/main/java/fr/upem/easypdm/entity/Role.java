@@ -5,7 +5,6 @@
  */
 package fr.upem.easypdm.entity;
 
-import fr.upem.entity.easypdm.more.Operation;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -60,16 +59,4 @@ public class Role implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public boolean isPermitOperation(Operation operation, Class<?> clazz) {
-        return false;
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
 }
