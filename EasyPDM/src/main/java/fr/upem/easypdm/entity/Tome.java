@@ -22,7 +22,7 @@ public class Tome extends Element {
     private String title;
     
     @ManyToOne
-    @JoinColumn(name="book_id")
+    @JoinColumn(name="book_id", nullable=false)
     private Book book;
         
     @OneToMany(cascade=ALL, mappedBy="tome")

@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class Team extends Organisation {
     
     @ManyToOne
-    @JoinColumn(name="service_id")
+    @JoinColumn(name="service_id", nullable=false)
     private Service service;
 
     public Team() {

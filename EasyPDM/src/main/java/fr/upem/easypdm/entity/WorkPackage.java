@@ -44,7 +44,7 @@ public class WorkPackage implements Serializable {
     private Timestamp editStamp;
     
     @ManyToOne
-    @JoinColumn(name="organisation_id")
+    @JoinColumn(name="organisation_id", nullable=false)
     private Organisation organisation;
     
     @OneToMany(cascade=ALL, mappedBy="workPackage")

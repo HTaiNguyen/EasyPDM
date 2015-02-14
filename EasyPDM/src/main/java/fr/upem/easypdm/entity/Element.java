@@ -41,7 +41,7 @@ public class Element implements Serializable {
     private Timestamp editStamp;
     
     @ManyToOne
-    @JoinColumn(name="workpackage_id")
+    @JoinColumn(name="workpackage_id", nullable=false)
     WorkPackage workPackage;
     
     public Element() {

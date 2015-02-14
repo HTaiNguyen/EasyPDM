@@ -25,7 +25,7 @@ public class Chapter extends Element {
     Set<Paragraph> paragraphs;
     
     @ManyToOne
-    @JoinColumn(name="tome_id")
+    @JoinColumn(name="tome_id", nullable=false)
     private Tome tome;
 
     public Chapter() {

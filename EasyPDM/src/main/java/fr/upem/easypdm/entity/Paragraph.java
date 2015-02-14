@@ -19,7 +19,7 @@ public class Paragraph extends Element {
     private String path;
     
     @ManyToOne
-    @JoinColumn(name="chapter_id")
+    @JoinColumn(name="chapter_id", nullable=false)
     private Chapter chapter;
 
     public Paragraph() {

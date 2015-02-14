@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 public class Service extends Organisation {
     
     @ManyToOne
-    @JoinColumn(name="departement_id")
+    @JoinColumn(name="departement_id", nullable=false)
     private Department department;
 
     @OneToMany(cascade=ALL, mappedBy="service")
