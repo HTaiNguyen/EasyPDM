@@ -23,9 +23,6 @@ public abstract class DAO <T> {
     
     public DAO(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
-        if(entityManager == null) {
-            entityManager = Persistence.createEntityManagerFactory("EasyPDMPU").createEntityManager();
-        }
     }
     
     protected EntityManager getEntityManager() {
