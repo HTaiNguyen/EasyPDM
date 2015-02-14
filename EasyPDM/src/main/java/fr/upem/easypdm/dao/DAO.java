@@ -6,18 +6,15 @@
 package fr.upem.easypdm.dao;
 
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 
 /**
  *
  * @author Tai
  */
 public abstract class DAO <T> {
-    @PersistenceContext(unitName = "EasyPDMPU")
+    @Inject
     private EntityManager entityManager;
     private Class<T> persistentClass;
     
