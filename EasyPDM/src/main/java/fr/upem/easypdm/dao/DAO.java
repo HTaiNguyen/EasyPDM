@@ -17,7 +17,7 @@ import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
  * @author Tai
  */
 public abstract class DAO <T> {
-    @PersistenceContext(unitName = "EasyPDMPU")
+    //@PersistenceContext(unitName = "EasyPDMPU")
     private EntityManager entityManager;
     private Class<T> persistentClass;
     

@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -35,32 +37,39 @@ public class WorkPackage implements Serializable {
     private String creator;
     @NotNull
     private String lastEdit;
-    private Long workSpaceID;
     @NotNull
     private Timestamp editStamp;
-    private Element elementwp;
+    
+    @ManyToOne
+    @JoinColumn(name="organisation_id")
+    private Organisation organisation;
+
+    public Organisation getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
+    }
 
     public WorkPackage() {
         
     }
 
-    public WorkPackage(Long id, String name, long version, Maturity maturity, String creator, String lastEdit, Long workSpaceID, Timestamp editStamp, Element elementwp) {
+    public WorkPackage(Long id, String name, long version, Maturity maturity, String creator, String lastEdit, Timestamp editStamp) {
         this.id = id;
         this.name = Objects.requireNonNull(name);
         this.version = Objects.requireNonNull(version);
         this.maturity = Objects.requireNonNull(maturity);
         this.creator = Objects.requireNonNull(creator);
         this.lastEdit = Objects.requireNonNull(lastEdit);
-        this.workSpaceID = workSpaceID;
         this.editStamp = Objects.requireNonNull(editStamp);
-        this.elementwp = elementwp;
     }
     
     public WorkPackage(String name, String creator, String lastEdit, Long workSpaceID, long version) {
         this.name = Objects.requireNonNull(name);
         this.creator = Objects.requireNonNull(creator);
         this.lastEdit = Objects.requireNonNull(lastEdit);
-        this.workSpaceID = workSpaceID;
         this.version = Objects.requireNonNull(version);
         editStamp = new Timestamp(new java.util.Date().getTime());
         maturity = Maturity.IN_PROGRESS;
@@ -106,14 +115,6 @@ public class WorkPackage implements Serializable {
         this.lastEdit = lastEdit;
     }
 
-    public Long getWorkSpaceID() {
-        return workSpaceID;
-    }
-
-    public void setWorkSpaceID(Long workSpaceID) {
-        this.workSpaceID = workSpaceID;
-    }
-
     public Timestamp getEditStamp() {
         return editStamp;
     }
@@ -129,52 +130,4 @@ public class WorkPackage implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Element getElementwp() {
-        return elementwp;
-    }
-
-    public void setElementwp(Element elementwp) {
-        this.elementwp = elementwp;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize(); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WorkPackage)) {
-            return false;
-        }
-        WorkPackage other = (WorkPackage) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "fr.upem.entity.WorkPackage[ id=" + id + " ]";
-    }
-    
 }

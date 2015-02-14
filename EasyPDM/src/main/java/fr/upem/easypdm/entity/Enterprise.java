@@ -14,7 +14,6 @@ import javax.persistence.InheritanceType;
  * @author sybille
  */
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Enterprise extends Organisation {
 
     public Enterprise() {

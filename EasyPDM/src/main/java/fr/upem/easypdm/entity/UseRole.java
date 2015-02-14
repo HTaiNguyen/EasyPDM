@@ -6,11 +6,12 @@
 package fr.upem.easypdm.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,36 +20,49 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class UseRole implements Serializable {
+    
+    @Embeddable
+    public static class Pk implements Serializable{
+        @Column(name="role_id",nullable = false, updatable = false)
+        private Long roleId;
+        @Column(name="user_id",nullable = false, updatable = false)
+        private Long userId;
+        @Column(name="organisation_id",nullable = false, updatable = false)
+        private Long organisationId;
+        
+        public Pk() {
+        }
+        
+        public Pk(Long roleId, Long userId, Long organisationId) {
+            this.roleId = roleId;
+            this.userId = userId;
+            this.organisationId = organisationId;
+        }
+        
+        
+    }
+    
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @EmbeddedId
+    private Pk pk;
     
     @NotNull
+    @ManyToOne
+    @JoinColumn(name="role_id",insertable = false, updatable = false)
     private Role role;
     @NotNull
+    @ManyToOne
+    @JoinColumn(name="user_id",insertable = false, updatable = false)
     private Users user;
     @NotNull
+    @ManyToOne
+    @JoinColumn(name="organisation_id",insertable = false, updatable = false)
     private Organisation organisation;
     
     public UseRole() {
         
     }
-    
-    public UseRole(Role role, Users user, Organisation organisation) {
-        this.role = Objects.requireNonNull(role);
-        this.user = Objects.requireNonNull(user);
-        this.organisation = Objects.requireNonNull(organisation);
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     public Role getRole() {
         return role;
     }
@@ -72,31 +86,4 @@ public class UseRole implements Serializable {
     public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
     }
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UseRole)) {
-            return false;
-        }
-        UseRole other = (UseRole) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "fr.upem.entity.UseRole[ id=" + id + " ]";
-    }
-    
 }

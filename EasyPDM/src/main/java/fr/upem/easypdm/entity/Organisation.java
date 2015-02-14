@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,6 +20,7 @@ import javax.validation.constraints.NotNull;
  * @author Tai
  */
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Organisation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,23 +70,5 @@ public class Organisation implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Organisation)) {
-            return false;
-        }
-        Organisation other = (Organisation) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "fr.upem.entity.Organisation[ id=" + id + " ]";
-    }
-    
+   
 }
