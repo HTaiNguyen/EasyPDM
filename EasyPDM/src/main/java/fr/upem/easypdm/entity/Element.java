@@ -5,10 +5,15 @@
  */
 package fr.upem.easypdm.entity;
 
+import fr.upem.entity.easypdm.more.Maturity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +21,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -40,20 +46,34 @@ public class Element implements Serializable {
     @NotNull
     private Timestamp editStamp;
     
+    @Enumerated(EnumType.STRING)
+    private Maturity maturity;
+
     @ManyToOne
-    @JoinColumn(name="workpackage_id", nullable=false)
-    WorkPackage workPackage;
+    @JoinColumn(name="organisation_id", nullable=false)
+    private Organisation organisation;
+
     
     public Element() {
         
     }
 
-    public Element(String name, String creator, String lastEditor, boolean lock) {
+    public Element(String name, String creator, String lastEditor, boolean lock, Maturity maturity, Organisation organisation) {
         this.name = Objects.requireNonNull(name);
         this.creator = Objects.requireNonNull(creator);
         this.lastEditor = Objects.requireNonNull(lastEditor);
         this.lock = Objects.requireNonNull(lock);
         editStamp = new Timestamp(new java.util.Date().getTime());
+        this.organisation = organisation;
+        this.maturity = maturity;
+    }
+
+    public Maturity getMaturity() {
+        return maturity;
+    }
+
+    public void setMaturity(Maturity maturity) {
+        this.maturity = maturity;
     }
     
     public String getName() {
@@ -104,4 +124,12 @@ public class Element implements Serializable {
         this.id = id;
     }
     
+    
+    public Organisation getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(Organisation organisation) {
+        this.organisation = organisation;
+    }
 }
