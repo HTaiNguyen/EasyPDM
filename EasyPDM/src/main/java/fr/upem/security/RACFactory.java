@@ -13,20 +13,20 @@ import java.util.List;
  *
  * @author Denis
  */
-public class ROAFactory {
+public class RACFactory {
     
     public RoleAccessControl createROA(Role role, Organisation org) {
         switch(role.getName()) {
             case "Admin":
-                return new ROAAdmin();
+                return new RACAdmin();
             case "Book Manager":
-                return new ROABookManager(org);
+                return new RACBookManager(org);
             case "Tome Manager":
-                return new ROATomeManager(org);
+                return new RACTomeManager(org);
             case "Chapter Manager":
-                return new ROAChapterManager(org);
+                return new RACChapterManager(org);
             case "Writer":
-                return new ROAWriter(org);
+                return new RACWriter(org);
             default:
                 throw new IllegalArgumentException("No such a role");
         }

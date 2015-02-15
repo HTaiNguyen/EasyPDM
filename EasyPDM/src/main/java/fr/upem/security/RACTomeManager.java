@@ -16,24 +16,25 @@ import static fr.upem.security.Operation.DELETE;
 import static fr.upem.security.Operation.MODIFY;
 import static fr.upem.security.Operation.READ;
 import java.util.HashMap;
+
 /**
  *
  * @author Denis
  */
-public class ROAWriter implements RoleAccessControl {
+public class RACTomeManager implements RoleAccessControl{
     final private static HashMap<EntityType, Permission> permissions;
     
     static {
         permissions = new HashMap<>();
         permissions.put(BOOK, new Permission(BOOK,READ));
-        permissions.put(TOME, new Permission(TOME,READ));
-        permissions.put(CHAPTER, new Permission(CHAPTER,READ));
+        permissions.put(TOME, new Permission(TOME,READ,MODIFY,CREATE,DELETE));
+        permissions.put(CHAPTER, new Permission(CHAPTER,READ,MODIFY,CREATE,DELETE));
         permissions.put(PARAGRAPH, new Permission(PARAGRAPH,READ,MODIFY,CREATE,DELETE));
     }
     
     private Organisation org;
     
-    public ROAWriter(Organisation org) {
+    public RACTomeManager(Organisation org) {
         this.org = org;
     }
     
@@ -50,7 +51,7 @@ public class ROAWriter implements RoleAccessControl {
         /* Si op sur un Element et element not null */
         if(e != null && type.isElement()) {
             
-            if(org.getId().equals(e.getOrganisation().getId())) {
+            if(org.getId() != e.getOrganisation().getId()) {
                 return false;
             }
             
@@ -78,5 +79,5 @@ public class ROAWriter implements RoleAccessControl {
         }
         
         return true;
-    }
+    }    
 }

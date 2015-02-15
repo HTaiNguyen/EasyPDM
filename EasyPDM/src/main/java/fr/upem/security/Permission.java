@@ -6,9 +6,6 @@
 package fr.upem.security;
 
 import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  *
  * @author Tai
@@ -18,9 +15,9 @@ public class Permission {
     EntityType entityType;
     private EnumSet<Operation> ops;
     
-    public Permission(EntityType entityType, Operation...ops) {
+    public Permission(EntityType entityType, Operation op, Operation...ops) {
         this.entityType = entityType;
-        this.ops = EnumSet.of(null, ops);
+        this.ops = EnumSet.of(op, ops);
     }
     
     public boolean isPermitOperation(Operation op) {

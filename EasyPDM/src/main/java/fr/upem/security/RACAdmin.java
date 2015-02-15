@@ -11,7 +11,7 @@ import fr.upem.easypdm.entity.Element;
  *
  * @author Denis
  */
-public class ROAAdmin implements RoleAccessControl{
+public class RACAdmin implements RoleAccessControl{
     
     @Override
     public boolean isPermitOperation(EntityType type, Operation op, Element e) {

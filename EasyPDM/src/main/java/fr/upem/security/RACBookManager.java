@@ -14,7 +14,7 @@ import static fr.upem.security.EntityType.*;
  *
  * @author Denis
  */
-public class ROABookManager implements RoleAccessControl{
+public class RACBookManager implements RoleAccessControl{
     
     final private static HashMap<EntityType, Permission> permissions;
     
@@ -28,7 +28,7 @@ public class ROABookManager implements RoleAccessControl{
     
     private Organisation org;
     
-    public ROABookManager(Organisation org) {
+    public RACBookManager(Organisation org) {
         this.org = org;
     }
     
@@ -45,7 +45,7 @@ public class ROABookManager implements RoleAccessControl{
         /* Si op sur un Element et element not null */
         if(e != null && type.isElement()) {
             
-            if(org.getId().equals(e.getOrganisation().getId())) {
+            if(org.getId() != e.getOrganisation().getId()) {
                 return false;
             }
             
