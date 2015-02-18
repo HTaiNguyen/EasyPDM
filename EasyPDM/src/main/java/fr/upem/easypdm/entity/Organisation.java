@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -34,20 +36,12 @@ public class Organisation implements Serializable {
     private String description;
     
     @OneToMany(cascade=ALL, mappedBy="organisation")
-    Set<WorkPackage> workPackages;
+    Set<Element> elements;
 
     public Organisation() {
         
     }
 
-    public Set<WorkPackage> getWorkPackages() {
-        return workPackages;
-    }
-
-    public void setWorkPackages(Set<WorkPackage> workPackages) {
-        this.workPackages = workPackages;
-    }
-    
     public Organisation(String name, String description) {
         this.name = Objects.requireNonNull(name);
         this.description = description;

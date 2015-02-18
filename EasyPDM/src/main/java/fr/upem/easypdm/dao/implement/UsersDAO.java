@@ -7,13 +7,13 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Users;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Tai
  */
+@Stateless
 public class UsersDAO extends DAO <Users> {
 
     public UsersDAO() {

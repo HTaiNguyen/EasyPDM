@@ -5,6 +5,7 @@
  */
 package fr.upem.easypdm.entity;
 
+import fr.upem.entity.easypdm.more.Maturity;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,8 +26,8 @@ public class Paragraph extends Element {
     public Paragraph() {
     }
 
-    public Paragraph(String name, String creator, String lastEditor, boolean session, Chapter chapter, String path) {
-        super(name, creator, lastEditor, session);
+    public Paragraph(String name, String creator, String lastEditor, boolean session, Chapter chapter, String path, Maturity maturity, Organisation organisation) {
+        super(name, creator, lastEditor, session, maturity, organisation);
         this.chapter = chapter;
         this.path = path;
     } 

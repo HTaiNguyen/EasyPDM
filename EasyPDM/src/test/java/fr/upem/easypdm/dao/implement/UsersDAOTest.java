@@ -5,17 +5,24 @@
  */
 package fr.upem.easypdm.dao.implement;
 
+import static org.mockito.Mockito.mock;
+
 import fr.upem.easypdm.entity.Users;
+import java.util.List;
+import javax.ejb.embeddable.EJBContainer;
+import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 /**
  *
- * @author Tai
+ * @author Denis
  */
 public class UsersDAOTest {
     
@@ -37,12 +44,144 @@ public class UsersDAOTest {
     @After
     public void tearDown() {
     }
-    
+
     @Test
     public void testCreate() {
-        UsersDAO instance = new UsersDAO();
+
+        UsersDAO dao = mock(UsersDAO.class);
         Users user = new Users("tai", "nguyen", "tai.nguyen@free.fr", "tai", "taitai");
-        instance.create(user);
-        instance.save(user);
+        dao.create(user);
+        dao.save(user);
+        
+        user = dao.find(1);
+        assertEquals(user.getEmail(),"tai.nguyen@free.fr");
+    }
+
+    /**
+     * Test of setEntityManager method, of class UsersDAO.
+     */
+    @Test
+    public void testSetEntityManager() throws Exception {
+        System.out.println("setEntityManager");
+        EntityManager entityManager = null;
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        instance.setEntityManager(entityManager);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getPersistentClass method, of class UsersDAO.
+     */
+    @Test
+    public void testGetPersistentClass() throws Exception {
+        System.out.println("getPersistentClass");
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        Class<Users> expResult = null;
+        Class<Users> result = instance.getPersistentClass();
+        assertEquals(expResult, result);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setPersistentClass method, of class UsersDAO.
+     */
+    @Test
+    public void testSetPersistentClass() throws Exception {
+        System.out.println("setPersistentClass");
+        Class<Users> persistentClass = null;
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        instance.setPersistentClass(persistentClass);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of findAll method, of class UsersDAO.
+     */
+    @Test
+    public void testFindAll() throws Exception {
+        System.out.println("findAll");
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        List<Users> expResult = null;
+        List<Users> result = instance.findAll();
+        assertEquals(expResult, result);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of find method, of class UsersDAO.
+     */
+    @Test
+    public void testFind() throws Exception {
+        System.out.println("find");
+        long id = 0L;
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        Users expResult = null;
+        Users result = instance.find(id);
+        assertEquals(expResult, result);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of remove method, of class UsersDAO.
+     */
+    @Test
+    public void testRemove() throws Exception {
+        System.out.println("remove");
+        Users t = null;
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        instance.remove(t);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of update method, of class UsersDAO.
+     */
+    @Test
+    public void testUpdate() throws Exception {
+        System.out.println("update");
+        Users t = null;
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        Users expResult = null;
+        Users result = instance.update(t);
+        assertEquals(expResult, result);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of save method, of class UsersDAO.
+     */
+    @Test
+    public void testSave() throws Exception {
+        System.out.println("save");
+        Users t = null;
+        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
+        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
+        Users expResult = null;
+        Users result = instance.save(t);
+        assertEquals(expResult, result);
+        container.close();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

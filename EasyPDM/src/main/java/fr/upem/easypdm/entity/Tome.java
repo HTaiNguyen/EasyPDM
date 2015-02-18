@@ -5,6 +5,7 @@
  */
 package fr.upem.easypdm.entity;
 
+import fr.upem.entity.easypdm.more.Maturity;
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
@@ -43,9 +44,11 @@ public class Tome extends Element {
      * @param workSpaceID
      * @param book
      * @param title
+     * @param organisation
+     * @param maturity
      */
-    public Tome(String name, String creator, String lastEditor, boolean session, Long workSpaceID, Book book, String title) {
-        super(name, creator, lastEditor, session);
+    public Tome(String name, String creator, String lastEditor, boolean session, Long workSpaceID, Book book, String title, Maturity maturity, Organisation organisation) {
+        super(name, creator, lastEditor, session, maturity, organisation);
         this.book = book;
         this.title = title;
     }
