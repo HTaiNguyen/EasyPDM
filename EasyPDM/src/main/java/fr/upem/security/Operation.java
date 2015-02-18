@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.entity.easypdm.more;
+package fr.upem.security;
 
 /**
  *
- * @author Tai
+ * @author Denis
  */
-public class Operation {
-    
+public enum Operation {
+    CREATE,DELETE,READ,MODIFY;
 }

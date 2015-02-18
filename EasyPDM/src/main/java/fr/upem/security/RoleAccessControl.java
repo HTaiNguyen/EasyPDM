@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.entity.easypdm.more;
+package fr.upem.security;
+
+import fr.upem.easypdm.entity.Element;
 
 /**
  *
- * @author Tai
+ * @author Denis
  */
-public class Permission {
-    
+public interface RoleAccessControl {
+    public boolean isPermitOperation(EntityType type, Operation op, Element e);
 }

@@ -41,13 +41,13 @@ public class Tome extends Element {
      * @param creator
      * @param lastEditor
      * @param session
-     * @param workSpaceID
      * @param book
      * @param title
      * @param organisation
      * @param maturity
      */
-    public Tome(String name, String creator, String lastEditor, boolean session, Long workSpaceID, Book book, String title, Maturity maturity, Organisation organisation) {
+
+    public Tome(String name, String creator, String lastEditor, boolean session, Book book, String title, Maturity maturity, Organisation organisation) {
         super(name, creator, lastEditor, session, maturity, organisation);
         this.book = book;
         this.title = title;
