@@ -11,6 +11,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+
 /**
  *
  * @author Denis
@@ -19,21 +20,21 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class ElementManager {
- 
+
     private ElementDAO elementDAO = new ElementDAO();
     private Element element = new Element();
     
-    
-    public List<Element> findAllElements() {
-        return elementDAO.findAll();
-    }
-    
-    public void doCreateElement() {
+ 
+    public void createElement(Element element) {
         elementDAO.create(element);
     }
     
-    public void doFindElementById(long id) {
+    public void findElementById(long id) {
         element = elementDAO.find(id);
+    }
+    
+    public List<Element> findAllElements() {
+        return elementDAO.findAll();
     }
     
     public Element getElement() {
