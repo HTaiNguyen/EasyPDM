@@ -7,6 +7,7 @@ package fr.upem.security;
 
 import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Role;
+import fr.upem.easypdm.entity.UseRole;
 import java.util.List;
 
 /**
@@ -15,18 +16,18 @@ import java.util.List;
  */
 public class RACFactory {
     
-    public RoleAccessControl createROA(Role role, Organisation org) {
-        switch(role.getName()) {
+    public RAC createROA(UseRole useRole) {
+        switch(useRole.getRole().getName()) {
             case "Admin":
                 return new RACAdmin();
             case "Book Manager":
-                return new RACBookManager(org);
+                return new RACBookManager(useRole.getOrganisation(), useRole.getUser());
             case "Tome Manager":
-                return new RACTomeManager(org);
+                return new RACTomeManager(useRole.getOrganisation(), useRole.getUser());
             case "Chapter Manager":
-                return new RACChapterManager(org);
+                return new RACChapterManager(useRole.getOrganisation(), useRole.getUser());
             case "Writer":
-                return new RACWriter(org);
+                return new RACWriter(useRole.getOrganisation(), useRole.getUser());
             default:
                 throw new IllegalArgumentException("No such a role");
         }

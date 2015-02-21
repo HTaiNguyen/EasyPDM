@@ -12,6 +12,8 @@ import fr.upem.easypdm.entity.Enterprise;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Role;
 import fr.upem.easypdm.entity.Tome;
+import fr.upem.easypdm.entity.UseRole;
+import fr.upem.easypdm.entity.Users;
 import fr.upem.entity.easypdm.more.Maturity;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -39,6 +41,12 @@ public class RoleAccessControlTest {
     private Role chapterManager;
     private Role writer;
     
+    private UseRole useRole1;
+    private UseRole useRole2;
+    private UseRole useRole3;
+    private UseRole useRole4;
+    private UseRole useRole5;
+    private UseRole useRole6;
     
     public RoleAccessControlTest() {
     }
@@ -68,6 +76,13 @@ public class RoleAccessControlTest {
         chapterManager = new Role("Chapter Manager","");
         writer = new Role("Writer", "");
         factory = new RACFactory();
+        
+        useRole1 = new UseRole(new Users(), org2, chapterManager);
+        useRole2 = new UseRole(new Users(), org2, writer);
+        useRole3 = new UseRole(new Users(), org1, bookManager);
+        useRole4 = new UseRole(new Users(), org1, tomeManager);
+        useRole5 = new UseRole(new Users(), org2, chapterManager);
+        useRole6 = new UseRole(new Users(), org2, writer);
     }
     
     @After
@@ -79,7 +94,7 @@ public class RoleAccessControlTest {
      */
     @Test
     public void testLock() {
-        RoleAccessControl rac = factory.createROA(chapterManager, org2);
+        RAC rac = factory.createROA(useRole1);
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.CHAPTER, Operation.READ, chapter));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.CHAPTER, Operation.MODIFY, chapter));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.CHAPTER, Operation.DELETE, chapter));
@@ -87,7 +102,7 @@ public class RoleAccessControlTest {
     
     @Test
     public void testMaturity() {
-        RoleAccessControl rac = factory.createROA(writer, org2);
+        RAC rac = factory.createROA(useRole2);
         Assert.assertEquals(true, rac.isPermitOperation(EntityType.PARAGRAPH, Operation.READ, paragraph));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.PARAGRAPH, Operation.MODIFY, paragraph));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.PARAGRAPH, Operation.DELETE, paragraph));
@@ -95,7 +110,7 @@ public class RoleAccessControlTest {
     
     @Test
     public void testBookManager() {
-        RoleAccessControl rac = factory.createROA(bookManager, org1);
+        RAC rac = factory.createROA(useRole3);
         Assert.assertEquals(true, EntityType.BOOK.isElement());
         Assert.assertEquals(true, rac.isPermitOperation(EntityType.BOOK, Operation.READ, book));
         Assert.assertEquals(true, rac.isPermitOperation(EntityType.BOOK, Operation.MODIFY, book));
@@ -117,7 +132,7 @@ public class RoleAccessControlTest {
     
     @Test 
     public void testTomeManager() {
-        RoleAccessControl rac = factory.createROA(tomeManager, org1);
+        RAC rac = factory.createROA(useRole4);
         Assert.assertEquals(true, rac.isPermitOperation(EntityType.BOOK, Operation.READ, book));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.MODIFY, book));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.DELETE, book)); 
@@ -138,7 +153,7 @@ public class RoleAccessControlTest {
     
     @Test 
     public void testChapterManager() {
-        RoleAccessControl rac = factory.createROA(chapterManager, org2);
+        RAC rac = factory.createROA(useRole5);
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.READ, book));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.MODIFY, book));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.DELETE, book)); 
@@ -159,7 +174,7 @@ public class RoleAccessControlTest {
     
     @Test 
     public void testParagraphManager() {
-        RoleAccessControl rac = factory.createROA(writer, org2);
+        RAC rac = factory.createROA(useRole6);
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.READ, book));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.MODIFY, book));
         Assert.assertEquals(false, rac.isPermitOperation(EntityType.BOOK, Operation.DELETE, book)); 

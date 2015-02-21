@@ -85,6 +85,12 @@ public class UseRole implements Serializable {
     public UseRole() {
         
     }
+    
+    public UseRole(Users user, Organisation organisation, Role role) {
+        this.user = user;
+        this.organisation = organisation;
+        this.role = role;
+    }
 
     public Role getRole() {
         return role;

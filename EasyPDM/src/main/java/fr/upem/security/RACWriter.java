@@ -7,6 +7,7 @@ package fr.upem.security;
 
 import fr.upem.easypdm.entity.Element;
 import fr.upem.easypdm.entity.Organisation;
+import fr.upem.easypdm.entity.Users;
 import static fr.upem.security.EntityType.BOOK;
 import static fr.upem.security.EntityType.CHAPTER;
 import static fr.upem.security.EntityType.PARAGRAPH;
@@ -20,7 +21,7 @@ import java.util.HashMap;
  *
  * @author Denis
  */
-public class RACWriter implements RoleAccessControl {
+public class RACWriter implements RAC {
     final private static HashMap<EntityType, Permission> permissions;
     
     static {
@@ -32,10 +33,12 @@ public class RACWriter implements RoleAccessControl {
     }
     
     private Organisation org;
+    private Users user;
     
-    public RACWriter(Organisation org) {
+    public RACWriter(Organisation org, Users user) {
         this.org = org;
-    }
+        this.user = user;
+    } 
     
     @Override
     public boolean isPermitOperation(EntityType type, Operation op, Element e) {

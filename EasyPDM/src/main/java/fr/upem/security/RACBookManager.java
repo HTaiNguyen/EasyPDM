@@ -7,14 +7,16 @@ package fr.upem.security;
 
 import fr.upem.easypdm.entity.Element;
 import fr.upem.easypdm.entity.Organisation;
+import fr.upem.easypdm.entity.Users;
 import java.util.HashMap;
 import static fr.upem.security.Operation.*;
 import static fr.upem.security.EntityType.*;
+import javax.xml.registry.infomodel.User;
 /**
  *
  * @author Denis
  */
-public class RACBookManager implements RoleAccessControl{
+public class RACBookManager implements RAC{
     
     final private static HashMap<EntityType, Permission> permissions;
     
@@ -27,9 +29,11 @@ public class RACBookManager implements RoleAccessControl{
     }
     
     private Organisation org;
+    private Users user;
     
-    public RACBookManager(Organisation org) {
+    public RACBookManager(Organisation org, Users user) {
         this.org = org;
+        this.user = user;
     }
     
     @Override
@@ -74,5 +78,4 @@ public class RACBookManager implements RoleAccessControl{
         
         return true;
     }
-    
 }
