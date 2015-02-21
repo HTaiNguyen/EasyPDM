@@ -42,21 +42,6 @@ public class UsersDAOTest {
     }
 
     /**
-     * Test of setEntityManager method, of class UsersDAO.
-     */
-    @Test
-    public void testSetEntityManager() throws Exception {
-        System.out.println("setEntityManager");
-        EntityManager entityManager = null;
-        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
-        UsersDAO instance = (UsersDAO)container.getContext().lookup("java:global/classes/UsersDAO");
-        instance.setEntityManager(entityManager);
-        container.close();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getPersistentClass method, of class UsersDAO.
      */
     @Test
