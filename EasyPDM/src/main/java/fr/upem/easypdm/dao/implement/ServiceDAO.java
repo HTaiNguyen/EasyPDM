@@ -22,6 +22,7 @@ public class ServiceDAO extends DAO <Service> {
         super(Service.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

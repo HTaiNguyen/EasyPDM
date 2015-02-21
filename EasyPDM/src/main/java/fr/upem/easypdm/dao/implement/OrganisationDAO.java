@@ -22,6 +22,7 @@ public class OrganisationDAO extends DAO <Organisation> {
         super(Organisation.class);
     }
 
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

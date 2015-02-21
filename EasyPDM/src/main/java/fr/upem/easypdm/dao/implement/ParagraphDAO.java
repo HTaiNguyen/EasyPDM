@@ -22,6 +22,7 @@ public class ParagraphDAO extends DAO <Paragraph> {
         super(Paragraph.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

@@ -28,6 +28,7 @@ public class UsersDAO extends DAO <Users> {
         return entityManager.find(Users.class, login);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

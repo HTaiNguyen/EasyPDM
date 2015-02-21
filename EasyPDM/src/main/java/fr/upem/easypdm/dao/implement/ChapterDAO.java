@@ -22,6 +22,7 @@ public class ChapterDAO extends DAO <Chapter> {
         super(Chapter.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

@@ -22,6 +22,7 @@ public class EnterpriseDAO extends DAO <Enterprise> {
         super(Enterprise.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

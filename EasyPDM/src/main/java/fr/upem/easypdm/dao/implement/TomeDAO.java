@@ -22,6 +22,7 @@ public class TomeDAO extends DAO <Tome> {
         super(Tome.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

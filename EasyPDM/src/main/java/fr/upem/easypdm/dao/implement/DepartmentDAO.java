@@ -22,6 +22,7 @@ public class DepartmentDAO extends DAO <Department> {
         super(Department.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

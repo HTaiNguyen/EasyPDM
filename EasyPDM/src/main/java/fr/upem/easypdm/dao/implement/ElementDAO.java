@@ -26,6 +26,7 @@ public class ElementDAO extends DAO <Element> {
         super(Element.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

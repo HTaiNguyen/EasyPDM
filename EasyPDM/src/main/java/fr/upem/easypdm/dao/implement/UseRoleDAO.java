@@ -22,6 +22,7 @@ public class UseRoleDAO extends DAO <UseRole> {
         super(UseRole.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

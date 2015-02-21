@@ -22,6 +22,7 @@ public class BookDAO extends DAO <Book> {
         super(Book.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }

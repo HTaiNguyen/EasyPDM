@@ -22,6 +22,7 @@ public class TeamDAO extends DAO <Team> {
         super(Team.class);
     }
     
+    @Override
     protected EntityManager getEntityManager() {
         return entityManager;
     }
