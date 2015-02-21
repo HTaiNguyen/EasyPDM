@@ -7,14 +7,22 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.UseRole;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Tai
  */
 public class UseRoleDAO extends DAO <UseRole> {
+    @PersistenceContext(unitName = "EasyPDMPU")
+    private EntityManager entityManager;
     
     public UseRoleDAO() {
         super(UseRole.class);
+    }
+    
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 }

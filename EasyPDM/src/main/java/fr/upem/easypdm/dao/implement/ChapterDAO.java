@@ -7,14 +7,22 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Chapter;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Tai
  */
 public class ChapterDAO extends DAO <Chapter> {
+    @PersistenceContext(unitName = "EasyPDMPU")
+    private EntityManager entityManager;
     
     public ChapterDAO() {
         super(Chapter.class);
+    }
+    
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 }

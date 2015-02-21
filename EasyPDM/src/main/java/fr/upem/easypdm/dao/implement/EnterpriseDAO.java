@@ -7,14 +7,22 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Enterprise;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Tai
  */
 public class EnterpriseDAO extends DAO <Enterprise> {
+    @PersistenceContext(unitName = "EasyPDMPU")
+    private EntityManager entityManager;
     
     public EnterpriseDAO() {
         super(Enterprise.class);
+    }
+    
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 }

@@ -7,7 +7,6 @@ package fr.upem.easypdm.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -15,21 +14,10 @@ import javax.persistence.PersistenceContext;
  */
 
 public abstract class DAO<T> {
-    //@Inject
-    @PersistenceContext(unitName = "EasyPDMPU")
-    private EntityManager entityManager;
     private Class<T> persistentClass;
     
     public DAO(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
-    }
-    
-    protected EntityManager getEntityManager() {
-        return entityManager;
-    }
-    
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
     }
 
     public Class<T> getPersistentClass() {
@@ -48,7 +36,7 @@ public abstract class DAO<T> {
        /* return getEntityManager()
                 .createQuery("select x from " + getPersistentClass().getSimpleName() + " x")
                 .getResultList();*/
-        return entityManager.createQuery("from " + persistentClass.getName()).getResultList();
+        return getEntityManager().createQuery("from " + persistentClass.getName()).getResultList();
     }
     
     /**
@@ -57,7 +45,7 @@ public abstract class DAO<T> {
      * @return 
      */
     public T find(long id) {
-        T entity = (T) entityManager.find(getPersistentClass(), id);
+        T entity = (T) getEntityManager().find(getPersistentClass(), id);
         return entity;
     }
     
@@ -66,7 +54,7 @@ public abstract class DAO<T> {
      * @param t 
      */
     public void create(T t) {
-        entityManager.persist(t);
+        getEntityManager().persist(t);
     }
     
     /**
@@ -74,7 +62,7 @@ public abstract class DAO<T> {
      * @param t 
      */
     public void remove(T t) {
-        entityManager.remove(t);
+        getEntityManager().remove(t);
     }
     
     /**
@@ -96,4 +84,6 @@ public abstract class DAO<T> {
         getEntityManager().persist(t);
         return t;
     }
+
+    protected abstract EntityManager getEntityManager();
 }

@@ -7,14 +7,22 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Book;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Tai
  */
 public class BookDAO extends DAO <Book> {
+    @PersistenceContext(unitName = "EasyPDMPU")
+    private EntityManager entityManager;
     
     public BookDAO() {
         super(Book.class);
+    }
+    
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 }

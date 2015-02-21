@@ -7,17 +7,24 @@ package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Organisation;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Tai
  */
 public class OrganisationDAO extends DAO <Organisation> {
+    @PersistenceContext(unitName = "EasyPDMPU")
+    private EntityManager entityManager; 
     
     public OrganisationDAO() {
         super(Organisation.class);
     }
 
+    protected EntityManager getEntityManager() {
+        return entityManager;
+    }
  /*   @Override
     public void create(Organisation t) {
          String values = "('" + t.getId() 
