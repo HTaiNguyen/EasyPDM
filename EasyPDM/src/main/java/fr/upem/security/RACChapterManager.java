@@ -15,12 +15,7 @@ import static fr.upem.security.Operation.CREATE;
 import static fr.upem.security.Operation.DELETE;
 import static fr.upem.security.Operation.MODIFY;
 import static fr.upem.security.Operation.READ;
-import java.io.Serializable;
 import java.util.HashMap;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
