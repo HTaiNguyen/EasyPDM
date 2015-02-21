@@ -8,6 +8,7 @@ package fr.upem.easypdm.dao.implement;
 import fr.upem.easypdm.dao.DAO;
 import fr.upem.easypdm.entity.Element;
 import fr.upem.easypdm.entity.Users;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.OneToOne;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Tai
  */
+@Stateless
 public class ElementDAO extends DAO <Element> {
     @PersistenceContext(unitName = "EasyPDMPU")
     private EntityManager entityManager;
