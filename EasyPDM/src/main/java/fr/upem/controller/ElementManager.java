@@ -21,8 +21,8 @@ import javax.inject.Named;
 @RequestScoped
 public class ElementManager {
 
-    private ElementDAO elementDAO = new ElementDAO();
-    private Element element = new Element();
+    private static ElementDAO elementDAO = new ElementDAO();
+    private static Element element = new Element();
     
  
     public void createElement(Element element) {
