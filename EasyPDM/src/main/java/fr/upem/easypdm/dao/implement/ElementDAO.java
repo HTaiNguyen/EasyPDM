@@ -21,8 +21,6 @@ import javax.persistence.PersistenceContext;
 public class ElementDAO extends DAO <Element> {
     @PersistenceContext(unitName = "EasyPDMPU")
     private EntityManager entityManager;
-    @OneToOne
-    private Users userLockId;
     
     public ElementDAO() {
         super(Element.class);

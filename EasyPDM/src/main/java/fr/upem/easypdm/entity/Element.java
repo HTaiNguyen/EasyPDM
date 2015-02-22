@@ -19,6 +19,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -50,6 +51,9 @@ public class Element implements Serializable {
     @JoinColumn(name="organisation_id", nullable=false)
     private Organisation organisation;
 
+    @OneToOne
+    @JoinColumn(name="users_id", nullable=false)
+    private Users userLockId;  
     
     public Element() {
         
