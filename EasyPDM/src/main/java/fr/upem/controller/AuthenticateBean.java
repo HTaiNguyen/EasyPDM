@@ -6,7 +6,6 @@
 package fr.upem.controller;
 
 import fr.upem.easypdm.dao.implement.UsersDAO;
-import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Users;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -24,10 +23,8 @@ public class AuthenticateBean implements Serializable{
    
 
     private final static String USER_KEY = "userSession";
-    private final static String ORG_KEY = "orgSession";
     
     private Users user;
-    private Organisation organisation;
     
     @EJB
     private UsersDAO dao;
@@ -40,14 +37,6 @@ public class AuthenticateBean implements Serializable{
         return user;
     }
     
-    public Organisation getOrganisation() {
-        return organisation;
-    }
-    
-    public void setOrganisation(Organisation organisation) {
-        this.organisation = organisation;
-    }
-    
     public boolean isLogin() {
        return FacesContext.getCurrentInstance().getExternalContext()
                .getSessionMap().get(USER_KEY) != null;
@@ -55,7 +44,6 @@ public class AuthenticateBean implements Serializable{
     
     public String login() {
         //Find User in Database
-        //TODO
         Users userDB = dao.findByLogin(user.getLogin());
         
         //Test if userName exist
@@ -70,16 +58,12 @@ public class AuthenticateBean implements Serializable{
         
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .put(USER_KEY, user);
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-                .put(ORG_KEY, organisation);
         return "index";
     }
     
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .remove(USER_KEY);
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-                .remove(ORG_KEY);
         return null;
     }
 }

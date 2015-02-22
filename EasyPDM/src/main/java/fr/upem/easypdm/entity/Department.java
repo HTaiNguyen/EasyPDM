@@ -28,14 +28,6 @@ public class Department extends Organisation {
     public Department() {
     }
 
-    public Set<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(Set<Service> services) {
-        this.services = services;
-    }
-
     public Department(Enterprise enterprise) {
         this.enterprise = enterprise;
     }
@@ -55,5 +47,13 @@ public class Department extends Organisation {
 
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
+    }
+    
+    public Set<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Service> services) {
+        this.services = services;
     }
 }

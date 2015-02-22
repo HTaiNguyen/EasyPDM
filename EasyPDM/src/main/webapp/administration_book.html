@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>EasyPDM - Connection</title>
+		
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/jquery.treeView.css" />
+		<link rel="stylesheet" href="css/jquery.contextMenu.css" />
+		
+		<script src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="js/jquery.treeView.js"></script>
+		<script src="js/jquery.contextMenu.js"></script>
+		<script src="js/script.js"></script>
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<div id="page">
+			<header>
+				<div id="logo">
+					<img src="img/logo.png" />
+				</div>
+				
+				<div id="user">
+					<a href="" id="log_out"><img src="img/log_out.png" alt="Log out" /></a>
+					<div id="name">Antoine Célier</div>
+				</div>
+			</header>
+			
+			<nav>
+				<ul>|
+					<li><a href="index.html">Book management</a></li>
+					| <li><a href="administration_service.html">Administration</a></li>
+				|</ul>
+			</nav>
+			
+			<div id="content">
+				<div id="title">Administration</div>
+				
+				<div id="split">
+					<div id="split_left">
+						<ul>
+							<li><a href="administration_service.html">Services list</a></li>
+							<li><a href="administration_role.html">Roles list</a></li>
+							<li><a href="administration_user.html">Users list</a></li>
+							<li><a href="administration_book.html">Book tree</a></li>
+						</ul>
+					</div>
+					
+					<div id="split_right">
+						<div id="books">
+							<ul class="treeview">
+								<li><div class="element" name="book_1"><img src="img/b.png" /> Book</div>
+									<ul>
+										<li><div class="element" name="tome_1"><img src="img/t.png" /> Tome 1</div>
+											<ul>
+												<li><div class="element" name="volume_1"><img src="img/v.png" /> Volume 1</div>
+													<ul>
+														<li><div class="element" name="chapter_1"><img src="img/c.png" /> Chapter 1</div>
+															<ul>
+																<li><div class="element" name="section_1"><img src="img/s.png" /> Section 1</div></li>
+																<li><div class="element" name="section_2"><img src="img/s.png" /> Section 2</div></li>
+																<li><div class="element" name="section_3"><img src="img/s.png" /> Section 3</div></li>
+															</ul>
+														</li>
+														<li><div class="element" name="chapter_2"><img src="img/c.png" /> Chapter 2</div></li>
+														<li><div class="element" name="chapter_3"><img src="img/c.png" /> Chapter 3</div></li>
+													</ul>
+												</li>
+												<li><div class="element" name="volume_2"><img src="img/v.png" /> Volume 2</div></li>
+												<li><div class="element" name="volume_3"><img src="img/v.png" /> Volume 3</div></li>
+											</ul>
+										</li>
+										<li><div class="element" name="tome_2"><img src="img/t.png" /> Tome 2</div>
+											<ul>
+												<li><div class="element" name="volume_1"><img src="img/v.png" /> Volume 1</div>
+													<ul>
+														<li><div class="element" name="chapter_1"><img src="img/c.png" /> Chapter 1</div>
+															<ul>
+																<li><div class="element" name="section_1"><img src="img/s.png" /> Section 1</div></li>
+																<li><div class="element" name="section_2"><img src="img/s.png" /> Section 2</div></li>
+																<li><div class="element" name="section_3"><img src="img/s.png" /> Section 3</div></li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li><div class="element" name="tome_3"><img src="img/t.png" /> Tome 3</div></li>
+									</ul>
+								</li>
+							</ul>
+							
+							<!--<code id="treeModel">
+								<ul class="treeview">
+									<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Book
+										<ul>
+											<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Tome 1
+												<ul>
+													<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Volume 1
+														<ul>
+															<li><img src="img/book.png" width=30 style="vertical-align: middle;" /> Chapter 1
+																<ul>
+																	<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Section 1</li>
+																	<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Section 2</li>
+																	<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Section 3</li>
+																</ul>
+															</li>
+															<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Chapter 2</li>
+															<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Chapter 3</li>
+														</ul>
+													</li>
+													<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Volume 2</li>
+													<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Volume 3</li>
+												</ul>
+											</li>
+											<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Tome 2</li>
+											<li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Tome 3</li>
+										</ul>
+									</li>
+								</ul>
+							</code>
+							
+							<ul class="treeview" id="dataTree"></ul>-->
+						</div>
+						
+						<ul id="menu" class="contextMenu">
+							<li class="download"><a href="#download">Add</a></li>
+							<li class="download"><a href="#download">Edit</a></li>
+							<li class="upload"><a href="#upload">Remove</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<footer>
+				<p>&copy; EasyPDM - All rights reserved</p>
+			</footer>
+		</div>
+	</body>
+</html>

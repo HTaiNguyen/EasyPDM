@@ -6,6 +6,7 @@
 package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
+import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Team;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,5 +28,9 @@ public class TeamDAO extends DAO <Team> {
     @Override
     protected EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public void create(Organisation team) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
