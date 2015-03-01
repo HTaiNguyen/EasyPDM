@@ -5,22 +5,33 @@
  */
 package fr.upem.entity.easypdm.more;
 
-import fr.upem.controllers.ElementController;
-import fr.upem.controllers.OrganisationController;
-import fr.upem.controllers.RoleController;
-import fr.upem.controllers.UserController;
+import fr.upem.easypdm.dao.implement.BookDAO;
+import fr.upem.easypdm.dao.implement.ChapterDAO;
+import fr.upem.easypdm.dao.implement.DepartmentDAO;
 import fr.upem.easypdm.dao.implement.EnterpriseDAO;
-import fr.upem.easypdm.dao.implement.OrganisationDAO;
+import fr.upem.easypdm.dao.implement.ParagraphDAO;
 import fr.upem.easypdm.dao.implement.RoleDAO;
+import fr.upem.easypdm.dao.implement.ServiceDAO;
+import fr.upem.easypdm.dao.implement.TeamDAO;
+import fr.upem.easypdm.dao.implement.TomeDAO;
+import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.dao.implement.UsersDAO;
 import fr.upem.easypdm.entity.Book;
 import fr.upem.easypdm.entity.Chapter;
+import fr.upem.easypdm.entity.Department;
+import fr.upem.easypdm.entity.Enterprise;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Role;
 import fr.upem.easypdm.entity.Tome;
 import fr.upem.easypdm.entity.Service;
 import fr.upem.easypdm.entity.Team;
+import fr.upem.easypdm.entity.UseRole;
 import fr.upem.easypdm.entity.Users;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -33,79 +44,86 @@ import javax.ejb.Startup;
 @Startup
 @Singleton
 public class DBSetup {
-    
-    ElementController elementController;
-    OrganisationController organisationController;
-    UserController userController;
-    RoleController roleController;
-    
     @EJB
     private UsersDAO userDAO;
     @EJB
     private RoleDAO roleDAO;
     @EJB
-    private OrganisationDAO orgDAO;
+    private EnterpriseDAO entDAO;
+    @EJB
+    private ServiceDAO serDAO;
+    @EJB
+    private DepartmentDAO deptDAO;
+    @EJB
+    private TeamDAO teamDAO;
+    @EJB
+    private BookDAO bookDAO;
+    @EJB 
+    private TomeDAO tomeDAO;
+    @EJB
+    private ChapterDAO chapterDAO;
+    @EJB
+    private ParagraphDAO paragraphDAO;
+    @EJB
+    private UseRoleDAO useRoleDAO;
     
     public DBSetup() {
-        elementController = new ElementController();
-        organisationController = new OrganisationController();
-        userController = new UserController();
-        roleController = new RoleController();
     }
+    
     
     @PostConstruct
     public void initDB() {
-        //ROLE
-        roleController.setRole(new Role("Admin", ""));
-        roleController.addRole();
-        roleController.setRole(new Role("Book Manager", ""));
-        roleController.addRole();
-        roleController.setRole(new Role("Tome Manager", ""));
-        roleController.addRole();
-        roleController.setRole(new Role("Chapter Manager", ""));
-        roleController.addRole();
-        roleController.setRole(new Role("Writer", ""));
-        roleController.addRole();
+        Role roleAdmin = new Role("Admin", "");
+        roleDAO.create(roleAdmin);
+        Role roleBM = new Role("Book Manager", "");
+        roleDAO.create(roleBM);
+        Role roleTM = (new Role("Tome Manager", ""));
+        roleDAO.create(roleTM);
+        Role roleCM = new Role("Chapter Manager", "");
+        roleDAO.create(roleCM);
+        Role roleW = new Role("Writer", "");
+        roleDAO.create(roleW);
+        
+        Users admin = new Users("Admin", "Admin", "admin@EasyPDM.com", "admin", "admin");
+        Enterprise adminOrg = new Enterprise("Admin", "");
+        userDAO.create(admin);
+        entDAO.create(adminOrg);
+        useRoleDAO.create(new UseRole(admin, adminOrg, roleAdmin));
+   
         
         //ORGANISATION
         Enterprise enterprise = new Enterprise("UPEM", "Université Paris-Est Marne-la-vallée");
-        organisationController.setEnterprise(enterprise);
-        organisationController.addEnterprise();
-        
+        entDAO.create(enterprise);
         Department department  = new Department(enterprise,"Département IT", "Département informatique");
-        organisationController.setDepartment(department);
-        organisationController.addDepartement();
-        
+        deptDAO.create(department);
         Service service = new Service(department, "service IT", "service informatique");
-        organisationController.setService(service);
-        organisationController.addService();
-        
+        serDAO.create(service);
         Team team = new Team(service, "Groupe C", "EasyPDM Groupe C");
-        organisationController.setTeam(team);
-        organisationController.addTeam();
+        teamDAO.create(team);
+        
         
         //USER (String firstname, String lastname, String email, String login, String password)
-        userController.setUser(new Users("tai", "nguyen", "tai@free.fr", "tai", "tai"));
-        userController.addUser();
-        userController.setUser(new Users("denis", "tea", "denis@free.fr", "denis", "denis"));
-        userController.addUser();
-        userController.setUser(new Users("jérôme", "couturier", "jerome@free.fr", "jey", "jey"));
-        userController.addUser();
-        
+        Users tai = new Users("tai", "nguyen", "tai@free.fr", "tai", "tai");
+        userDAO.create(tai);
+        Users denis = new Users("denis", "tea", "denis@free.fr", "denis", "denis");
+        userDAO.create(denis);
+        Users jey = new Users("jérôme", "couturier", "jerome@free.fr", "jey", "jey");
+        userDAO.create(jey);
+
         //BOOK
-        elementController.setUser(user);
-        Book book = new Book("livre", "livre1", "", "", false, null,"EasyPDM", Maturity.IN_PROGRESS, org1, user1);
-        Tome tome = new Tome("tome", book, "tome1", "", "", false, null, "Specification", Maturity.IN_PROGRESS, org1, user2);
-        Chapter chapter = new Chapter("chapter", tome, "chapter1", "", "", false, null, "SFG", Maturity.IN_PROGRESS, org2, user3);
-        Paragraph paragraph = new Paragraph(chapter, "paragraph1", "", "", false, null, null, Maturity.RELEASE, org2, user1);
+        Calendar calendar = Calendar.getInstance();
+        Date now = calendar.getTime();
+        Timestamp time = new Timestamp(now.getTime());
+        Path path = Paths.get(".");
+        Book book = new Book("EasyPDM", "livre1", "jey", "jey", false, time,".", Maturity.IN_PROGRESS, enterprise, jey);
+        Tome tome = new Tome("Specification", book, "jey", "jey", "jey", false, time, ".", Maturity.IN_PROGRESS, service, jey);
+        Chapter chapter = new Chapter("SFG", tome, "chapter1", "tai", "tai", false, time, ".", Maturity.IN_PROGRESS, department, tai);
+        Paragraph paragraph = new Paragraph(chapter, "paragraph1", "denis", "denis", false, time, ".", Maturity.RELEASE, team, denis);
         
-        elementController.setBook(null);
-        elementController.createBook(null);
-        elementController.setTome(null);
-        elementController.addTome(null);
-        elementController.setChapter(null);
-        elementController.addChapter(null);
-        elementController.setParagraph(null);
-        elementController.addParagraph(null);
+        bookDAO.create(book);
+        tomeDAO.create(tome);
+        chapterDAO.create(chapter);
+        paragraphDAO.create(paragraph);
+
     }
 }

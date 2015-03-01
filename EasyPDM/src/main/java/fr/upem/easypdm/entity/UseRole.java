@@ -67,7 +67,9 @@ public class UseRole implements Serializable {
         @Override
         public int hashCode() {
             int hash = 7;
-            hash = 13 * hash + Objects.hashCode(this.roleId);
+            hash = 23 * hash + Objects.hashCode(this.roleId);
+            hash = 23 * hash + Objects.hashCode(this.userId);
+            hash = 23 * hash + Objects.hashCode(this.organisationId);
             return hash;
         }
 
@@ -83,9 +85,14 @@ public class UseRole implements Serializable {
             if (!Objects.equals(this.roleId, other.roleId)) {
                 return false;
             }
+            if (!Objects.equals(this.userId, other.userId)) {
+                return false;
+            }
+            if (!Objects.equals(this.organisationId, other.organisationId)) {
+                return false;
+            }
             return true;
         }
-
     }
     
     private static final long serialVersionUID = 1L;
