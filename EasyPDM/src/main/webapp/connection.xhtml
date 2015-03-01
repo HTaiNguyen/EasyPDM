@@ -32,6 +32,10 @@
                                     <h:inputSecret id="password" value="#{authController.password}" p:placeholder="Password" required="true" requiredMessage="Password is required"/>
                                     
                                     <h:commandButton value="Connection" action="#{authController.login()}" />
+                                    
+                                    <h:message id="loginMessage" for="login" errorClass="erreur" />
+                                    <h:message id="passwordMessage" for="password" errorClass="erreur" />
+                                    <h:messages globalOnly="true" infoClass="info" />
 				</h:form>
 			</div>
 		</div>
