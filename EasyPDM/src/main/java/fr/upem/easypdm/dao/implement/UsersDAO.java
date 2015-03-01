@@ -28,7 +28,7 @@ public class UsersDAO extends DAO <Users> {
     public Users findByLogin(String login) {
         try {
             TypedQuery<Users> query = getEntityManager().createQuery(
-                    "SELECT u FROM User1 u WHERE u.login = \"" + login + "\"", Users.class
+                    "SELECT u FROM Users u WHERE u.login = \"" + login + "\"", Users.class
             );
             
             return query.getSingleResult();
