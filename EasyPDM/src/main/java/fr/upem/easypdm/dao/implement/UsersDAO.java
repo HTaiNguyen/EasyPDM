@@ -10,6 +10,7 @@ import fr.upem.easypdm.entity.Users;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -25,7 +26,15 @@ public class UsersDAO extends DAO <Users> {
     }
     
     public Users findByLogin(String login) {
-        return entityManager.find(Users.class, login);
+        try {
+            TypedQuery<Users> query = getEntityManager().createQuery(
+                    "SELECT u FROM User1 u WHERE u.login = \"" + login + "\"", Users.class
+            );
+            
+            return query.getSingleResult();
+        } catch(Exception e) {
+            return null;
+        }
     }
     
     @Override
