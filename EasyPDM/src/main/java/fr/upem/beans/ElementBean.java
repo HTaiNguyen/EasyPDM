@@ -11,7 +11,6 @@ import fr.upem.easypdm.dao.implement.ParagraphDAO;
 import fr.upem.easypdm.dao.implement.TomeDAO;
 import fr.upem.easypdm.entity.Book;
 import fr.upem.easypdm.entity.Chapter;
-import static fr.upem.easypdm.entity.Element_.path;
 import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Tome;
@@ -32,8 +31,6 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -106,6 +103,10 @@ public class ElementBean {
         bookDAO.create(book);
     }
     
+    public List<Book> getAllBooks() {
+        return bookDAO.findAll();
+    }
+    
     public void addTome(Book book) {
         //TODO FIND A WAY TO NAME THE FILES OR DIRECTORIES
         tome.setCreator(user.getFirstname()+" "+user.getLastname());
@@ -144,9 +145,9 @@ public class ElementBean {
         
         tomeDAO.remove(tome);
     }
+    
     public List<Tome> getTomes(Book book) {
-        //TODO DAOTome getByBook()
-        
+        //TODO DAOTome getByBook() 
         return null;
     }
     
