@@ -275,6 +275,26 @@ public class ElementController {
     public void setPart(Part part) {
         this.part = part;
     }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setTome(Tome tome) {
+        this.tome = tome;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
+    public void setParagraph(Paragraph paragraph) {
+        this.paragraph = paragraph;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
     
     
 }
