@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.controller;
+package fr.upem.controllers;
 
 import fr.upem.easypdm.dao.implement.UsersDAO;
 import fr.upem.easypdm.entity.Users;
@@ -17,9 +17,9 @@ import javax.inject.Named;
  *
  * @author Denis
  */
-@Named("AuthenticateBean")
+@Named("authController")
 @RequestScoped
-public class AuthenticateBean implements Serializable{
+public class AuthController implements Serializable{
    
 
     private final static String USER_KEY = "userSession";
@@ -29,7 +29,7 @@ public class AuthenticateBean implements Serializable{
     @EJB
     private UsersDAO dao;
     
-    public AuthenticateBean() {
+    public AuthController() {
         user = new Users();
     }
     

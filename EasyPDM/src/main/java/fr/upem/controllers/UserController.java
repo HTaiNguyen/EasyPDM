@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.beans;
+package fr.upem.controllers;
 
 import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.dao.implement.UsersDAO;
@@ -27,7 +27,7 @@ import javax.inject.Named;
  */
 @Named("userBean")
 @RequestScoped
-public class UserBean {
+public class UserController {
     @EJB
     private UsersDAO usersDAO;
     
@@ -38,7 +38,7 @@ public class UserBean {
     private final RACs racs;
     private Users user;
     
-    public UserBean(){
+    public UserController(){
         Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .get("userSession");
         racs = new RACs(user.getUseRoles());

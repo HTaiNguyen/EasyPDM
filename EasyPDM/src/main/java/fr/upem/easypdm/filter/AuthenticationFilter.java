@@ -5,7 +5,7 @@
  */
 package fr.upem.easypdm.filter;
 
-import fr.upem.controller.AuthenticateBean;
+import fr.upem.controllers.AuthController;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;

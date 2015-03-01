@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.beans;
+package fr.upem.controllers;
 
 import fr.upem.easypdm.dao.implement.BookDAO;
 import fr.upem.easypdm.dao.implement.ChapterDAO;
@@ -43,9 +43,9 @@ import org.apache.commons.io.FileUtils;
  *
  * @author Denis
  */
-@Named("elementBean")
+@Named("elementController")
 @RequestScoped
-public class ElementBean {
+public class ElementController {
     @EJB
     private BookDAO bookDAO;
     @EJB
@@ -67,7 +67,7 @@ public class ElementBean {
     
     private Part part;
     
-    public ElementBean() {
+    public ElementController() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         user = (Users) context.getSessionMap().get("userSession");
         downloadDir = Paths.get(context.getInitParameter("DOWNLOAD_DIR"));

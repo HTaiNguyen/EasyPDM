@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.beans;
+package fr.upem.controllers;
 
 import fr.upem.easypdm.dao.implement.RoleDAO;
 import fr.upem.easypdm.entity.Role;
@@ -18,13 +18,13 @@ import javax.inject.Named;
  */
 @Named("roleBean")
 @RequestScoped
-public class RoleBean {
+public class RoleController {
     @EJB
     private RoleDAO roleDAO;
     
     private Role role;
     
-    public RoleBean() {
+    public RoleController() {
         role = new Role();
     }
     

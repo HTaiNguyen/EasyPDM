@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.upem.beans;
+package fr.upem.controllers;
 
 import fr.upem.easypdm.dao.implement.DepartmentDAO;
 import fr.upem.easypdm.dao.implement.EnterpriseDAO;
@@ -30,7 +30,7 @@ import javax.inject.Named;
  */
 @Named("organisationBean")
 @RequestScoped
-public class OrganisationBean {
+public class OrganisationController {
     @EJB
     private EnterpriseDAO enterpriseDAO;
     
@@ -50,7 +50,7 @@ public class OrganisationBean {
     
     private final RACs racs;
     
-    public OrganisationBean() {
+    public OrganisationController() {
         Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .get("userSession");
         
