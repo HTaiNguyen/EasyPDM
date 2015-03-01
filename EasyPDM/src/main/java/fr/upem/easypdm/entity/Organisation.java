@@ -9,14 +9,14 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -35,7 +35,7 @@ public class Organisation implements Serializable {
     private String name;
     private String description;
     
-    @OneToMany(cascade=ALL, mappedBy="organisation")
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="organisation")
     Set<Element> elements;
 
     public Organisation() {

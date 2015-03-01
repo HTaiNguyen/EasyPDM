@@ -8,7 +8,6 @@ package fr.upem.easypdm.entity;
 import fr.upem.entity.easypdm.more.Maturity;
 import java.sql.Timestamp;
 import java.util.Set;
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
