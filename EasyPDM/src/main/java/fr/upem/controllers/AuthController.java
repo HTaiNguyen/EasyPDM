@@ -62,4 +62,12 @@ public class AuthController implements Serializable{
                 .remove(USER_KEY);
         return null;
     }
+    
+    public String getUserName() {
+        return userName;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
 }

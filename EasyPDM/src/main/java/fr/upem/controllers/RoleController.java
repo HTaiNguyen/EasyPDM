@@ -16,7 +16,7 @@ import javax.inject.Named;
  *
  * @author Denis
  */
-@Named("roleBean")
+@Named("roleController")
 @RequestScoped
 public class RoleController {
     @EJB

@@ -25,7 +25,7 @@ import javax.inject.Named;
  *
  * @author Denis
  */
-@Named("userBean")
+@Named("userController")
 @RequestScoped
 public class UserController {
     @EJB

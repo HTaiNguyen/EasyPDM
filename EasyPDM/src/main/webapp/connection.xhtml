@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr"
-      xmlns="http://www.w3.org/1999/xhtml"
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-	<h:head>
+   <h:head>
 		<meta charset="utf-8" />
 		
 		<title>EasyPDM - Connection</title>
@@ -28,23 +28,15 @@
 				
 				<h:form id="form">
                                     <h:outputLabel for="login"> Login : </h:outputLabel>
-                                    <h:inputText id="login" name="login" value="#{}" required="true" requiredMessage="login need to be specified" />
+                                    <h:inputText id="login" value="#{authController.userName}" required="true" requiredMessage="login need to be specified" />
                                     
-					<input type="text" id="login" name="login" placeholder="Login" />
-					<input type="password" id="password" name="password" placeholder="Password" />
-					<select id="service">
-						<option value="">Select a service</option>
-						<option value="1">Service 1</option>
-						<option value="2">Service 2</option>
-						<option value="3">Service 3</option>
-					</select>
-					<input type="submit" value="Connection" />
+                                    <h:outputLabel for="password">Password : </h:outputLabel>
+                                    <h:inputSecret id="password" value="#{authController.password}" required="true" requiredMessage="password is required"/>
+                                    
+                                    <h:commandButton value="Connection" action="#{authController.login()}" />
 				</h:form>
-				
-				<br />
-				
-				<a href="" id="forgot_password">Forgot password ?</a>
 			</div>
 		</div>
-	</body>
+	</h:body>
 </html>
+
