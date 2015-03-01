@@ -7,6 +7,7 @@ package fr.upem.easypdm.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  *
@@ -33,10 +34,10 @@ public abstract class DAO<T> {
      * @return a List of result
      */
     public List<T> findAll() {
-       /* return getEntityManager()
-                .createQuery("select x from " + getPersistentClass().getSimpleName() + " x")
-                .getResultList();*/
-        return getEntityManager().createQuery("from " + persistentClass.getName()).getResultList();
+        CriteriaQuery query = getEntityManager().getCriteriaBuilder().createQuery();
+        query.select(query.from(persistentClass));
+        
+        return getEntityManager().createQuery(query).getResultList();
     }
     
     /**
@@ -62,7 +63,7 @@ public abstract class DAO<T> {
      * @param t 
      */
     public void remove(T t) {
-        getEntityManager().remove(t);
+        getEntityManager().remove(getEntityManager().contains(t)?t:getEntityManager().merge(t));
     }
     
     /**
