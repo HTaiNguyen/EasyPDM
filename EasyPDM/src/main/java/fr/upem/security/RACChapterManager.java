@@ -60,7 +60,7 @@ public class RACChapterManager implements RAC {
                 return false;
             }
             
-            if(e.isLock()) {
+            if(e.isLock() && !e.getUserLockId().equals(user)) {
                 return false;
             }
             

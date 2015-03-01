@@ -9,7 +9,10 @@ import fr.upem.entity.easypdm.more.Maturity;
 import java.sql.Timestamp;
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.OneToMany;
 
 /**
@@ -21,7 +24,7 @@ public class Book extends Element {
 
     private String title;
     
-    @OneToMany(cascade=ALL, mappedBy="book")
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="book")
     Set<Tome> tomes;
     
     public Book() {

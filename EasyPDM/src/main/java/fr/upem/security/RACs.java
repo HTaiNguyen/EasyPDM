@@ -6,10 +6,7 @@
 package fr.upem.security;
 
 import fr.upem.easypdm.entity.Element;
-import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.UseRole;
-import fr.upem.easypdm.entity.Users;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

@@ -7,7 +7,9 @@ package fr.upem.easypdm.entity;
 
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ public class Department extends Organisation {
     @JoinColumn(name="entreprise_id", nullable=false)
     private Enterprise enterprise;
 
-    @OneToMany(cascade=ALL, mappedBy="department")
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="department")
     Set<Service> services;
     
     public Department() {

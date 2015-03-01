@@ -6,6 +6,7 @@
 package fr.upem.easypdm.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -62,7 +63,29 @@ public class UseRole implements Serializable {
         public void setOrganisationId(Long organisationId) {
             this.organisationId = organisationId;
         }
-        
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 13 * hash + Objects.hashCode(this.roleId);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Pk other = (Pk) obj;
+            if (!Objects.equals(this.roleId, other.roleId)) {
+                return false;
+            }
+            return true;
+        }
+
     }
     
     private static final long serialVersionUID = 1L;
@@ -123,4 +146,28 @@ public class UseRole implements Serializable {
     public void setPk(Pk pk) {
         this.pk = pk;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.pk);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UseRole other = (UseRole) obj;
+        if (!Objects.equals(this.pk, other.pk)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

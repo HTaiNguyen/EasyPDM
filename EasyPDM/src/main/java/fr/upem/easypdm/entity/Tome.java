@@ -9,7 +9,9 @@ import fr.upem.entity.easypdm.more.Maturity;
 import java.sql.Timestamp;
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,7 +29,7 @@ public class Tome extends Element {
     @JoinColumn(name="book_id", nullable=false)
     private Book book;
         
-    @OneToMany(cascade=ALL, mappedBy="tome")
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="tome")
     Set<Chapter> chapters;
     
     /**

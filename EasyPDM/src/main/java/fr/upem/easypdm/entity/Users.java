@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +39,7 @@ public class Users implements Serializable {
     @NotNull
     private String password;
     
-    @OneToMany(cascade=ALL, mappedBy="user")
+    @OneToMany(cascade={REMOVE}, fetch = LAZY, mappedBy="user")
     Set<UseRole> useRoles;
     
     public Users() {
@@ -107,5 +109,29 @@ public class Users implements Serializable {
     public void setUseRoles(Set<UseRole> useRoles) {
         this.useRoles = useRoles;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Users other = (Users) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }
