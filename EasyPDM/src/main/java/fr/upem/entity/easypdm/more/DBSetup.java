@@ -10,9 +10,17 @@ import fr.upem.controllers.OrganisationController;
 import fr.upem.controllers.RoleController;
 import fr.upem.controllers.UserController;
 import fr.upem.easypdm.dao.implement.EnterpriseDAO;
+import fr.upem.easypdm.dao.implement.OrganisationDAO;
+import fr.upem.easypdm.dao.implement.RoleDAO;
+import fr.upem.easypdm.dao.implement.UsersDAO;
+import fr.upem.easypdm.entity.Book;
+import fr.upem.easypdm.entity.Chapter;
+import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Role;
+import fr.upem.easypdm.entity.Tome;
 import fr.upem.easypdm.entity.Users;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -28,6 +36,13 @@ public class DBSetup {
     OrganisationController organisationController;
     UserController userController;
     RoleController roleController;
+    
+    @EJB
+    private UsersDAO userDAO;
+    @EJB
+    private RoleDAO roleDAO;
+    @EJB
+    private OrganisationDAO orgDAO;
     
     public DBSetup() {
         elementController = new ElementController();
@@ -69,6 +84,12 @@ public class DBSetup {
         userController.addUser();
         
         //BOOK
+        elementController.setUser(user);
+        Book book = new Book("livre", "livre1", "", "", false, null,"EasyPDM", Maturity.IN_PROGRESS, org1, user1);
+        Tome tome = new Tome("tome", book, "tome1", "", "", false, null, "Specification", Maturity.IN_PROGRESS, org1, user2);
+        Chapter chapter = new Chapter("chapter", tome, "chapter1", "", "", false, null, "SFG", Maturity.IN_PROGRESS, org2, user3);
+        Paragraph paragraph = new Paragraph(chapter, "paragraph1", "", "", false, null, null, Maturity.RELEASE, org2, user1);
+        
         elementController.setBook(null);
         elementController.createBook(null);
         elementController.setTome(null);
