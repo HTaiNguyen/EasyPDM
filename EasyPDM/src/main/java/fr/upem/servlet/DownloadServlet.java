@@ -41,7 +41,7 @@ public class DownloadServlet extends HttpServlet{
         Users user = (Users) req.getSession().getAttribute("userSession");
         
         if(user == null) {
-            resp.sendRedirect("/EasyPDM/connection.html");
+            resp.sendRedirect("/EasyPDM/connection.xhtml");
             return;
         }
         
