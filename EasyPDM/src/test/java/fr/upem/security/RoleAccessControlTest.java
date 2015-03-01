@@ -61,15 +61,19 @@ public class RoleAccessControlTest {
     
     @Before
     public void setUp() {
+        Users user1  = new Users();
+        user1.setId(0L);
+        Users user2  = new Users();
+        user2.setId(1L);
         org1 = new Enterprise("enterprise", "");
         org1.setId(1);
         org2 = new Department(org1, "department", "");
         org2.setId(2);
 
-        book = new Book("livre", "livre1", "me", "me", false, null,"seigneur", Maturity.IN_PROGRESS, org1, null);
-        tome = new Tome("tome", book, "tome1", "me", "me", false, null, "la nuit", Maturity.IN_PROGRESS, org1, null);
-        chapter = new Chapter("chapter", tome, "chapter1", "me", "me", true, null, "la route", Maturity.IN_PROGRESS, org2, null);
-        paragraph = new Paragraph(chapter, "para1", "me", "me", false, null, null, Maturity.RELEASE, org2, null);
+        book = new Book("livre", "livre1", "me", "me", false, null,"seigneur", Maturity.IN_PROGRESS, org1, user1);
+        tome = new Tome("tome", book, "tome1", "me", "me", false, null, "la nuit", Maturity.IN_PROGRESS, org1, user1);
+        chapter = new Chapter("chapter", tome, "chapter1", "me", "me", true, null, "la route", Maturity.IN_PROGRESS, org2, user2);
+        paragraph = new Paragraph(chapter, "para1", "me", "me", false, null, null, Maturity.RELEASE, org2, user1);
         
         bookManager = new Role("Book Manager", "");
         tomeManager = new Role("Tome Manager", "");
@@ -77,12 +81,12 @@ public class RoleAccessControlTest {
         writer = new Role("Writer", "");
         factory = new RACFactory();
         
-        useRole1 = new UseRole(new Users(), org2, chapterManager);
-        useRole2 = new UseRole(new Users(), org2, writer);
-        useRole3 = new UseRole(new Users(), org1, bookManager);
-        useRole4 = new UseRole(new Users(), org1, tomeManager);
-        useRole5 = new UseRole(new Users(), org2, chapterManager);
-        useRole6 = new UseRole(new Users(), org2, writer);
+        useRole1 = new UseRole(user1, org2, chapterManager);
+        useRole2 = new UseRole(user1, org2, writer);
+        useRole3 = new UseRole(user1, org1, bookManager);
+        useRole4 = new UseRole(user1, org1, tomeManager);
+        useRole5 = new UseRole(user1, org2, chapterManager);
+        useRole6 = new UseRole(user1, org2, writer);
     }
     
     @After
