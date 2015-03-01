@@ -10,7 +10,11 @@ import fr.upem.controllers.OrganisationController;
 import fr.upem.controllers.RoleController;
 import fr.upem.controllers.UserController;
 import fr.upem.easypdm.dao.implement.EnterpriseDAO;
+import fr.upem.easypdm.entity.Department;
+import fr.upem.easypdm.entity.Enterprise;
 import fr.upem.easypdm.entity.Role;
+import fr.upem.easypdm.entity.Service;
+import fr.upem.easypdm.entity.Team;
 import fr.upem.easypdm.entity.Users;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -51,21 +55,28 @@ public class DBSetup {
         roleController.addRole();
         
         //ORGANISATION
-        organisationController.setEnterprise(null);
+        Enterprise enterprise = new Enterprise("UPEM", "Université Paris-Est Marne-la-vallée");
+        organisationController.setEnterprise(enterprise);
         organisationController.addEnterprise();
-        organisationController.setDepartment(null);
+        
+        Department department  = new Department(enterprise,"Département IT", "Département informatique");
+        organisationController.setDepartment(department);
         organisationController.addDepartement();
-        organisationController.setService(null);
+        
+        Service service = new Service(department, "service IT", "service informatique");
+        organisationController.setService(service);
         organisationController.addService();
-        organisationController.setTeam(null);
+        
+        Team team = new Team(service, "Groupe C", "EasyPDM Groupe C");
+        organisationController.setTeam(team);
         organisationController.addTeam();
         
-        //USER
-        userController.setUser(new Users(null, null, null, null, null));
+        //USER (String firstname, String lastname, String email, String login, String password)
+        userController.setUser(new Users("tai", "nguyen", "tai@free.fr", "tai", "tai"));
         userController.addUser();
-        userController.setUser(new Users(null, null, null, null, null));
+        userController.setUser(new Users("denis", "tea", "denis@free.fr", "denis", "denis"));
         userController.addUser();
-        userController.setUser(new Users(null, null, null, null, null));
+        userController.setUser(new Users("jérôme", "couturier", "jerome@free.fr", "jey", "jey"));
         userController.addUser();
         
         //BOOK
