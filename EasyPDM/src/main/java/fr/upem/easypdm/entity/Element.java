@@ -54,7 +54,7 @@ public class Element implements Serializable {
     private Organisation organisation;
 
     @OneToOne
-    @JoinColumn(name="users_lock_id", nullable=false)
+    @JoinColumn(name="users_lock_id", nullable=true)
     private Users userLockId;  
     
     public Element() {
