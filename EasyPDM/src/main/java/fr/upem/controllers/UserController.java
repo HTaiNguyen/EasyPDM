@@ -90,4 +90,9 @@ public class UserController {
         // A voir pour la gestion des erreurs
         return new Users();
     }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
 }

@@ -34,10 +34,10 @@
         <servlet-class>fr.upem.servlet.DownloadServlet</servlet-class>
     </servlet>
   
-    <filter-mapping>
+    <!--<filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/restricted/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>!-->
     
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>

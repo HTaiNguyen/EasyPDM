@@ -175,4 +175,22 @@ public class OrganisationController {
         }
         return new ArrayList<>();
     }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+    
+    
 }

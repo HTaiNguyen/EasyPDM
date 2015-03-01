@@ -43,4 +43,9 @@ public class RoleController {
     public void removeRole(Role role) {
         throw new UnsupportedOperationException();
     }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
 }
