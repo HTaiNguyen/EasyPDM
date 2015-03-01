@@ -24,17 +24,13 @@ public class AuthController implements Serializable{
 
     private final static String USER_KEY = "userSession";
     
-    private Users user;
+    private String userName;
+    private String password;
     
     @EJB
     private UsersDAO dao;
     
     public AuthController() {
-        user = new Users();
-    }
-    
-    public Users getUser() {
-        return user;
     }
     
     public boolean isLogin() {
@@ -44,7 +40,7 @@ public class AuthController implements Serializable{
     
     public String login() {
         //Find User in Database
-        Users userDB = dao.findByLogin(user.getLogin());
+        Users userDB = dao.findByLogin(userName);
         
         //Test if userName exist
         if(userDB == null) {
@@ -52,12 +48,12 @@ public class AuthController implements Serializable{
         }
 
         //Compare the password
-        if(!user.getPassword().equals(userDB.getPassword())) {
+        if(!password.equals(userDB.getPassword())) {
             return null;
         }
         
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-                .put(USER_KEY, user);
+                .put(USER_KEY, userDB);
         return "index";
     }
     
