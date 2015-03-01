@@ -99,24 +99,23 @@ public class UseRole implements Serializable {
     @EmbeddedId
     private Pk pk;
     
-    @NotNull
     @ManyToOne
     @JoinColumn(name="role_id",insertable = false, updatable = false)
     private Role role;
-    @NotNull
+
     @ManyToOne
     @JoinColumn(name="user_id",insertable = false, updatable = false)
     private Users user;
-    @NotNull
+
     @ManyToOne
     @JoinColumn(name="organisation_id",insertable = false, updatable = false)
     private Organisation organisation;
     
     public UseRole() {
-        
     }
     
     public UseRole(Users user, Organisation organisation, Role role) {
+        this.pk = new Pk(role.getId(), user.getId(), organisation.getId());
         this.user = user;
         this.organisation = organisation;
         this.role = role;
@@ -127,6 +126,7 @@ public class UseRole implements Serializable {
     }
 
     public void setRole(Role role) {
+        this.pk.setRoleId(role.getId());
         this.role = role;
     }
 
@@ -135,6 +135,7 @@ public class UseRole implements Serializable {
     }
 
     public void setUser(Users user) {
+        this.pk.setUserId(user.getId());
         this.user = user;
     }
 
@@ -143,6 +144,7 @@ public class UseRole implements Serializable {
     }
 
     public void setOrganisation(Organisation organisation) {
+        this.pk.setOrganisationId(organisation.getId());
         this.organisation = organisation;
     }
 
