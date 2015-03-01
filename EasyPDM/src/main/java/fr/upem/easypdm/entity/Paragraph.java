@@ -6,6 +6,7 @@
 package fr.upem.easypdm.entity;
 
 import fr.upem.entity.easypdm.more.Maturity;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,8 +18,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Paragraph extends Element {
     
-    private String path;
-    
     @ManyToOne
     @JoinColumn(name="chapter_id", nullable=false)
     private Chapter chapter;
@@ -26,22 +25,13 @@ public class Paragraph extends Element {
     public Paragraph() {
     }
 
-    public Paragraph(String name, String creator, String lastEditor, boolean session, Chapter chapter, String path, Maturity maturity, Organisation organisation) {
-        super(name, creator, lastEditor, session, maturity, organisation);
+    public Paragraph(Chapter chapter, String name, String creator, String lastEditor, boolean lock, Timestamp editStamp, String path, Maturity maturity, Organisation organisation, Users userLockId) {
+        super(name, creator, lastEditor, lock, editStamp, path, maturity, organisation, userLockId);
         this.chapter = chapter;
-        this.path = path;
-    } 
+    }
 
     public Chapter getChapter() {
         return chapter;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public void setChapter(Chapter chapter) {

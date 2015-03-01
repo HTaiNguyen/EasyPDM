@@ -65,11 +65,11 @@ public class RoleAccessControlTest {
         org1.setId(1);
         org2 = new Department(org1, "department", "");
         org2.setId(2);
-        
-        book = new Book("livre", "me", "me", false, "seigneur", Maturity.IN_PROGRESS, org1);
-        tome = new Tome("tome1", "me", "me", false, book, "la nuit", Maturity.IN_PROGRESS,org1);
-        chapter = new Chapter(tome, "chap1", "me", "me", true, "la route", Maturity.IN_PROGRESS, org2);
-        paragraph = new Paragraph("para1", "me", "me", false, chapter, "/stockage/", Maturity.RELEASE, org2);
+
+        book = new Book("livre", "livre1", "me", "me", false, null,"seigneur", Maturity.IN_PROGRESS, org1, null);
+        tome = new Tome("tome", book, "tome1", "me", "me", false, null, "la nuit", Maturity.IN_PROGRESS, org1, null);
+        chapter = new Chapter("chapter", tome, "chapter1", "me", "me", true, null, "la route", Maturity.IN_PROGRESS, org2, null);
+        paragraph = new Paragraph(chapter, "para1", "me", "me", false, null, null, Maturity.RELEASE, org2, null);
         
         bookManager = new Role("Book Manager", "");
         tomeManager = new Role("Tome Manager", "");

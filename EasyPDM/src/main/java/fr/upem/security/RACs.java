@@ -11,6 +11,7 @@ import fr.upem.easypdm.entity.UseRole;
 import fr.upem.easypdm.entity.Users;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -22,6 +23,8 @@ public class RACs implements RAC {
     private HashSet<RAC> racs;
 
     public RACs(Set<UseRole> useRoles) {
+        Objects.requireNonNull(useRoles, "useRoles is null");
+        
         RACFactory racFactory = new RACFactory();
         racs = new HashSet<>();
         for(UseRole useRole : useRoles) {
@@ -30,7 +33,7 @@ public class RACs implements RAC {
     }
 
     @Override
-    public boolean isPermitOperation(EntityType type, Operation op, Element e) {
+    public boolean isPermitOperation(EntityType type, Operation op, Element e) {  
         boolean result = false;
         for(RAC rac : racs) {
             result = rac.isPermitOperation(type, op, e) || result;

@@ -43,6 +43,8 @@ public class Element implements Serializable {
     private boolean lock;
     @NotNull
     private Timestamp editStamp;
+    @NotNull
+    private String path;
     
     @Enumerated(EnumType.STRING)
     private Maturity maturity;
@@ -52,21 +54,23 @@ public class Element implements Serializable {
     private Organisation organisation;
 
     @OneToOne
-    @JoinColumn(name="users_id", nullable=false)
+    @JoinColumn(name="users_lock_id", nullable=false)
     private Users userLockId;  
     
     public Element() {
         
     }
 
-    public Element(String name, String creator, String lastEditor, boolean lock, Maturity maturity, Organisation organisation) {
-        this.name = Objects.requireNonNull(name);
-        this.creator = Objects.requireNonNull(creator);
-        this.lastEditor = Objects.requireNonNull(lastEditor);
-        this.lock = Objects.requireNonNull(lock);
-        editStamp = new Timestamp(new java.util.Date().getTime());
-        this.organisation = organisation;
+    public Element(String name, String creator, String lastEditor, boolean lock, Timestamp editStamp, String path, Maturity maturity, Organisation organisation, Users userLockId) {
+        this.name = name;
+        this.creator = creator;
+        this.lastEditor = lastEditor;
+        this.lock = lock;
+        this.editStamp = editStamp;
+        this.path = path;
         this.maturity = maturity;
+        this.organisation = organisation;
+        this.userLockId = userLockId;
     }
 
     public Maturity getMaturity() {
@@ -117,15 +121,34 @@ public class Element implements Serializable {
         this.editStamp = editStamp;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
-    
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Users getUserLockId() {
+        return userLockId;
+    }
+
+    public void setUserLockId(Users userLockId) {
+        this.userLockId = userLockId;
+    }
+ 
     public Organisation getOrganisation() {
         return organisation;
     }

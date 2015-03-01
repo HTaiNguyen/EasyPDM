@@ -6,6 +6,7 @@
 package fr.upem.easypdm.entity;
 
 import fr.upem.entity.easypdm.more.Maturity;
+import java.sql.Timestamp;
 import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
@@ -25,21 +26,12 @@ public class Book extends Element {
     
     public Book() {
     }
-    
-    /**
-     *
-     * @param name
-     * @param creator
-     * @param lastEditor
-     * @param session
-     * @param title
-     * @param organisation
-     * @param maturity
-     */
-    public Book(String name, String creator, String lastEditor, boolean session, String title, Maturity maturity, Organisation organisation) {
-        super(name, creator, lastEditor, session, maturity, organisation);
+
+    public Book(String title, String name, String creator, String lastEditor, boolean lock, Timestamp editStamp, String path, Maturity maturity, Organisation organisation, Users userLockId) {
+        super(name, creator, lastEditor, lock, editStamp, path, maturity, organisation, userLockId);
         this.title = title;
     }
+
     public String getTitle() {
         return title;
     }

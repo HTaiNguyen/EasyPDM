@@ -5,6 +5,11 @@
         <param-value>Development</param-value>
     </context-param>
     
+    <context-param>
+        <param-name>DOWNLOAD_DIR</param-name>
+        <param-value>C:/Users/Denis/Desktop/recep/</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -24,10 +29,20 @@
         <filter-class>fr.upem.easypdm.filter.AuthenticationFilter</filter-class>
     </filter>
     
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>fr.upem.servlet.DownloadServlet</servlet-class>
+    </servlet>
+  
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/restricted/*</url-pattern>
     </filter-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -43,4 +58,5 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
 </web-app>
