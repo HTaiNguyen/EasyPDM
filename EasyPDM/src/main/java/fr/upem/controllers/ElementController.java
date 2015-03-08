@@ -71,6 +71,7 @@ public class ElementController {
     
     private Part part;
     
+    @EJB
     private UseRoleDAO useRoleDAO;
     
     public ElementController() {

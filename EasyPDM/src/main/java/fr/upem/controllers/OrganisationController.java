@@ -51,6 +51,7 @@ public class OrganisationController {
     
     private final RACs racs;
     
+    @EJB
     private UseRoleDAO useRoleDAO;
     
     public OrganisationController() {
