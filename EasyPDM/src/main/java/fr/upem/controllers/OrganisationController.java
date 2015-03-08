@@ -20,6 +20,7 @@ import fr.upem.security.Operation;
 import fr.upem.security.RACs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -49,20 +50,23 @@ public class OrganisationController {
     private Service service;
     private Team team;
     
-    private final RACs racs;
+    private RACs racs;
     
     @EJB
     private UseRoleDAO useRoleDAO;
     
     public OrganisationController() {
-        Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-                .get("userSession");
-        
-        racs = new RACs(useRoleDAO.findByUser(user));
         enterprise = new Enterprise();
         department = new Department();
         service = new Service();
         team = new Team();
+    }
+    
+    @PostConstruct
+    public void init() {
+        Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+                .get("userSession");
+        racs = new RACs(useRoleDAO.findByUser(user)); 
     }
     
     /* Enterprise Manager */

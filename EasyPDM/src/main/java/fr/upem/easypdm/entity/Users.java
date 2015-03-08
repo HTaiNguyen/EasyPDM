@@ -38,8 +38,7 @@ public class Users implements Serializable {
     private String login;
     @NotNull
     private String password;
-    
-    @CascadeOnDelete   
+       
     @OneToMany(cascade={REMOVE}, fetch = LAZY, mappedBy="user", orphanRemoval = true)
     private List<UseRole> useRoles;
     

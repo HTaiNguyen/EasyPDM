@@ -16,6 +16,7 @@ import fr.upem.security.Operation;
 import fr.upem.security.RACs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -35,14 +36,18 @@ public class UserController {
     private UseRoleDAO useRoleDAO;
     
     
-    private final RACs racs;
+    private RACs racs;
     private Users user;
     
     public UserController() {
+        this.user = new Users();
+    }
+    
+    @PostConstruct
+    public void init() {
         Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .get("userSession");
         racs = new RACs(useRoleDAO.findByUser(user));
-        this.user = new Users();
     }
     
     public void addUser() {

@@ -11,11 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.EAGER;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -104,15 +104,15 @@ public class UseRole implements Serializable {
     @EmbeddedId
     private Pk pk;
     
-    @ManyToOne
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name="role_id",insertable = false, updatable = false)
     private Role role;
 
-    @ManyToOne
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name="user_id",insertable = false, updatable = false)
     private Users user;
 
-    @ManyToOne
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name="organisation_id",insertable = false, updatable = false)
     private Organisation organisation;
     
@@ -131,7 +131,6 @@ public class UseRole implements Serializable {
     }
 
     public void setRole(Role role) {
-        this.pk.setRoleId(role.getId());
         this.role = role;
     }
 
@@ -140,7 +139,6 @@ public class UseRole implements Serializable {
     }
 
     public void setUser(Users user) {
-        this.pk.setUserId(user.getId());
         this.user = user;
     }
 
@@ -149,7 +147,6 @@ public class UseRole implements Serializable {
     }
 
     public void setOrganisation(Organisation organisation) {
-        this.pk.setOrganisationId(organisation.getId());
         this.organisation = organisation;
     }
 
