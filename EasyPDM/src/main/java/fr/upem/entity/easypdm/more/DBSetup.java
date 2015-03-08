@@ -27,8 +27,11 @@ import fr.upem.easypdm.entity.Service;
 import fr.upem.easypdm.entity.Team;
 import fr.upem.easypdm.entity.UseRole;
 import fr.upem.easypdm.entity.Users;
+import java.math.BigInteger;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
@@ -84,7 +87,7 @@ public class DBSetup {
         Role roleW = new Role("Writer", "");
         roleDAO.create(roleW);
         
-        Users admin = new Users("Admin", "Admin", "admin@EasyPDM.com", "admin", "admin");
+        Users admin = new Users("Admin", "Admin", "admin@EasyPDM.com", "admin", encodePasswordSHA1("admin"));
         Enterprise adminOrg = new Enterprise("Admin", "");
         userDAO.create(admin);
         entDAO.create(adminOrg);
@@ -103,11 +106,11 @@ public class DBSetup {
         
         
         //USER (String firstname, String lastname, String email, String login, String password)
-        Users tai = new Users("tai", "nguyen", "tai@free.fr", "tai", "tai");
+        Users tai = new Users("tai", "nguyen", "tai@free.fr", "tai", encodePasswordSHA1("tai"));
         userDAO.create(tai);
-        Users denis = new Users("denis", "tea", "denis@free.fr", "denis", "denis");
+        Users denis = new Users("denis", "tea", "denis@free.fr", "denis", encodePasswordSHA1("denis"));
         userDAO.create(denis);
-        Users jey = new Users("jérôme", "couturier", "jerome@free.fr", "jey", "jey");
+        Users jey = new Users("jérôme", "couturier", "jerome@free.fr", "jey", encodePasswordSHA1("jey"));
         userDAO.create(jey);
 
         //BOOK
@@ -125,5 +128,18 @@ public class DBSetup {
         chapterDAO.create(chapter);
         paragraphDAO.create(paragraph);
 
+    }
+    
+    private static String encodePasswordSHA1(String key) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.update(key.getBytes());
+            return new BigInteger(1, md.digest()).toString(16);
+        }
+        catch (NoSuchAlgorithmException e) {
+            // handle error case to taste
+        }
+        
+        return null;
     }
 }
