@@ -6,9 +6,14 @@
 package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
+import fr.upem.easypdm.entity.Chapter;
+import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.UseRole;
+import fr.upem.easypdm.entity.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -27,5 +32,11 @@ public class UseRoleDAO extends DAO <UseRole> {
     @Override
     protected EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public List<UseRole> findByUser(Users user){
+        return entityManager.createNamedQuery("UseRole.findByUser", UseRole.class)
+         .setParameter("user", user)
+         .getResultList();  
     }
 }
