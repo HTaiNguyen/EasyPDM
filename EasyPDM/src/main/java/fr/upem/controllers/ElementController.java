@@ -27,10 +27,13 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -218,14 +221,11 @@ public class ElementController {
     private Path uploadFile(Part part, String filename, Path dest){
         Path uploadPath = dest.resolve(filename); 
         File file = uploadPath.toFile();
-        try(InputStream is = part.getInputStream(); OutputStream os = new FileOutputStream(file)) {
-            int read = 0;
-            final byte[] bytes = new byte[1024];
-            while ((read = is.read(bytes)) != -1) {
-                os.write(bytes, 0, read);
-            }
+        
+        try {
+            Files.copy(part.getInputStream(), file.toPath(), REPLACE_EXISTING);
         } catch (IOException ex) {
-            
+            // nothing to 
         }
         
         return uploadPath;
