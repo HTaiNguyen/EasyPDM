@@ -15,26 +15,24 @@ import fr.upem.easypdm.entity.Chapter;
 import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Tome;
+import fr.upem.easypdm.entity.UseRole;
 import fr.upem.easypdm.entity.Users;
 import fr.upem.entity.easypdm.more.Maturity;
 import fr.upem.security.EntityType;
 import fr.upem.security.Operation;
 import fr.upem.security.RACs;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -58,33 +56,36 @@ public class ElementController {
     private ChapterDAO chapterDAO;
     @EJB
     private ParagraphDAO paragraphDAO;
+    @EJB
+    private UseRoleDAO useRoleDAO;
     
     private Book book;
     private Tome tome;
     private Chapter chapter;
     private Paragraph paragraph;
     
-    private final RACs racs;
+    private RACs racs;
     
     private Users user;
     private Path downloadDir;
     
     private Part part;
     
-    @EJB
-    private UseRoleDAO useRoleDAO;
-    
     public ElementController() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        user = (Users) context.getSessionMap().get("userSession");
-        downloadDir = Paths.get(context.getInitParameter("DOWNLOAD_DIR"));
-        
-        racs = new RACs(useRoleDAO.findByUser(user));
-        
         book = new Book();
         tome = new Tome();
         chapter = new Chapter();
-        paragraph = new Paragraph();
+        paragraph = new Paragraph(); 
+    }
+    
+    @PostConstruct
+    public void init() {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        user = (Users) context.getSessionMap().get("userSession");
+        downloadDir = Paths.get(context.getInitParameter("DOWNLOAD_DIR"));
+        System.out.println(user.getId());
+        
+        racs = new RACs(useRoleDAO.findByUser(user));
     }
     
     public void createBook(Organisation org) {
