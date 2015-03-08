@@ -53,7 +53,7 @@
                     <div id="split_right">
                         <div class="array">
                             <h:form>
-                                <h:commandButton value="Add an user" action="#{organisationController.addEnterprise()}" /> <!-- POPUP pour ajouter une entreprise -->
+                                <h:commandButton value="Add an enterprise" action="#{organisationController.addEnterprise()}" /> <!-- POPUP pour ajouter une entreprise -->
                             </h:form>
                             <c:choose>
                                 <c:when test="#{organisationController.getAllEnterprise().size() == 0}">
@@ -98,7 +98,7 @@
                         
                         <div class="array">
                             <h:form>
-                                <h:commandButton value="Add an user" action="#{organisationController.addDepartement()}" /> <!-- POPUP pour ajouter un department -->
+                                <h:commandButton value="Add a department" action="#{organisationController.addDepartement()}" /> <!-- POPUP pour ajouter un department -->
                             </h:form>
                             <c:choose>
                                 <c:when test="#{organisationController.getAllDepartment().size() == 0}">
@@ -150,7 +150,7 @@
                         
                         <div class="array">
                             <h:form>
-                                <h:commandButton value="Add an user" action="#{organisationController.addService()}" /> <!-- POPUP pour ajouter un service -->
+                                <h:commandButton value="Add a service" action="#{organisationController.addService()}" /> <!-- POPUP pour ajouter un service -->
                             </h:form>
                             <c:choose>
                                 <c:when test="#{organisationController.getAllService().size() == 0}">
@@ -202,7 +202,7 @@
                         
                         <div class="array">
                             <h:form>
-                                <h:commandButton value="Add an user" action="#{organisationController.addTeam()}" /> <!-- POPUP pour ajouter une team -->
+                                <h:commandButton value="Add a team" action="#{organisationController.addTeam()}" /> <!-- POPUP pour ajouter une team -->
                             </h:form>
                             <c:choose>
                                 <c:when test="#{organisationController.getAllTeam().size() == 0}">
