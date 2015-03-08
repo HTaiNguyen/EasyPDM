@@ -32,7 +32,11 @@
                 </div>
                 
                 <div id="user">
-                    <a href="" id="log_out"><img src="../img/log_out.png" alt="Log out" /></a>
+                    <h:form>
+                        <h:commandLink id="log_out" action="#{authController.logout()}">
+                            <img src="../img/log_out.png" alt="Log out" height="30px"/>
+                        </h:commandLink>
+                    </h:form>
                     <div id="name">#{userSession.firstname} #{userSession.lastname}</div>
                 </div>
             </header>
