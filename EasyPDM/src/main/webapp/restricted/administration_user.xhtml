@@ -6,7 +6,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <h:head>
-        <title>EasyPDM - Connection</title>
+        <title>EasyPDM - Administration</title>
         <link rel="stylesheet" href="../css/style.css" />
 	
         <link rel="stylesheet" href="../css/jquery.treeView.css" />
@@ -59,7 +59,7 @@
                             </h:form>
                             <c:choose>
                                 <c:when test="#{userController.getAllUsers().size() == 0}">
-                                    <p>Aucun utilisateur</p>
+                                    <p>None</p>
                                 </c:when>
                                 <c:otherwise>
                                     <h:dataTable id="userList" value="#{userController.getAllUsers()}" var="user">

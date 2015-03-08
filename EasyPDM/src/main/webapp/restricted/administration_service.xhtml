@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+     <h:head>
+        <title>EasyPDM - Administration</title>
+        <link rel="stylesheet" href="../css/style.css" />
+	
+        <link rel="stylesheet" href="../css/jquery.treeView.css" />
+	<link rel="stylesheet" href="../css/jquery.contextMenu.css" />
+		
+	<script src="../js/jquery-2.1.3.min.js"></script>
+	<script src="../js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../js/jquery.treeView.js"></script>
+	<script src="../js/jquery.contextMenu.js"></script>
+	<script src="../js/script.js"></script>
+    </h:head>
+    <h:body>
+    <div id="page">
+        <header>
+            <div id="logo">
+                <img src="../img/logo.png" />
+            </div>
+                
+            <div id="user">
+                <a href="" id="log_out"><img src="../img/log_out.png" alt="Log out" /></a>
+                <div id="name">#{userSession.firstname} #{userSession.lastname}</div>
+            </div>
+        </header>
+        <nav>
+            <ul>|
+                <li><a href="index.xhtml">Book management</a></li>
+                | <li><a href="administration_service.xhtml">Administration</a></li>
+            |</ul>
+        </nav>
+        
+       <div id="content">
+                <div id="title">Administration</div>
+
+                <div id="split">
+                    <div id="split_left">
+                        <ul>
+                            <li><a href="administration_service.xhtml">Services list</a></li>
+                            <li><a href="administration_role.xhtml">Roles list</a></li>
+                            <li><a href="administration_user.xhtml">Users list</a></li>
+                            <li><a href="administration_book.xhtml">Book tree</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="split_right">
+                        <div class="array">
+                            <h:form>
+                                <h:commandButton value="Add an user" action="#{organisationController.addEnterprise()}" /> <!-- POPUP pour ajouter une entreprise -->
+                            </h:form>
+                            <c:choose>
+                                <c:when test="#{organisationController.getAllEnterprise().size() == 0}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:dataTable id="enterpriseList" value="#{organisationController.getAllEnterprise()}" var="enterprise">
+                                         <h:column headerClass="Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                             <h:outputText value="#{enterprise.id}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Name">
+                                            <f:facet name="header">
+                                                <h:outputText value="NAME"/>
+                                            </f:facet>
+                                            <h:outputText value="#{enterprise.name}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Description">
+                                            <f:facet name="header">
+                                                <h:outputText value="DESCRIPTION"/>
+                                            </f:facet>
+                                            <h:outputText value="#{enterprise.description}"/>
+                                        </h:column>
+
+                                         <h:column headerClass="Action">
+                                            <f:facet name="header">
+                                                <h:outputText value="ACTION"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandButton value="Edit" action="#{organisationController.updateEnterprise()}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                <h:commandButton value="Delete" action="#{organisationController.removeEnterprise(enterprise)}" />
+                                            </h:form>
+                                        </h:column>
+                                    </h:dataTable>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        
+                        <div class="array">
+                            <h:form>
+                                <h:commandButton value="Add an user" action="#{organisationController.addDepartement()}" /> <!-- POPUP pour ajouter un department -->
+                            </h:form>
+                            <c:choose>
+                                <c:when test="#{organisationController.getAllDepartment().size() == 0}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:dataTable id="enterpriseList" value="#{organisationController.getAllDepartment()}" var="department">
+                                         <h:column headerClass="Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                             <h:outputText value="#{department.id}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Name">
+                                            <f:facet name="header">
+                                                <h:outputText value="NAME"/>
+                                            </f:facet>
+                                            <h:outputText value="#{department.name}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Description">
+                                            <f:facet name="header">
+                                                <h:outputText value="DESCRIPTION"/>
+                                            </f:facet>
+                                            <h:outputText value="#{department.description}"/>
+                                        </h:column>
+                                        
+                                        <h:column headerClass="Entreprise Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="ENTERPRISE_ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{department.enterprise.id}"/>
+                                        </h:column>
+
+                                         <h:column headerClass="Action">
+                                            <f:facet name="header">
+                                                <h:outputText value="ACTION"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandButton value="Edit" action="#{organisationController.updateDepartment(department)}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                <h:commandButton value="Delete" action="#{organisationController.removeDepartment(department)}" />
+                                            </h:form>
+                                        </h:column>
+                                    </h:dataTable>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        
+                        <div class="array">
+                            <h:form>
+                                <h:commandButton value="Add an user" action="#{organisationController.addService()}" /> <!-- POPUP pour ajouter un service -->
+                            </h:form>
+                            <c:choose>
+                                <c:when test="#{organisationController.getAllService().size() == 0}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:dataTable id="enterpriseList" value="#{organisationController.getAllService()}" var="service">
+                                         <h:column headerClass="Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                             <h:outputText value="#{service.id}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Name">
+                                            <f:facet name="header">
+                                                <h:outputText value="NAME"/>
+                                            </f:facet>
+                                            <h:outputText value="#{service.name}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Description">
+                                            <f:facet name="header">
+                                                <h:outputText value="DESCRIPTION"/>
+                                            </f:facet>
+                                            <h:outputText value="#{service.description}"/>
+                                        </h:column>
+                                        
+                                        <h:column headerClass="Department Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="DEPARTMENT_ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{service.department.id}"/>
+                                        </h:column>
+
+                                         <h:column headerClass="Action">
+                                            <f:facet name="header">
+                                                <h:outputText value="ACTION"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandButton value="Edit" action="#{organisationController.updateService()}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                <h:commandButton value="Delete" action="#{organisationController.removeService(service)}" />
+                                            </h:form>
+                                        </h:column>
+                                    </h:dataTable>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        
+                        <div class="array">
+                            <h:form>
+                                <h:commandButton value="Add an user" action="#{organisationController.addTeam()}" /> <!-- POPUP pour ajouter une team -->
+                            </h:form>
+                            <c:choose>
+                                <c:when test="#{organisationController.getAllTeam().size() == 0}">
+                                    <p>None</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:dataTable id="enterpriseList" value="#{organisationController.getAllTeam()}" var="team">
+                                         <h:column headerClass="Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="ID"/>
+                                            </f:facet>
+                                             <h:outputText value="#{team.id}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Name">
+                                            <f:facet name="header">
+                                                <h:outputText value="NAME"/>
+                                            </f:facet>
+                                            <h:outputText value="#{team.name}"/>
+                                        </h:column>
+
+                                        <h:column headerClass="Description">
+                                            <f:facet name="header">
+                                                <h:outputText value="DESCRIPTION"/>
+                                            </f:facet>
+                                            <h:outputText value="#{team.description}"/>
+                                        </h:column>
+                                        
+                                        <h:column headerClass="Service Id">
+                                            <f:facet name="header">
+                                                <h:outputText value="SERVICE_ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{team.service.id}"/>
+                                        </h:column>
+
+                                         <h:column headerClass="Action">
+                                            <f:facet name="header">
+                                                <h:outputText value="ACTION"/>
+                                            </f:facet>
+                                            <h:form>
+                                                <h:commandButton value="Edit" action="#{organisationController.updateTeam(team)}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                <h:commandButton value="Delete" action="#{organisationController.removeTeam(team)}" />
+                                            </h:form>
+                                        </h:column>
+                                    </h:dataTable>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+            <footer>
+                <p>&copy; EasyPDM - All rights reserved</p>
+            </footer>
+        </div>
+    </h:body>
+</html>
+
