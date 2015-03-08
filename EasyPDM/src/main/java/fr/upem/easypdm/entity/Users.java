@@ -6,9 +6,8 @@
 package fr.upem.easypdm.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
@@ -42,7 +41,7 @@ public class Users implements Serializable {
     
     @CascadeOnDelete   
     @OneToMany(cascade={REMOVE}, fetch = LAZY, mappedBy="user", orphanRemoval = true)
-    private Set<UseRole> useRoles;
+    private List<UseRole> useRoles;
     
     public Users() {
         
@@ -104,11 +103,11 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public Set<UseRole> getUseRoles() {
+    public List<UseRole> getUseRoles() {
         return useRoles;
     }
 
-    public void setUseRoles(Set<UseRole> useRoles) {
+    public void setUseRoles(List<UseRole> useRoles) {
         this.useRoles = useRoles;
     }
 

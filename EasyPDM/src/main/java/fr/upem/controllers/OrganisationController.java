@@ -9,6 +9,7 @@ import fr.upem.easypdm.dao.implement.DepartmentDAO;
 import fr.upem.easypdm.dao.implement.EnterpriseDAO;
 import fr.upem.easypdm.dao.implement.ServiceDAO;
 import fr.upem.easypdm.dao.implement.TeamDAO;
+import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.entity.Department;
 import fr.upem.easypdm.entity.Enterprise;
 import fr.upem.easypdm.entity.Service;
@@ -50,11 +51,14 @@ public class OrganisationController {
     
     private final RACs racs;
     
+    @EJB
+    private UseRoleDAO useRoleDAO;
+    
     public OrganisationController() {
         Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .get("userSession");
         
-        racs = new RACs(user.getUseRoles());
+        racs = new RACs(useRoleDAO.findByUser(user));
         enterprise = new Enterprise();
         department = new Department();
         service = new Service();

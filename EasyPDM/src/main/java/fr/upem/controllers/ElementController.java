@@ -9,6 +9,7 @@ import fr.upem.easypdm.dao.implement.BookDAO;
 import fr.upem.easypdm.dao.implement.ChapterDAO;
 import fr.upem.easypdm.dao.implement.ParagraphDAO;
 import fr.upem.easypdm.dao.implement.TomeDAO;
+import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.entity.Book;
 import fr.upem.easypdm.entity.Chapter;
 import fr.upem.easypdm.entity.Organisation;
@@ -70,12 +71,15 @@ public class ElementController {
     
     private Part part;
     
+    @EJB
+    private UseRoleDAO useRoleDAO;
+    
     public ElementController() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         user = (Users) context.getSessionMap().get("userSession");
         downloadDir = Paths.get(context.getInitParameter("DOWNLOAD_DIR"));
         
-        racs = new RACs(user.getUseRoles());
+        racs = new RACs(useRoleDAO.findByUser(user));
         
         book = new Book();
         tome = new Tome();

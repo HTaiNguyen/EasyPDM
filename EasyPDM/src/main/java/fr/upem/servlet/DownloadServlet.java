@@ -6,6 +6,7 @@
 package fr.upem.servlet;
 
 import fr.upem.easypdm.dao.implement.ParagraphDAO;
+import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.entity.Element;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Users;
@@ -35,6 +36,9 @@ public class DownloadServlet extends HttpServlet{
     
     @EJB
     private ParagraphDAO paraDAO;
+    
+    @EJB
+    private UseRoleDAO useRoleDAO;
     //PARAM : e_id=1
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,7 +65,7 @@ public class DownloadServlet extends HttpServlet{
             return;
         }
         
-        RAC rac = new RACs(user.getUseRoles());
+        RAC rac = new RACs(useRoleDAO.findByUser(user));
         
         if(!rac.isPermitOperation(EntityType.PARAGRAPH, Operation.READ, paragraph)) {
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);

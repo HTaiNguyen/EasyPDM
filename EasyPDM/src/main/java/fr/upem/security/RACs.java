@@ -7,9 +7,9 @@ package fr.upem.security;
 
 import fr.upem.easypdm.entity.Element;
 import fr.upem.easypdm.entity.UseRole;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  *
@@ -17,13 +17,13 @@ import java.util.Set;
  */
 public class RACs implements RAC {
     
-    private HashSet<RAC> racs;
+    private List<RAC> racs;
 
-    public RACs(Set<UseRole> useRoles) {
+    public RACs(List<UseRole> useRoles) {
         Objects.requireNonNull(useRoles, "useRoles is null");
         
         RACFactory racFactory = new RACFactory();
-        racs = new HashSet<>();
+        racs = new ArrayList<>();
         for(UseRole useRole : useRoles) {
             racs.add(racFactory.createROA(useRole));
         }
