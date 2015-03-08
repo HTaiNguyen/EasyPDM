@@ -60,7 +60,7 @@ public class AuthController implements Serializable{
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .remove(USER_KEY);
-        return null;
+        return "../connection.xhtml";
     }
     
     public String getUserName() {

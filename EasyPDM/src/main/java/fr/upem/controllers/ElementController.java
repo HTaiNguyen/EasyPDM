@@ -146,9 +146,8 @@ public class ElementController {
         tomeDAO.remove(tome);
     }
     
-    public List<Tome> getTomes(Book book) {
-        //TODO DAOTome getByBook() 
-        return null;
+    public List<Tome> getTomes(Book book) { 
+        return tomeDAO.findByBook(book);
     }
     
     public void addChapter(Tome tome) {
@@ -189,8 +188,7 @@ public class ElementController {
         chapterDAO.remove(chapter);
     }
     public List<Chapter> getChapters(Tome tome) {
-        //TODO DAOChapter getByTome()
-        return null;
+        return chapterDAO.findByTome(tome);
     }
     
     public void addParagraph(Chapter chapter) {
@@ -217,7 +215,7 @@ public class ElementController {
         paragraphDAO.create(paragraph);
     }
     
-     private Path uploadFile(Part part, String filename, Path dest){
+    private Path uploadFile(Part part, String filename, Path dest){
         Path uploadPath = dest.resolve(filename); 
         File file = uploadPath.toFile();
         try(InputStream is = part.getInputStream(); OutputStream os = new FileOutputStream(file)) {
@@ -248,8 +246,7 @@ public class ElementController {
         paragraphDAO.remove(paragraph);
     }
     public List<Paragraph> getParagraphs(Chapter chapter) {
-        //TODO DAOParagraph getByChapter()
-        return null;
+        return paragraphDAO.findByChapter(chapter);
     }
 
     public Book getBook() {

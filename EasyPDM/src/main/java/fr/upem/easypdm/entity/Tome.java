@@ -7,19 +7,25 @@ package fr.upem.easypdm.entity;
 
 import fr.upem.entity.easypdm.more.Maturity;
 import java.sql.Timestamp;
-import java.util.Set;
+import java.util.List;
 import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
  * @author sybille
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Tome.findByBook", query = "SELECT t FROM Tome t WHERE t.book = :book")
+})
 public class Tome extends Element {
     
     private String title;
@@ -27,9 +33,10 @@ public class Tome extends Element {
     @ManyToOne
     @JoinColumn(name="book_id", nullable=false)
     private Book book;
-        
-    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="tome")
-    Set<Chapter> chapters;
+    
+    @CascadeOnDelete        
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="tome", orphanRemoval = true)
+    private List<Chapter> chapters;
     
     /**
      *
@@ -60,11 +67,11 @@ public class Tome extends Element {
     }    
     
     
-    public Set<Chapter> getChapters() {
+    public List<Chapter> getChapters() {
         return chapters;
     }
 
-    public void setChapters(Set<Chapter> chapters) {
+    public void setChapters(List<Chapter> chapters) {
         this.chapters = chapters;
     }
 }

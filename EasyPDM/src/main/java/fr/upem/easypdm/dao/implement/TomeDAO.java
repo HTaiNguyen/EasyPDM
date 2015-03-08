@@ -6,7 +6,10 @@
 package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
+import fr.upem.easypdm.entity.Book;
+import fr.upem.easypdm.entity.Chapter;
 import fr.upem.easypdm.entity.Tome;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +30,11 @@ public class TomeDAO extends DAO <Tome> {
     @Override
     protected EntityManager getEntityManager() {
         return entityManager;
+    }
+    
+    public List<Tome> findByBook(Book book){
+        return entityManager.createNamedQuery("Tome.findByBook", Tome.class)
+            .setParameter("book", book)
+            .getResultList();  
     }
 }

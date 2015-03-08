@@ -10,12 +10,17 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author sybille
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Paragraph.findByChapter", query = "SELECT p FROM Paragraph p WHERE p.chapter = :chapter")
+})
 public class Paragraph extends Element {
     
     @ManyToOne
