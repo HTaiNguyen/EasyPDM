@@ -53,7 +53,9 @@
 
                     <div id="split_right">
                         <div class="array">
-                            <h:commandButton value="Add an user" action="#{userController.addUser()}" /> <!-- POPUP pour ajouter un user -->
+                            <h:form>
+                                <h:commandButton value="Add an user" action="#{userController.addUser()}" /> <!-- POPUP pour ajouter un user -->
+                            </h:form>
                             <h:dataTable id="userList" value="#{userController.getAllUsers()}" var="user">
                                  <h:column headerClass="Id">
                                     <f:facet name="header">
