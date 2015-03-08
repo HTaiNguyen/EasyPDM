@@ -11,4 +11,12 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/restricted/index.html</from-view-id>
+        <navigation-case>
+            <from-outcome>connection</from-outcome>
+            <to-view-id>/connection.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -39,8 +40,9 @@ public class Users implements Serializable {
     @NotNull
     private String password;
     
-    @OneToMany(cascade={REMOVE}, fetch = LAZY, mappedBy="user")
-    Set<UseRole> useRoles;
+    @CascadeOnDelete   
+    @OneToMany(cascade={REMOVE}, fetch = LAZY, mappedBy="user", orphanRemoval = true)
+    private Set<UseRole> useRoles;
     
     public Users() {
         

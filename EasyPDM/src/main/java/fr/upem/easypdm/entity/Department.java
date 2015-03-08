@@ -13,6 +13,7 @@ import static javax.persistence.FetchType.LAZY;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -23,9 +24,9 @@ public class Department extends Organisation {
     @ManyToOne
     @JoinColumn(name="entreprise_id", nullable=false)
     private Enterprise enterprise;
-
-    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="department")
-    Set<Service> services;
+    @CascadeOnDelete
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="department", orphanRemoval = true)
+    private Set<Service> services;
     
     public Department() {
     }

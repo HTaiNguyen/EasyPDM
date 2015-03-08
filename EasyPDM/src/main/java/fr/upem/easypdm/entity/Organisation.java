@@ -19,6 +19,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -35,8 +36,9 @@ public class Organisation implements Serializable {
     private String name;
     private String description;
     
-    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="organisation")
-    Set<Element> elements;
+    @CascadeOnDelete
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="organisation", orphanRemoval = true)
+    private Set<Element> elements;
 
     public Organisation() {
         

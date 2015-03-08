@@ -6,7 +6,9 @@
 package fr.upem.easypdm.dao.implement;
 
 import fr.upem.easypdm.dao.DAO;
+import fr.upem.easypdm.entity.Chapter;
 import fr.upem.easypdm.entity.Paragraph;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +29,11 @@ public class ParagraphDAO extends DAO <Paragraph> {
     @Override
     protected EntityManager getEntityManager() {
         return entityManager;
+    }
+ 
+    public List<Paragraph> findByChapter(Chapter chapter){
+        return entityManager.createNamedQuery("Paragraph.findByChapter", Paragraph.class)
+         .setParameter("chapter", chapter)
+         .getResultList();  
     }
 }

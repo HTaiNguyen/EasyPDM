@@ -7,13 +7,12 @@ package fr.upem.easypdm.entity;
 
 import fr.upem.entity.easypdm.more.Maturity;
 import java.sql.Timestamp;
-import java.util.Set;
-import static javax.persistence.CascadeType.ALL;
+import java.util.List;
 import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.OneToMany;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -24,8 +23,9 @@ public class Book extends Element {
 
     private String title;
     
-    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="book")
-    Set<Tome> tomes;
+    @CascadeOnDelete
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="book", orphanRemoval = true)
+    private List<Tome> tomes;
     
     public Book() {
     }
@@ -43,11 +43,15 @@ public class Book extends Element {
         this.title = title;
     }
     
-    public Set<Tome> getTomes() {
+    public List<Tome> getTomes() {
         return tomes;
     }
 
-    public void setTomes(Set<Tome> tomes) {
+    public void setTomes(List<Tome> tomes) {
         this.tomes = tomes;
     }
+    
+    
+    
+    
 }

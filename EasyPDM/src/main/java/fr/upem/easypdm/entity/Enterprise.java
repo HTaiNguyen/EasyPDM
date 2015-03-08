@@ -11,6 +11,7 @@ import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.OneToMany;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -18,9 +19,9 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Enterprise extends Organisation {
-
-    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="enterprise")
-    Set<Department> departments;
+    @CascadeOnDelete
+    @OneToMany(cascade=REMOVE, fetch = LAZY, mappedBy="enterprise", orphanRemoval = true)
+    private Set<Department> departments;
 
     public Set<Department> getDepartments() {
         return departments;
