@@ -98,21 +98,13 @@
                                             <h:outputText value="#{user.email}"/>
                                         </h:column>
 
-                                         <h:column headerClass="Edit">
+                                         <h:column headerClass="Action">
                                             <f:facet name="header">
-                                                <h:outputText value="EDIT"/>
+                                                <h:outputText value="ACTION"/>
                                             </f:facet>
                                             <h:form>
                                                 <h:commandButton value="Edit" action="#{userController.updateUser()}" /> <!-- ouvrir popup pour formulaire d'edition -->
-                                            </h:form>
-                                        </h:column>
-
-                                        <h:column headerClass="Delete">
-                                            <f:facet name="header">
-                                                <h:outputText value="DELETE"/>
-                                            </f:facet>
-                                            <h:form>
-                                                <h:commandButton value="Delete" action="#{userController.removeUser(user)}" />
+                                                 <h:commandButton value="Delete" action="#{userController.removeUser(user)}" />
                                             </h:form>
                                         </h:column>
                                     </h:dataTable>
