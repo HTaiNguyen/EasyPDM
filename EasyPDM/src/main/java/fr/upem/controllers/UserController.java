@@ -38,7 +38,7 @@ public class UserController {
     private final RACs racs;
     private Users user;
     
-    public UserController(){
+    public UserController() {
         Users user = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .get("userSession");
         racs = new RACs(useRoleDAO.findByUser(user));
