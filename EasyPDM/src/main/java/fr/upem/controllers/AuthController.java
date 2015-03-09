@@ -63,7 +63,7 @@ public class AuthController implements Serializable{
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
                 .remove(USER_KEY);
-        return "../connection.xhtml";
+        return "/connection.xhtml?faces-redirect=true";
     }
     
     private static String encodePasswordSHA1(String key) {
