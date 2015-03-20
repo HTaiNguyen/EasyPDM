@@ -33,6 +33,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -230,14 +232,9 @@ public class ElementController implements Serializable{
         paragraph.setChapter(chapter);
         paragraph.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
         
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String paragraphName = request.getParameter("form:filename");
-        if(paragraphName == null) {
-            paragraphName = "paragraph";
-        }
-        paragraph.setName(paragraphName);
+        paragraph.setName("paragraph");
         paragraph.setLock(false);
-        paragraph.setPath(part.getName());
+ 
 
         //Sol1 : add in database and create Word File
         
@@ -247,19 +244,19 @@ public class ElementController implements Serializable{
         }
         
         Path chapterPath = Paths.get(chapter.getPath());
-        uploadFile(part, paragraph.getName(), chapterPath);
-        
+        paragraph.setPath(uploadFile(part, part.getName(), chapterPath).toString());
         paragraphDAO.create(paragraph);
     }
     
     private Path uploadFile(Part part, String filename, Path dest){
         Path uploadPath = dest.resolve(filename);
         
+
         try {
             Files.copy(part.getInputStream(), uploadPath, REPLACE_EXISTING);
         } catch (IOException ex) {
-            // nothing to 
         }
+
         
         return uploadPath;
     }
