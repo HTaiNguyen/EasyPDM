@@ -232,12 +232,13 @@ public class ElementController implements Serializable{
         
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String paragraphName = request.getParameter("form:filename");
+        if(paragraphName == null) {
+            paragraphName = "paragraph";
+        }
         paragraph.setName(paragraphName);
         paragraph.setLock(false);
         paragraph.setPath(part.getName());
 
-        System.out.println(paragraphName);
-        
         //Sol1 : add in database and create Word File
         
         //Sol2 : add in database and Upload the file (Rename + Verify extension)
