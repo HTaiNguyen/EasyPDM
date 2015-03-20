@@ -233,6 +233,7 @@ public class ElementController implements Serializable{
         paragraph.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
         
         paragraph.setName("paragraph");
+        
         paragraph.setLock(false);
  
 
