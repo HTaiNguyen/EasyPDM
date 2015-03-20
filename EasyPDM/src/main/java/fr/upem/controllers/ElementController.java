@@ -111,6 +111,10 @@ public class ElementController {
         bookDAO.create(book);
     }
     
+    public Book getBookById(Long id) {
+        return bookDAO.find(id);
+    }
+    
     public List<Book> getAllBooks() {
         return bookDAO.findAll();
     }
@@ -152,6 +156,10 @@ public class ElementController {
         }
         
         tomeDAO.remove(tome);
+    }
+    
+    public Tome getTomeById(Long id) {
+        return tomeDAO.find(id);
     }
     
     public List<Tome> getTomes(Book book) { 
@@ -197,6 +205,10 @@ public class ElementController {
     }
     public List<Chapter> getChapters(Tome tome) {
         return chapterDAO.findByTome(tome);
+    }
+    
+    public Chapter getChapterById(Long id) {
+        return chapterDAO.find(id);
     }
     
     public void addParagraph(Chapter chapter) {
