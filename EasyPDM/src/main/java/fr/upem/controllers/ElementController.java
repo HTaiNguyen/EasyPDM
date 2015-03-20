@@ -253,10 +253,9 @@ public class ElementController implements Serializable{
     
     private Path uploadFile(Part part, String filename, Path dest){
         Path uploadPath = dest.resolve(filename);
-        File file = uploadPath.toFile();
         
         try {
-            Files.copy(part.getInputStream(), file.toPath(), REPLACE_EXISTING);
+            Files.copy(part.getInputStream(), uploadPath, REPLACE_EXISTING);
         } catch (IOException ex) {
             // nothing to 
         }
