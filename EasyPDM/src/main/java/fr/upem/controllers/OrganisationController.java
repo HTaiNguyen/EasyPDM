@@ -18,11 +18,13 @@ import fr.upem.easypdm.entity.Users;
 import fr.upem.security.EntityType;
 import fr.upem.security.Operation;
 import fr.upem.security.RACs;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -32,7 +34,7 @@ import javax.inject.Named;
  */
 @Named("organisationController")
 @RequestScoped
-public class OrganisationController {
+public class OrganisationController implements Serializable {
     @EJB
     private EnterpriseDAO enterpriseDAO;
     

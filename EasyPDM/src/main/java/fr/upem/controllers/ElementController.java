@@ -23,6 +23,7 @@ import fr.upem.security.Operation;
 import fr.upem.security.RACs;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,6 +36,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -48,7 +50,7 @@ import org.apache.commons.io.FileUtils;
  */
 @Named("elementController")
 @RequestScoped
-public class ElementController {
+public class ElementController implements Serializable{
     @EJB
     private BookDAO bookDAO;
     @EJB
@@ -98,7 +100,8 @@ public class ElementController {
         book.setLastEditor(user.getFirstname()+" "+user.getLastname());
         book.setLock(false);
         book.setMaturity(Maturity.RELEASE);
-        
+        book.setOrganisation(user.getUseRoles().get(0).getOrganisation());
+          
         if(!racs.isPermitOperation(EntityType.BOOK, Operation.CREATE, book)){
             return;
         }
@@ -130,7 +133,8 @@ public class ElementController {
         tome.setLock(false);
         tome.setMaturity(Maturity.RELEASE);
         tome.setBook(book);
-                
+        tome.setOrganisation(user.getUseRoles().get(0).getOrganisation());
+             
         if(!racs.isPermitOperation(EntityType.TOME, Operation.CREATE, tome)){
             return;
         }
@@ -176,6 +180,7 @@ public class ElementController {
         chapter.setLock(false);
         chapter.setMaturity(Maturity.RELEASE);
         chapter.setTome(tome);
+        chapter.setOrganisation(user.getUseRoles().get(0).getOrganisation());
         
         if(!racs.isPermitOperation(EntityType.CHAPTER, Operation.CREATE, chapter)){
             return;
@@ -223,6 +228,7 @@ public class ElementController {
         paragraph.setLock(false);
         paragraph.setMaturity(Maturity.RELEASE);
         paragraph.setChapter(chapter);
+        paragraph.setOrganisation(user.getUseRoles().get(0).getOrganisation());
         
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String paragraphName = request.getParameter("form:filename");
