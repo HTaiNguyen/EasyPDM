@@ -100,7 +100,7 @@ public class ElementController implements Serializable{
         book.setLastEditor(user.getFirstname()+" "+user.getLastname());
         book.setLock(false);
         book.setMaturity(Maturity.RELEASE);
-        book.setOrganisation(user.getUseRoles().get(0).getOrganisation());
+        book.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
           
         if(!racs.isPermitOperation(EntityType.BOOK, Operation.CREATE, book)){
             return;
@@ -133,7 +133,7 @@ public class ElementController implements Serializable{
         tome.setLock(false);
         tome.setMaturity(Maturity.RELEASE);
         tome.setBook(book);
-        tome.setOrganisation(user.getUseRoles().get(0).getOrganisation());
+        tome.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
              
         if(!racs.isPermitOperation(EntityType.TOME, Operation.CREATE, tome)){
             return;
@@ -180,7 +180,7 @@ public class ElementController implements Serializable{
         chapter.setLock(false);
         chapter.setMaturity(Maturity.RELEASE);
         chapter.setTome(tome);
-        chapter.setOrganisation(user.getUseRoles().get(0).getOrganisation());
+        chapter.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
         
         if(!racs.isPermitOperation(EntityType.CHAPTER, Operation.CREATE, chapter)){
             return;
@@ -228,7 +228,7 @@ public class ElementController implements Serializable{
         paragraph.setLock(false);
         paragraph.setMaturity(Maturity.RELEASE);
         paragraph.setChapter(chapter);
-        paragraph.setOrganisation(user.getUseRoles().get(0).getOrganisation());
+        paragraph.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
         
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String paragraphName = request.getParameter("form:filename");
