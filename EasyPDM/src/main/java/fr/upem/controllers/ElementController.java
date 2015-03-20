@@ -245,7 +245,7 @@ public class ElementController implements Serializable{
         }
         
         Path chapterPath = Paths.get(chapter.getPath());
-        paragraph.setPath(uploadFile(part, part.getName(), chapterPath).toString());
+        paragraph.setPath(uploadFile(part, part.getSubmittedFileName(), chapterPath).toString());
         paragraphDAO.create(paragraph);
     }
     
