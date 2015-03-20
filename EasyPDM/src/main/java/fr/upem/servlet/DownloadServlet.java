@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.upem.servlet;
 
 import fr.upem.easypdm.dao.implement.ParagraphDAO;
 import fr.upem.easypdm.dao.implement.UseRoleDAO;
-import fr.upem.easypdm.entity.Element;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Users;
 import fr.upem.security.EntityType;
@@ -23,14 +17,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Denis
- */
+@WebServlet(name = "DownloadServlet", urlPatterns = {"/DownloadServlet"})
 public class DownloadServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
@@ -44,12 +36,13 @@ public class DownloadServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Users user = (Users) req.getSession().getAttribute("userSession");
         
-        if(user == null) {
+        if (user == null) {
             resp.sendRedirect("/EasyPDM/connection.xhtml");
             return;
         }
         
         Long element_id;
+        
         try {
             element_id = Long.parseLong(req.getParameter("e_id"));
         }
@@ -58,7 +51,7 @@ public class DownloadServlet extends HttpServlet{
             return;
         }
 
-       Paragraph paragraph = paraDAO.find(element_id);
+        Paragraph paragraph = paraDAO.find(element_id);
         
         if(paragraph == null) {
             resp.sendError(HttpServletResponse.SC_PRECONDITION_FAILED);
@@ -67,7 +60,7 @@ public class DownloadServlet extends HttpServlet{
         
         RAC rac = new RACs(useRoleDAO.findByUser(user));
         
-        if(!rac.isPermitOperation(EntityType.PARAGRAPH, Operation.READ, paragraph)) {
+        if (!rac.isPermitOperation(EntityType.PARAGRAPH, Operation.READ, paragraph)) {
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
@@ -87,10 +80,12 @@ public class DownloadServlet extends HttpServlet{
         Path tmpFile = Paths.get(paragraph.getPath());
         File data = tmpFile.toFile();
         
-        String type = getServletContext().getMimeType( data.getName() );
-        if ( type == null ) {
+        String type = getServletContext().getMimeType( data.getName());
+        
+        if (type == null) {
             type = "application/octet-stream";
         }
+        
         int bufferSize = 64*1024;
         resp.reset();
         resp.setContentType(type);
@@ -99,17 +94,31 @@ public class DownloadServlet extends HttpServlet{
         resp.setHeader( "Content-Length", String.valueOf( data.length() ) );
         resp.setHeader( "Content-Disposition", "attachment; filename=\"" + data.getName() + "\"" );
 
-        try(BufferedInputStream in = new BufferedInputStream( new FileInputStream( data ),bufferSize);
-        BufferedOutputStream out = new BufferedOutputStream( resp.getOutputStream(), bufferSize)) {
+        try (
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(data), bufferSize);
+            BufferedOutputStream out = new BufferedOutputStream(resp.getOutputStream(), bufferSize)
+        ) {
             byte[] buffer = new byte[bufferSize];
             int length;
-            while ( ( length= in.read( buffer ) ) > 0 ) {
-                out.write( buffer, 0, length );
+            
+            while ((length= in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
             }
         } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+            e.printStackTrace();
         }
     }
-  
+    
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

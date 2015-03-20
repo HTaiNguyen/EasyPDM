@@ -43,23 +43,57 @@ $(window).resize(function() {
  */
  
 $(document).ready(function() {
-	$('.treeview').treeView();
-	$('.treeview').treeView('collapseAll'); //expandAll or collapseAll
-	
-	/*var $dataTree = $('#dataTree');
-	var model = JSON.parse($('#treeModel').html());
-	$dataTree.treeView(model);
-	$('.treeview').treeView('collapseAll');*/
-	
-	$(".treeview .element").contextMenu({
-		menu: 'menu'
-	},
-	function(action, el, pos) {
-		alert(
-			'Action: ' + action + '\n\n' +
-			'Element ID: ' + $(el).attr('name') + '\n\n' +
-			'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
-			'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
-			);
-	});
+    $('.treeview').treeView();
+    $('.treeview').treeView('collapseAll'); //expandAll or collapseAll
+
+    /*var $dataTree = $('#dataTree');
+    var model = JSON.parse($('#treeModel').html());
+    $dataTree.treeView(model);
+    $('.treeview').treeView('collapseAll');*/
+
+    $(".treeview .element").contextMenu({
+        menu: 'menu'
+    },
+    function(action, el, pos) {
+        switch (action) {
+            case "download":
+                var e_id = 18;
+                
+                $.ajax({
+                    url : 'DownloadServlet',
+                    type : 'POST',
+                    data: {
+                        'e_id': e_id
+                    },
+                    success : function(html) {
+                        alert("fin download");
+                    }
+                });
+                
+                break;
+            case "upload":
+                /*$.ajax({
+                    url : 'ProfileLoadPictures',
+                    type : 'POST',
+                    data: {
+                        'page_number': page_number,
+                        'user_id': user_id
+                    },
+                    success : function(html) {
+                        
+                    }
+                });*/
+                
+                break;
+            default:
+                break;
+        }
+                
+        alert(
+        'Action: ' + action + '\n\n' +
+        'Element ID: ' + $(el).attr('name') + '\n\n' +
+        'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
+        'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
+        );
+    });
 });

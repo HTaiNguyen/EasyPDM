@@ -49,68 +49,17 @@
                     <div id="title">Tree</div>
                     <div id="books">
                         <ul class="treeview">
-                                <li><div class="element" name="book_1"><img src="../img/b.png" /> Book</div>
-                                    <ul>
-                                        <li><div class="element" name="tome_1"><img src="../img/t.png" /> Tome 1</div>
-                                            <ul>
-                                                <li>
-                                                    <div class="element" name="volume_1"><img src="../img/v.png" /> Volume 1</div>
-                                                    <ul>
-                                                        <li><div class="element" name="chapter_1"><img src="../img/c.png" /> Chapter 1</div>
-                                                            <ul>
-                                                                <li><div class="element" name="section_1"><img src="../img/s.png" /> Section 1</div></li>
-                                                                <li><div class="element" name="section_2"><img src="../img/s.png" /> Section 2</div></li>
-                                                                <li><div class="element" name="section_3"><img src="../img/s.png" /> Section 3</div></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><div class="element" name="chapter_2"><img src="../img/c.png" /> Chapter 2</div></li>
-                                                        <li><div class="element" name="chapter_3"><img src="../img/c.png" /> Chapter 3</div></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <div class="element" name="volume_2"><img src="../img/v.png" /> Volume 2</div>
-                                                </li>
-                                                <li>
-                                                    <div class="element" name="volume_3"><img src="../img/v.png" /> Volume 3</div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="element" name="tome_2"><img src="../img/t.png" /> Tome 2</div>
-                                            <ul>
-                                                <li>
-                                                    <div class="element" name="volume_1"><img src="../img/v.png" /> Volume 1</div>
-                                                    <ul>
-                                                        <li><div class="element" name="chapter_1"><img src="../img/c.png" /> Chapter 1</div>
-                                                            <ul>
-                                                                <li><div class="element" name="section_1"><img src="../img/s.png" /> Section 1</div></li>
-                                                                <li><div class="element" name="section_2"><img src="../img/s.png" /> Section 2</div></li>
-                                                                <li><div class="element" name="section_3"><img src="../img/s.png" /> Section 3</div></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="element" name="tome_3"><img src="../img/t.png" /> Tome 3</div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                        <ul class="treeview">
                             <ui:repeat value="#{elementController.getAllBooks()}" var="book">
                                 <li>
-                                    <div class="element" name="#{book.name}"><img src="../img/b.png" />#{book.title}</div>
+                                    <div name="#{book.name}"><img src="../img/b.png" />#{book.title}</div>
                                     <ul>
                                         <ui:repeat value="#{elementController.getTomes(book)}" var="tome">
                                             <li>
-                                                <div class="element" name="#{tome.name}"><img src="../img/t.png" />#{tome.title}</div>
+                                                <div name="#{tome.name}"><img src="../img/t.png" />#{tome.title}</div>
                                                 <ul>
                                                     <ui:repeat value="#{elementController.getChapters(tome)}" var="chapter">
                                                         <li>
-                                                            <div class="element" name="#{chapter.name}"><img src="../img/c.png" />#{chapter.title}</div>
+                                                            <div name="#{chapter.name}"><img src="../img/c.png" />#{chapter.title}</div>
                                                             <ul>
                                                                 <ui:repeat value="#{elementController.getParagraphs(chapter)}" var="paragraph">
                                                                     <li>
