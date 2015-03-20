@@ -38,6 +38,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 
@@ -222,6 +223,15 @@ public class ElementController {
         paragraph.setLock(false);
         paragraph.setMaturity(Maturity.RELEASE);
         paragraph.setChapter(chapter);
+        
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String paragraphName = request.getParameter("form:filename");
+        paragraph.setName(paragraphName);
+        paragraph.setLock(false);
+        paragraph.setPath(part.getName());
+
+        System.out.println(paragraphName);
+        
         //Sol1 : add in database and create Word File
         
         //Sol2 : add in database and Upload the file (Rename + Verify extension)
