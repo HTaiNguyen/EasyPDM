@@ -61,11 +61,11 @@
                                                 <ul>
                                                     <ui:repeat value="#{elementController.getChapters(tome)}" var="chapter">
                                                         <li>
-                                                            <div name="#{chapter.name}"><img src="../img/c.png" />#{chapter.title}</div>
+                                                            <div class="menu1" name="#{chapter.name}"><img src="../img/c.png" />#{chapter.title}</div>
                                                             <ul>
                                                                 <ui:repeat value="#{elementController.getParagraphs(chapter)}" var="paragraph">
                                                                     <li>
-                                                                        <div class="element" name="#{paragraph.name}"><img src="../img/s.png" />#{paragraph.name}</div>
+                                                                        <div class="menu2" name="#{paragraph.name}"><img src="../img/s.png" />#{paragraph.name}</div>
                                                                     </li>
                                                                 </ui:repeat>
                                                             </ul>
@@ -78,44 +78,14 @@
                                 </li>
                             </ui:repeat>
                         </ul>
-                        
-                        
-                        <!--<code id="treeModel">
-                            <ul class="treeview">
-                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Book
-                                    <ul>
-                                        <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Tome 1
-                                            <ul>
-                                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Volume 1
-                                                    <ul>
-                                                        <li><img src="img/book.png" width=30 style="vertical-align: middle;" /> Chapter 1
-                                                            <ul>
-                                                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Section 1</li>
-                                                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Section 2</li>
-                                                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Section 3</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Chapter 2</li>
-                                                        <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Chapter 3</li>
-                                                    </ul>
-                                                </li>
-                                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Volume 2</li>
-                                                <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Volume 3</li>
-                                            </ul>
-                                        </li>
-                                        <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Tome 2</li>
-                                        <li><img src="img/book.png" width=30 style="margin: 0 10px 0 0; vertical-align: middle;" /> Tome 3</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </code>
-
-                        <ul class="treeview" id="dataTree"></ul>-->
                     </div>
                     
-                    <ul id="menu" class="contextMenu">
-			<li class="download"><a href="#download">Download</a></li>
+                    <ul id="menu1" class="contextMenu">
                         <li class="upload"><a href="#upload">Upload</a></li>
+                    </ul>
+                    
+                    <ul id="menu2" class="contextMenu">
+			<li class="download"><a href="#download">Download</a></li>
                     </ul>
                     
                     <h:form id="upload_form" enctype="multipart/form-data" style="display: none;">

@@ -46,13 +46,27 @@ $(document).ready(function() {
     $('.treeview').treeView();
     $('.treeview').treeView('collapseAll'); //expandAll or collapseAll
 
-    /*var $dataTree = $('#dataTree');
-    var model = JSON.parse($('#treeModel').html());
-    $dataTree.treeView(model);
-    $('.treeview').treeView('collapseAll');*/
-
-    $(".treeview .element").contextMenu({
-        menu: 'menu'
+    $(".treeview .menu1").contextMenu({
+        menu: 'menu1'
+    },
+    function(action, el, pos) {
+        switch (action) {
+            case "upload":
+                $("#upload_form").dialog({
+                    resizable: false,
+                    height: 200,
+                    width: 500,
+                    modal: true
+                });
+                
+                break;
+            default:
+                break;
+        }
+    });
+    
+    $(".treeview .menu2").contextMenu({
+        menu: 'menu2'
     },
     function(action, el, pos) {
         switch (action) {
@@ -71,36 +85,8 @@ $(document).ready(function() {
                 });
                 
                 break;
-            case "upload":
-                $("#upload_form").dialog({
-                    resizable: false,
-                    height: 200,
-                    width: 500,
-                    modal: true
-                });
-                
-                /*$.ajax({
-                    url : 'UploadServlet',
-                    type : 'POST',
-                    data: {
-                        'page_number': page_number,
-                        'user_id': user_id
-                    },
-                    success : function() {
-                        alert("fin upload");
-                    }
-                });*/
-                
-                break;
             default:
                 break;
         }
-                
-        /*alert(
-        'Action: ' + action + '\n\n' +
-        'Element ID: ' + $(el).attr('name') + '\n\n' +
-        'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
-        'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
-        );*/
     });
 });
