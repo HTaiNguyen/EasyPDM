@@ -72,18 +72,11 @@ $(document).ready(function() {
                 
                 break;
             case "upload":
-                $("#test123").dialog({
+                $("#upload_form").dialog({
                     resizable: false,
-                    height: 140,
-                    modal: true,
-                    buttons: {
-                        'Upload': function() {
-                            $(this).dialog("close");
-                        },
-                        'Cancel': function() {
-                            $(this).dialog("close");
-                        }
-                    }
+                    height: 200,
+                    width: 500,
+                    modal: true
                 });
                 
                 /*$.ajax({
