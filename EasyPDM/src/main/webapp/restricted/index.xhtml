@@ -10,11 +10,13 @@
 		<title>EasyPDM - Connection</title>
 		
 		<link rel="stylesheet" href="../css/style.css" />
+                <link rel="stylesheet" href="../css/jquery-ui.min.css" />
 		<link rel="stylesheet" href="../css/jquery.treeView.css" />
 		<link rel="stylesheet" href="../css/jquery.contextMenu.css" />
 		
 		<script src="../js/jquery-2.1.3.min.js"></script>
 		<script src="../js/jquery-migrate-1.2.1.min.js"></script>
+                <script src="../js/jquery-ui.min.js"></script>
 		<script src="../js/jquery.treeView.js"></script>
 		<script src="../js/jquery.contextMenu.js"></script>
 		<script src="../js/script.js"></script>
@@ -110,11 +112,18 @@
 
                         <ul class="treeview" id="dataTree"></ul>-->
                     </div>
-				
+                    
                     <ul id="menu" class="contextMenu">
 			<li class="download"><a href="#download">Download</a></li>
                         <li class="upload"><a href="#upload">Upload</a></li>
                     </ul>
+                    
+                    <h:form id="upload_form" enctype="multipart/form-data" style="display: none;">
+                        <h:inputText id="filename" required="true" requiredMessage="Veuillez saisir un nom de fichier" maxlength="255"  />
+                        <h:inputFile id="wordFile" value="#{elementController.part}" required="true" requiredMessage="Veuillez sélectionner un fichier Word" />
+
+                        <h:commandButton value="Uploader" action="#{elementController.addParagraph(chapter)}" />
+                    </h:form>
 		</div>
 			
             <footer>
@@ -123,4 +132,3 @@
 	</div>
     </h:body>
 </html>
-

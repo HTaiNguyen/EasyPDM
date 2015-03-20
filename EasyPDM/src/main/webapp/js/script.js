@@ -65,22 +65,29 @@ $(document).ready(function() {
                     data: {
                         'e_id': e_id
                     },
-                    success : function(html) {
+                    success : function() {
                         alert("fin download");
                     }
                 });
                 
                 break;
             case "upload":
+                $("#upload_form").dialog({
+                    resizable: false,
+                    height: 200,
+                    width: 500,
+                    modal: true
+                });
+                
                 /*$.ajax({
-                    url : 'ProfileLoadPictures',
+                    url : 'UploadServlet',
                     type : 'POST',
                     data: {
                         'page_number': page_number,
                         'user_id': user_id
                     },
-                    success : function(html) {
-                        
+                    success : function() {
+                        alert("fin upload");
                     }
                 });*/
                 
@@ -89,11 +96,11 @@ $(document).ready(function() {
                 break;
         }
                 
-        alert(
+        /*alert(
         'Action: ' + action + '\n\n' +
         'Element ID: ' + $(el).attr('name') + '\n\n' +
         'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
         'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
-        );
+        );*/
     });
 });
