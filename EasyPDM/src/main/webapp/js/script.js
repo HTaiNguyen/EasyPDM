@@ -52,7 +52,8 @@ $(document).ready(function() {
     function(action, el, pos) {
         switch (action) {
             case "upload":
-                var chapter_id = el.id;
+                
+                var chapter_id = el[0].id;
                 
                 $("#upload_new_paragraph_" + chapter_id).dialog({
                     resizable: false,

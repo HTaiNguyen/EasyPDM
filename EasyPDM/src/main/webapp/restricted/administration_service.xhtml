@@ -57,7 +57,7 @@
                         <div id="split_right">
                             <div class="array">
                                 <h:form>
-                                    <h:commandButton value="Add an enterprise" action="#{organisationController.addEnterprise()}" /> <!-- POPUP pour ajouter une entreprise -->
+                                    <h:commandButton value="Add an enterprise" disabled="true" action="#{organisationController.addEnterprise()}" /> <!-- POPUP pour ajouter une entreprise -->
                                 </h:form>
                                 <c:choose>
                                     <c:when test="#{organisationController.getAllEnterprise().size() == 0}">
@@ -91,8 +91,8 @@
                                                     <h:outputText value="ACTION"/>
                                                 </f:facet>
                                                 <h:form>
-                                                    <h:commandButton value="Edit" action="#{organisationController.updateEnterprise()}" /> <!-- ouvrir popup pour formulaire d'edition -->
-                                                    <h:commandButton value="Delete" action="#{organisationController.removeEnterprise(enterprise)}" />
+                                                    <h:commandButton value="Edit" disabled="true" action="#{organisationController.updateEnterprise()}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                    <h:commandButton value="Delete" disabled="true" action="#{organisationController.removeEnterprise(enterprise)}" />
                                                 </h:form>
                                             </h:column>
                                         </h:dataTable>
@@ -102,7 +102,7 @@
 
                             <div class="array">
                                 <h:form>
-                                    <h:commandButton value="Add a department" action="#{organisationController.addDepartement()}" /> <!-- POPUP pour ajouter un department -->
+                                    <h:commandButton value="Add a department" disabled="true" action="#{organisationController.addDepartement()}" /> <!-- POPUP pour ajouter un department -->
                                 </h:form>
                                 <c:choose>
                                     <c:when test="#{organisationController.getAllDepartment().size() == 0}">
@@ -143,8 +143,8 @@
                                                     <h:outputText value="ACTION"/>
                                                 </f:facet>
                                                 <h:form>
-                                                    <h:commandButton value="Edit" action="#{organisationController.updateDepartment(department)}" /> <!-- ouvrir popup pour formulaire d'edition -->
-                                                    <h:commandButton value="Delete" action="#{organisationController.removeDepartment(department)}" />
+                                                    <h:commandButton value="Edit" disabled="true" action="#{organisationController.updateDepartment(department)}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                    <h:commandButton value="Delete" disabled="true" action="#{organisationController.removeDepartment(department)}" />
                                                 </h:form>
                                             </h:column>
                                         </h:dataTable>
@@ -154,7 +154,7 @@
 
                             <div class="array">
                                 <h:form>
-                                    <h:commandButton value="Add a service" action="#{organisationController.addService()}" /> <!-- POPUP pour ajouter un service -->
+                                    <h:commandButton value="Add a service" disabled="true" action="#{organisationController.addService()}" /> <!-- POPUP pour ajouter un service -->
                                 </h:form>
                                 <c:choose>
                                     <c:when test="#{organisationController.getAllService().size() == 0}">
@@ -195,8 +195,8 @@
                                                 <h:outputText value="ACTION"/>
                                             </f:facet>
                                             <h:form>
-                                                <h:commandButton value="Edit" action="#{organisationController.updateService()}" /> <!-- ouvrir popup pour formulaire d'edition -->
-                                                <h:commandButton value="Delete" action="#{organisationController.removeService(service)}" />
+                                                <h:commandButton value="Edit" disabled="true" action="#{organisationController.updateService()}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                <h:commandButton value="Delete" disabled="true" action="#{organisationController.removeService(service)}" />
                                             </h:form>
                                         </h:column>
                                     </h:dataTable>
@@ -206,7 +206,7 @@
 
                         <div class="array">
                             <h:form>
-                                <h:commandButton value="Add a team" action="#{organisationController.addTeam()}" /> <!-- POPUP pour ajouter une team -->
+                                <h:commandButton value="Add a team" disabled="true" action="#{organisationController.addTeam()}" /> <!-- POPUP pour ajouter une team -->
                             </h:form>
                             <c:choose>
                                 <c:when test="#{organisationController.getAllTeam().size() == 0}">
@@ -247,8 +247,8 @@
                                                 <h:outputText value="ACTION"/>
                                             </f:facet>
                                             <h:form>
-                                                <h:commandButton value="Edit" action="#{organisationController.updateTeam(team)}" /> <!-- ouvrir popup pour formulaire d'edition -->
-                                                <h:commandButton value="Delete" action="#{organisationController.removeTeam(team)}" />
+                                                <h:commandButton value="Edit" disabled="true" action="#{organisationController.updateTeam(team)}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                <h:commandButton value="Delete" disabled="true" action="#{organisationController.removeTeam(team)}" />
                                             </h:form>
                                         </h:column>
                                     </h:dataTable>

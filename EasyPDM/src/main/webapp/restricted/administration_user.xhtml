@@ -59,7 +59,7 @@
                     <div id="split_right">
                         <div class="array">
                             <h:form>
-                                <h:commandButton value="Add a user" action="#{userController.addUser()}" /> <!-- POPUP pour ajouter un user -->
+                                <h:commandButton value="Add a user" disabled="true" action="#{userController.addUser()}" /> <!-- POPUP pour ajouter un user -->
                             </h:form>
                             <c:choose>
                                 <c:when test="#{userController.getAllUsers().size() == 0}">
@@ -107,8 +107,8 @@
                                                 <h:outputText value="ACTION"/>
                                             </f:facet>
                                             <h:form>
-                                                <h:commandButton value="Edit" action="#{userController.updateUser()}" /> <!-- ouvrir popup pour formulaire d'edition -->
-                                                 <h:commandButton value="Delete" action="#{userController.removeUser(user)}" />
+                                                <h:commandButton value="Edit" disabled="true" action="#{userController.updateUser()}" /> <!-- ouvrir popup pour formulaire d'edition -->
+                                                 <h:commandButton value="Delete" disabled="true" action="#{userController.removeUser(user)}" />
                                             </h:form>
                                         </h:column>
                                     </h:dataTable>
