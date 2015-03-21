@@ -53,7 +53,7 @@ $(document).ready(function() {
         switch (action) {
             case "upload":
                 var chapter_id = el[0].id;
-                
+
                 $("#upload_new_paragraph_" + chapter_id).dialog({
                     resizable: false,
                     height: 200,
@@ -89,6 +89,28 @@ $(document).ready(function() {
                 });
 
             break;
+            default:
+                break;
+        }
+    });
+    
+    $(".treeview .menu3").contextMenu({
+        menu: 'menu3'
+    },
+    function(action, el, pos) {
+        switch (action) {
+            case "addchapter":
+                var chapter_id = el[0].id;
+                console.log(el);
+                
+                $("#add_new_chapter_" + chapter_id).dialog({
+                    resizable: false,
+                    height: 200,
+                    width: 500,
+                    modal: true
+                });
+                
+                break;
             default:
                 break;
         }

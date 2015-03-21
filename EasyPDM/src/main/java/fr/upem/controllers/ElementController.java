@@ -169,15 +169,16 @@ public class ElementController implements Serializable{
     }
     
     public void addChapter(Tome tome) {
-        chapter.setCreator(user.getFirstname()+" "+user.getLastname());
+        chapter.setCreator(user.getFirstname() + " " + user.getLastname());
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();
         chapter.setEditStamp(new Timestamp(now.getTime()));
-        chapter.setLastEditor(user.getFirstname()+" "+user.getLastname());
+        chapter.setLastEditor(user.getFirstname() + " " + user.getLastname());
         chapter.setLock(false);
         chapter.setMaturity(Maturity.RELEASE);
         chapter.setTome(tome);
         chapter.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
+        chapter.setName(chapter.getTitle());
         
         if(!racs.isPermitOperation(EntityType.CHAPTER, Operation.CREATE, chapter)){
             return;
@@ -185,6 +186,7 @@ public class ElementController implements Serializable{
         
         try {
             Path tomePath = Paths.get(tome.getPath());
+            
             Path chapterPath = Files.createDirectory(tomePath.resolve(chapter.getName()));
             chapter.setPath(chapterPath.toString());
         } catch (IOException ex) {
@@ -192,6 +194,7 @@ public class ElementController implements Serializable{
         
         chapterDAO.create(chapter);
     }
+    
     public void removeChapter(Chapter chapter) {
         if(!racs.isPermitOperation(EntityType.TOME, Operation.DELETE, chapter)){
             return;

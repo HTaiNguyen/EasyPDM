@@ -59,7 +59,13 @@
                                     <ul>
                                         <c:forEach var="tome" items="#{elementController.getTomes(book)}">
                                             <li>
-                                                <div name="#{tome.name}"><img src="../img/t.png" />#{tome.title}</div>
+                                                <div class="menu3" name="#{tome.name}" id="#{tome.id}">
+                                                    <img src="../img/t.png" />#{tome.title}
+                                                    <h:form class="add_new_chapter" id="add_new_chapter_#{tome.id}" style="display: none;">
+                                                        <h:inputText required="true" value="#{elementController.chapter.title}" />
+                                                        <h:commandButton value="Add" action="#{elementController.addChapter(elementController.getTomeById(tome.id))}" />
+                                                    </h:form>
+                                                </div>
                                                 <ul>
                                                     <c:forEach var="chapter" items="#{elementController.getChapters(tome)}">
                                                         <li>
@@ -101,12 +107,16 @@
                     </div>
                     
                     <ul id="menu1" class="contextMenu">
-                        <li class="upload"><a href="#upload">Upload</a></li>
+                        <li class="upload"><a href="#upload">Add paragraph</a></li>
                     </ul>
                     
                     <ul id="menu2" class="contextMenu">
                         <li class="upload"><a href="#upload">Edit</a></li>
 			<li class="download"><a href="#download">Download</a></li>
+                    </ul>
+                    
+                    <ul id="menu3" class="contextMenu">
+                        <li class="addchapter"><a href="#addchapter">Add chapter</a></li>
                     </ul>
 		</div>
 			
