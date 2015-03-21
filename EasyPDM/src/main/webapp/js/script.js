@@ -73,7 +73,7 @@ $(document).ready(function() {
             case "download":
                 var e_id = 18;
                 
-                $.ajax({
+                /*$.ajax({
                     url : '/EasyPDM/download',
                     type : 'GET',
                     data: {
@@ -83,7 +83,9 @@ $(document).ready(function() {
                         //alert("fin download");
                     },
                     async:   false
-                });
+                });*/
+                
+                $.fileDownload('/EasyPDM/download?e_id='+e_id);
                 
                 break;
             case "upload":
