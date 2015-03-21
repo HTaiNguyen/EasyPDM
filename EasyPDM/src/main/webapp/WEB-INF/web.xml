@@ -7,7 +7,7 @@
     
     <context-param>
         <param-name>DOWNLOAD_DIR</param-name>
-        <param-value>C:/Users/Tai/Desktop/recep/</param-value>
+        <param-value>C:/Users/Tai/Desktop/dl/</param-value>
     </context-param>
 
     <servlet>

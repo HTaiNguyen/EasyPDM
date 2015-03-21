@@ -15,13 +15,11 @@ import fr.upem.easypdm.entity.Chapter;
 import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Paragraph;
 import fr.upem.easypdm.entity.Tome;
-import fr.upem.easypdm.entity.UseRole;
 import fr.upem.easypdm.entity.Users;
 import fr.upem.entity.easypdm.more.Maturity;
 import fr.upem.security.EntityType;
 import fr.upem.security.Operation;
 import fr.upem.security.RACs;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -29,20 +27,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 
@@ -220,6 +214,13 @@ public class ElementController implements Serializable{
     }
     
     public void addParagraph(Chapter chapter) {
+        if (!part.getContentType().equals("application/msword")) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "The document must be in word's format !", null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            
+            return;
+        }
+        
         //TODO FIND A WAY TO NAME THE FILES OR DIRECTORIES
         //add in datbase
         paragraph.setCreator(user.getFirstname()+" "+user.getLastname());
@@ -232,8 +233,7 @@ public class ElementController implements Serializable{
         paragraph.setChapter(chapter);
         paragraph.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
         
-        paragraph.setName("paragraph");
-        
+        paragraph.setName(part.getSubmittedFileName());
         paragraph.setLock(false);
  
 
