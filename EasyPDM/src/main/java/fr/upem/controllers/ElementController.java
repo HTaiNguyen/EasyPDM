@@ -39,6 +39,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -214,39 +215,41 @@ public class ElementController implements Serializable{
     }
     
     public void addParagraph(Chapter chapter) {
-        if (!part.getContentType().equals("application/msword") || !part.getContentType().equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+        String ext = FilenameUtils.getExtension(part.getSubmittedFileName());
+        
+        if(ext.equals("doc") || ext.equals("docx")) {
+            //TODO FIND A WAY TO NAME THE FILES OR DIRECTORIES
+            //add in datbase
+            paragraph.setCreator(user.getFirstname()+" "+user.getLastname());
+            Calendar calendar = Calendar.getInstance();
+            Date now = calendar.getTime();
+            paragraph.setEditStamp(new Timestamp(now.getTime()));
+            paragraph.setLastEditor(user.getFirstname()+" "+user.getLastname());
+            paragraph.setLock(false);
+            paragraph.setMaturity(Maturity.RELEASE);
+            paragraph.setChapter(chapter);
+            paragraph.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
+
+            paragraph.setName(part.getSubmittedFileName());
+            paragraph.setLock(false);
+
+
+            //Sol1 : add in database and create Word File
+
+            //Sol2 : add in database and Upload the file (Rename + Verify extension)
+            if(!racs.isPermitOperation(EntityType.BOOK, Operation.CREATE, book)){
+                return;
+            }
+
+            Path chapterPath = Paths.get(chapter.getPath());
+            paragraph.setPath(uploadFile(part, part.getSubmittedFileName(), chapterPath).toString());
+            paragraphDAO.create(paragraph);
+        } else {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "The document must be in word's format !", null);
             FacesContext.getCurrentInstance().addMessage(null, message);
             
             return;
         }
-        
-        //TODO FIND A WAY TO NAME THE FILES OR DIRECTORIES
-        //add in datbase
-        paragraph.setCreator(user.getFirstname()+" "+user.getLastname());
-        Calendar calendar = Calendar.getInstance();
-        Date now = calendar.getTime();
-        paragraph.setEditStamp(new Timestamp(now.getTime()));
-        paragraph.setLastEditor(user.getFirstname()+" "+user.getLastname());
-        paragraph.setLock(false);
-        paragraph.setMaturity(Maturity.RELEASE);
-        paragraph.setChapter(chapter);
-        paragraph.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
-        
-        paragraph.setName(part.getSubmittedFileName());
-        paragraph.setLock(false);
- 
-
-        //Sol1 : add in database and create Word File
-        
-        //Sol2 : add in database and Upload the file (Rename + Verify extension)
-        if(!racs.isPermitOperation(EntityType.BOOK, Operation.CREATE, book)){
-            return;
-        }
-        
-        Path chapterPath = Paths.get(chapter.getPath());
-        paragraph.setPath(uploadFile(part, part.getSubmittedFileName(), chapterPath).toString());
-        paragraphDAO.create(paragraph);
     }
     
     private Path uploadFile(Part part, String filename, Path dest){

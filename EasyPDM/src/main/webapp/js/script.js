@@ -73,7 +73,7 @@ $(document).ready(function() {
     function(action, el, pos) {
         switch (action) {
             case "download":
-                var e_id = el.id;
+                var e_id = el[0].id;
                 
                 $.fileDownload('/EasyPDM/download?e_id=' + e_id);
                 
