@@ -101,9 +101,29 @@ $(document).ready(function() {
         switch (action) {
             case "addchapter":
                 var chapter_id = el[0].id;
-                console.log(el);
                 
                 $("#add_new_chapter_" + chapter_id).dialog({
+                    resizable: false,
+                    height: 200,
+                    width: 500,
+                    modal: true
+                });
+                
+                break;
+            default:
+                break;
+        }
+    });
+    
+    $(".treeview .menu4").contextMenu({
+        menu: 'menu4'
+    },
+    function(action, el, pos) {
+        switch (action) {
+            case "addtome":
+                var tome_id = el[0].id;
+                
+                $("#add_new_tome_" + tome_id).dialog({
                     resizable: false,
                     height: 200,
                     width: 500,

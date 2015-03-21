@@ -131,7 +131,8 @@ public class ElementController implements Serializable{
         tome.setMaturity(Maturity.RELEASE);
         tome.setBook(book);
         tome.setOrganisation(useRoleDAO.findByUser(user).get(0).getOrganisation());
-             
+        tome.setName(tome.getTitle());
+        
         if(!racs.isPermitOperation(EntityType.TOME, Operation.CREATE, tome)){
             return;
         }

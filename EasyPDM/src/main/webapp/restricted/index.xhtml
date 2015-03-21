@@ -55,7 +55,13 @@
                         <ul class="treeview">
                             <c:forEach var="book" items="#{elementController.getAllBooks()}">
                                 <li>
-                                    <div name="#{book.name}"><img src="../img/b.png" />#{book.title}</div>
+                                    <div class="menu4" name="#{book.name}" id="#{book.id}">
+                                        <img src="../img/b.png" />#{book.title}
+                                        <h:form class="add_new_tome_" id="add_new_tome_#{book.id}" style="display: none;">
+                                            <h:inputText required="true" value="#{elementController.tome.title}" />
+                                            <h:commandButton value="Add" action="#{elementController.addTome(book)}" />
+                                        </h:form>
+                                    </div>
                                     <ul>
                                         <c:forEach var="tome" items="#{elementController.getTomes(book)}">
                                             <li>
@@ -117,6 +123,10 @@
                     
                     <ul id="menu3" class="contextMenu">
                         <li class="addchapter"><a href="#addchapter">Add chapter</a></li>
+                    </ul>
+                    
+                     <ul id="menu4" class="contextMenu">
+                        <li class="addtome"><a href="#addtome">Add tome</a></li>
                     </ul>
 		</div>
 			
