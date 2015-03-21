@@ -79,12 +79,14 @@ $(document).ready(function() {
                 
                 break;
             case "upload":
-            $("#upload_form").dialog({
-                resizable: false,
-                height: 200,
-                width: 500,
-                modal: true
-            });
+                var paragraph_id = el[0].id;
+                
+                $("#edit_new_paragraph_" + paragraph_id).dialog({
+                    resizable: false,
+                    height: 200,
+                    width: 500,
+                    modal: true
+                });
 
             break;
             default:

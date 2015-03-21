@@ -78,6 +78,13 @@
                                                                     <li>
                                                                         <div class="menu2" name="#{paragraph.name}" id="#{paragraph.id}">
                                                                             <img src="../img/s.png" />#{paragraph.name}
+                                                                            
+                                                                            <h:form class="edit_new_paragraph" id="edit_new_paragraph_#{paragraph.id}" enctype="multipart/form-data" style="display: none;">
+                                                                                <h:inputText class="filename" required="true" requiredMessage="Choose filename" maxlength="255"  />
+                                                                                <h:inputFile class="wordFile" value="#{elementController.part}" required="true" requiredMessage="Select Word file" />
+
+                                                                                <h:commandButton value="Uploader" action="#{elementController.addParagraph(elementController.getChapterById(chapter.id))}" />
+                                                                            </h:form>
                                                                         </div>
                                                                     </li>
                                                                 </c:forEach>
