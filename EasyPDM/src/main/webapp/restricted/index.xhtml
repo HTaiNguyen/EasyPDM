@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	<h:head>
 		<meta charset="utf-8" />
 		
@@ -65,11 +66,11 @@
                                                             <div class="menu1" name="#{chapter.name}" id="#{chapter.id}">
                                                                 <img src="../img/c.png" />#{chapter.title}
                                                                 
-                                                                <h:form id="upload_new_paragraph_#{chapter.id}" enctype="multipart/form-data" style="display: none;">
-                                                                    <h:inputText id="filename" required="true" requiredMessage="Choose filename" maxlength="255"  />
-                                                                    <h:inputFile id="wordFile" value="#{elementController.part}" required="true" requiredMessage="Select Word file" />
+                                                                <h:form class="upload_new_paragraph" id="upload_new_paragraph_#{chapter.id}" enctype="multipart/form-data" style="display: none;">
+                                                                    <h:inputText class="filename" required="true" requiredMessage="Choose filename" maxlength="255"  />
+                                                                    <h:inputFile class="wordFile" value="#{elementController.part}" required="true" requiredMessage="Select Word file" />
 
-                                                                    <h:commandButton value="Uploader" action="#{elementController.addParagraph(elementController.getChapterById(chapter.id))}" />
+                                                                    <h:commandButton value="Uploader" action="#{elementController.addParagraph(elementController.getChapterById(17))}" />
                                                                 </h:form>
                                                             </div>
                                                             <ul>
