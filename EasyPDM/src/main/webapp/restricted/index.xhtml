@@ -83,7 +83,7 @@
                                                                                 <h:inputText class="filename" required="true" requiredMessage="Choose filename" maxlength="255"  />
                                                                                 <h:inputFile class="wordFile" value="#{elementController.part}" required="true" requiredMessage="Select Word file" />
 
-                                                                                <h:commandButton value="Uploader" action="#{elementController.addParagraph(elementController.getChapterById(chapter.id))}" />
+                                                                                <h:commandButton value="Uploader" action="#{elementController.editParagraph(paragraph)}" />
                                                                             </h:form>
                                                                         </div>
                                                                     </li>

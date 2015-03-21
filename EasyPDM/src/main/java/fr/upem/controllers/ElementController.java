@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -46,7 +46,7 @@ import org.apache.commons.io.FilenameUtils;
  * @author Denis
  */
 @Named("elementController")
-@SessionScoped
+@RequestScoped
 public class ElementController implements Serializable{
     @EJB
     private BookDAO bookDAO;
@@ -244,6 +244,7 @@ public class ElementController implements Serializable{
             Path chapterPath = Paths.get(chapter.getPath());
             paragraph.setPath(uploadFile(part, part.getSubmittedFileName(), chapterPath).toString());
             paragraphDAO.create(paragraph);
+            paragraph = new Paragraph();
         } else {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "The document must be in word's format !", null);
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -261,10 +262,8 @@ public class ElementController implements Serializable{
             Calendar calendar = Calendar.getInstance();
             Date now = calendar.getTime();
             paragraph.setEditStamp(new Timestamp(now.getTime()));
-            paragraph.setLastEditor(user.getFirstname()+" "+user.getLastname());
+            paragraph.setLastEditor(user.getFirstname() + " " + user.getLastname());
             paragraph.setLock(false);
-
-            paragraph.setName(part.getSubmittedFileName());
 
             //Sol1 : add in database and create Word File
 
@@ -274,7 +273,7 @@ public class ElementController implements Serializable{
             }
 
             Path path = Paths.get(paragraph.getPath());
-            uploadFile(part, path.getFileName().toString(), path);
+            uploadFile(part, path.getFileName().toString(), path.getParent());
             paragraphDAO.update(paragraph);
         } else {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "The document must be in word's format !", null);
@@ -282,19 +281,20 @@ public class ElementController implements Serializable{
             
             return;
         }
-        
+    }
+
+    public Paragraph getParagraphById(long id) {
+        return paragraphDAO.find(id);
     }
     
     private Path uploadFile(Part part, String filename, Path dest){
-        Path uploadPath = dest.resolve(filename);
         
-
-        try {
+            Path uploadPath = dest.resolve(filename);
+        try {  
             Files.copy(part.getInputStream(), uploadPath, REPLACE_EXISTING);
         } catch (IOException ex) {
+            // nothing to do
         }
-
-        
         return uploadPath;
     }
     
@@ -359,6 +359,4 @@ public class ElementController implements Serializable{
     public void setUser(Users user) {
         this.user = user;
     }
-    
-    
 }
