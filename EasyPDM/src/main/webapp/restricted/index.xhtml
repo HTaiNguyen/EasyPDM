@@ -53,15 +53,15 @@
                     <div id="title">Tree</div>
                     <div id="books">
                         <ul class="treeview">
-                            <ui:repeat value="#{elementController.getAllBooks()}" var="book">
+                            <c:forEach var="book" items="#{elementController.getAllBooks()}">
                                 <li>
                                     <div name="#{book.name}"><img src="../img/b.png" />#{book.title}</div>
                                     <ul>
-                                        <ui:repeat value="#{elementController.getTomes(book)}" var="tome">
+                                        <c:forEach var="tome" items="#{elementController.getTomes(book)}">
                                             <li>
                                                 <div name="#{tome.name}"><img src="../img/t.png" />#{tome.title}</div>
                                                 <ul>
-                                                    <ui:repeat value="#{elementController.getChapters(tome)}" var="chapter">
+                                                    <c:forEach var="chapter" items="#{elementController.getChapters(tome)}">
                                                         <li>
                                                             <div class="menu1" name="#{chapter.name}" id="#{chapter.id}">
                                                                 <img src="../img/c.png" />#{chapter.title}
@@ -74,22 +74,22 @@
                                                                 </h:form>
                                                             </div>
                                                             <ul>
-                                                                <ui:repeat value="#{elementController.getParagraphs(chapter)}" var="paragraph">
+                                                                <c:forEach var="paragraph" items="#{elementController.getParagraphs(chapter)}">
                                                                     <li>
                                                                         <div class="menu2" name="#{paragraph.name}" id="#{paragraph.id}">
                                                                             <img src="../img/s.png" />#{paragraph.name}
                                                                         </div>
                                                                     </li>
-                                                                </ui:repeat>
+                                                                </c:forEach>
                                                             </ul>
                                                         </li>
-                                                    </ui:repeat>
+                                                    </c:forEach>
                                                 </ul>
                                             </li>
-                                        </ui:repeat>
+                                        </c:forEach>
                                     </ul>
                                 </li>
-                            </ui:repeat>
+                            </c:forEach>
                         </ul>
                     </div>
                     

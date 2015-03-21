@@ -54,7 +54,7 @@ $(document).ready(function() {
             case "upload":
                 var chapter_id = el[0].id;
                 
-                $("#upload_new_paragraph_" + 17).dialog({
+                $("#upload_new_paragraph_" + chapter_id).dialog({
                     resizable: false,
                     height: 200,
                     width: 500,
