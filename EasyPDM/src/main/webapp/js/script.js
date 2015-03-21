@@ -74,17 +74,27 @@ $(document).ready(function() {
                 var e_id = 19;
                 
                 $.ajax({
-                    url : 'DownloadServlet',
-                    type : 'POST',
+                    url : '/EasyPDM/download',
+                    type : 'GET',
                     data: {
                         'e_id': e_id
                     },
                     success : function() {
-                        
-                    }
+                        //alert("fin download");
+                    },
+                    async:   false
                 });
                 
                 break;
+            case "upload":
+            $("#upload_form").dialog({
+                resizable: false,
+                height: 200,
+                width: 500,
+                modal: true
+            });
+
+            break;
             default:
                 break;
         }
