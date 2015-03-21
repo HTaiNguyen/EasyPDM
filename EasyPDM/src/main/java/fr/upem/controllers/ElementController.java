@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -45,7 +45,7 @@ import org.apache.commons.io.FileUtils;
  * @author Denis
  */
 @Named("elementController")
-@RequestScoped
+@SessionScoped
 public class ElementController implements Serializable{
     @EJB
     private BookDAO bookDAO;
