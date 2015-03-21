@@ -71,7 +71,7 @@ $(document).ready(function() {
     function(action, el, pos) {
         switch (action) {
             case "download":
-                var e_id = 18;
+                var e_id = 19;
                 
                 $.ajax({
                     url : 'DownloadServlet',
@@ -80,7 +80,7 @@ $(document).ready(function() {
                         'e_id': e_id
                     },
                     success : function() {
-                        alert("fin download");
+                        
                     }
                 });
                 
