@@ -62,11 +62,22 @@
                                                 <ul>
                                                     <ui:repeat value="#{elementController.getChapters(tome)}" var="chapter">
                                                         <li>
-                                                            <div class="menu1" name="#{chapter.name}"><img src="../img/c.png" />#{chapter.title}</div>
+                                                            <div class="menu1" name="#{chapter.name}" id="#{chapter.id}">
+                                                                <img src="../img/c.png" />#{chapter.title}
+                                                                
+                                                                <h:form id="upload_new_paragraph_#{chapter.id}" enctype="multipart/form-data" style="display: none;">
+                                                                    <h:inputText id="filename" required="true" requiredMessage="Choose filename" maxlength="255"  />
+                                                                    <h:inputFile id="wordFile" value="#{elementController.part}" required="true" requiredMessage="Select Word file" />
+
+                                                                    <h:commandButton value="Uploader" action="#{elementController.addParagraph(elementController.getChapterById(chapter.id))}" />
+                                                                </h:form>
+                                                            </div>
                                                             <ul>
                                                                 <ui:repeat value="#{elementController.getParagraphs(chapter)}" var="paragraph">
                                                                     <li>
-                                                                        <div class="menu2" name="#{paragraph.name}" id="#{paragraph.id}"><img src="../img/s.png" />#{paragraph.name}</div>
+                                                                        <div class="menu2" name="#{paragraph.name}" id="#{paragraph.id}">
+                                                                            <img src="../img/s.png" />#{paragraph.name}
+                                                                        </div>
                                                                     </li>
                                                                 </ui:repeat>
                                                             </ul>
@@ -86,16 +97,9 @@
                     </ul>
                     
                     <ul id="menu2" class="contextMenu">
-                        <li class="upload"><a href="#upload">Upload</a></li>
+                        <li class="upload"><a href="#upload">Edit</a></li>
 			<li class="download"><a href="#download">Download</a></li>
                     </ul>
-                    
-                    <h:form id="upload_form" enctype="multipart/form-data" style="display: none;">
-                        <h:inputText id="filename" required="true" requiredMessage="Veuillez saisir un nom de fichier" maxlength="255"  />
-                        <h:inputFile id="wordFile" value="#{elementController.part}" required="true" requiredMessage="Veuillez sélectionner un fichier Word" />
-
-                        <h:commandButton value="Uploader" action="#{elementController.addParagraph(elementController.getChapterById(17))}" />
-                    </h:form>
 		</div>
 			
             <footer>

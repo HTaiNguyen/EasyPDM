@@ -52,7 +52,9 @@ $(document).ready(function() {
     function(action, el, pos) {
         switch (action) {
             case "upload":
-                $("#upload_form").dialog({
+                var chapter_id = el.id;
+                
+                $("#upload_new_paragraph_" + chapter_id).dialog({
                     resizable: false,
                     height: 200,
                     width: 500,
@@ -71,21 +73,9 @@ $(document).ready(function() {
     function(action, el, pos) {
         switch (action) {
             case "download":
-                var e_id = 19;
+                var e_id = el.id;
                 
-                /*$.ajax({
-                    url : '/EasyPDM/download',
-                    type : 'GET',
-                    data: {
-                        'e_id': e_id
-                    },
-                    success : function() {
-                        //alert("fin download");
-                    },
-                    async:   false
-                });*/
-                
-                $.fileDownload('/EasyPDM/download?e_id='+e_id);
+                $.fileDownload('/EasyPDM/download?e_id=' + e_id);
                 
                 break;
             case "upload":
