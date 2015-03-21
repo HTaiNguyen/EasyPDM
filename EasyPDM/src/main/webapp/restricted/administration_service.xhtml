@@ -255,6 +255,17 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
+                            <h:form>
+                                <h:outputLabel value="Name"/><br/>
+                                <h:inputText value="#{organisationController.department.name}"></h:inputText><br/>
+                                <h:outputLabel value="Description"/><br/>
+                                <h:inputTextarea value="#{organisationController.department.description}"></h:inputTextarea><br/>
+                                <h:selectOneMenu value="#{organisationController.department.enterprise}">
+                                <f:selectItems value="#{organisationController.getAllEnterprise()}" var="entry"
+                                               itemValue="#{entry}" itemLabel="#{entry.name}" />
+                                </h:selectOneMenu><br/>
+                                <h:commandButton action="#{organisationController.addDepartement()}" value="add"/><br/>
+                            </h:form>
                     </div>
                 </div>
             </div>

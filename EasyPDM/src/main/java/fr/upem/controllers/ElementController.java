@@ -252,6 +252,39 @@ public class ElementController implements Serializable{
         }
     }
     
+    public void editParagraph(Paragraph paragraph) {
+        String ext = FilenameUtils.getExtension(part.getSubmittedFileName());
+        
+        if(ext.equals("doc") || ext.equals("docx")) {
+            //TODO FIND A WAY TO NAME THE FILES OR DIRECTORIES
+            //add in datbase
+            Calendar calendar = Calendar.getInstance();
+            Date now = calendar.getTime();
+            paragraph.setEditStamp(new Timestamp(now.getTime()));
+            paragraph.setLastEditor(user.getFirstname()+" "+user.getLastname());
+            paragraph.setLock(false);
+
+            paragraph.setName(part.getSubmittedFileName());
+
+            //Sol1 : add in database and create Word File
+
+            //Sol2 : add in database and Upload the file (Rename + Verify extension)
+            if(!racs.isPermitOperation(EntityType.BOOK, Operation.MODIFY, book)){
+                return;
+            }
+
+            Path path = Paths.get(paragraph.getPath());
+            uploadFile(part, path.getFileName().toString(), path);
+            paragraphDAO.update(paragraph);
+        } else {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "The document must be in word's format !", null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            
+            return;
+        }
+        
+    }
+    
     private Path uploadFile(Part part, String filename, Path dest){
         Path uploadPath = dest.resolve(filename);
         

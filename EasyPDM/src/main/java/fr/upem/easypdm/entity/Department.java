@@ -31,14 +31,6 @@ public class Department extends Organisation {
     public Department() {
     }
 
-    public Department(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
-
-    public Department(String name, String description) {
-        super(name, description);
-    }
-
     public Department(Enterprise company, String name, String description) {
         super(name, description);
         this.enterprise = company;
@@ -51,7 +43,7 @@ public class Department extends Organisation {
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
     }
-    
+
     public Set<Service> getServices() {
         return services;
     }
@@ -59,4 +51,7 @@ public class Department extends Organisation {
     public void setServices(Set<Service> services) {
         this.services = services;
     }
+    
+    
+
 }

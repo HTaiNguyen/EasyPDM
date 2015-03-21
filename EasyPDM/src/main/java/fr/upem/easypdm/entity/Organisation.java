@@ -43,12 +43,20 @@ public class Organisation implements Serializable {
     public Organisation() {
         
     }
-
+    
     public Organisation(String name, String description) {
         this.name = Objects.requireNonNull(name);
         this.description = description;
     }
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -64,14 +72,13 @@ public class Organisation implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
-    public long getId() {
-        return id;
+
+    public Set<Element> getElements() {
+        return elements;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setElements(Set<Element> elements) {
+        this.elements = elements;
     }
 
     @Override

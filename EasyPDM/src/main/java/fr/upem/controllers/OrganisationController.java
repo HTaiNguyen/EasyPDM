@@ -33,7 +33,7 @@ import javax.inject.Named;
  * @author Denis
  */
 @Named("organisationController")
-@RequestScoped
+@SessionScoped
 public class OrganisationController implements Serializable {
     @EJB
     private EnterpriseDAO enterpriseDAO;
@@ -186,21 +186,36 @@ public class OrganisationController implements Serializable {
         return new ArrayList<>();
     }
 
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
+    }
+
+    public Department getDepartment() {
+        return department;
     }
 
     public void setDepartment(Department department) {
         this.department = department;
     }
 
+    public Service getService() {
+        return service;
+    }
+
     public void setService(Service service) {
         this.service = service;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 
     public void setTeam(Team team) {
         this.team = team;
     }
-    
     
 }

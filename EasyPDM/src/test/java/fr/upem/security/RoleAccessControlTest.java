@@ -66,9 +66,9 @@ public class RoleAccessControlTest {
         Users user2  = new Users();
         user2.setId(1L);
         org1 = new Enterprise("enterprise", "");
-        org1.setId(1);
+        org1.setId(1L);
         org2 = new Department(org1, "department", "");
-        org2.setId(2);
+        org2.setId(2L);
 
         book = new Book("livre", "livre1", "me", "me", false, null,"seigneur", Maturity.IN_PROGRESS, org1, user1);
         tome = new Tome("tome", book, "tome1", "me", "me", false, null, "la nuit", Maturity.IN_PROGRESS, org1, user1);
