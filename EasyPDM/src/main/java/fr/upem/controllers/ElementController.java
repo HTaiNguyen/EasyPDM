@@ -214,7 +214,7 @@ public class ElementController implements Serializable{
     }
     
     public void addParagraph(Chapter chapter) {
-        if (!part.getContentType().equals("application/msword")) {
+        if (!part.getContentType().equals("application/msword") || !part.getContentType().equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "The document must be in word's format !", null);
             FacesContext.getCurrentInstance().addMessage(null, message);
             
