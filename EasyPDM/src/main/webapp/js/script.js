@@ -56,8 +56,8 @@ $(document).ready(function() {
 
                 $("#upload_new_paragraph_" + chapter_id).dialog({
                     resizable: false,
-                    height: 200,
-                    width: 500,
+                    height: 150,
+                    width: 300,
                     modal: true
                 });
                 
@@ -83,8 +83,8 @@ $(document).ready(function() {
                 
                 $("#edit_new_paragraph_" + paragraph_id).dialog({
                     resizable: false,
-                    height: 200,
-                    width: 500,
+                    height: 150,
+                    width: 300,
                     modal: true
                 });
 
@@ -103,9 +103,10 @@ $(document).ready(function() {
                 var chapter_id = el[0].id;
                 
                 $("#add_new_chapter_" + chapter_id).dialog({
+                    title: "Add new Chapter",
                     resizable: false,
-                    height: 200,
-                    width: 500,
+                    height: 100,
+                    width: 200,
                     modal: true
                 });
                 
@@ -124,9 +125,10 @@ $(document).ready(function() {
                 var tome_id = el[0].id;
                 
                 $("#add_new_tome_" + tome_id).dialog({
+                    title: "Add new Tome",
                     resizable: false,
-                    height: 200,
-                    width: 500,
+                    height: 100,
+                    width: 200,
                     modal: true
                 });
                 
