@@ -16,6 +16,9 @@ import fr.upem.easypdm.entity.Users;
 import fr.upem.security.EntityType;
 import fr.upem.security.Operation;
 import fr.upem.security.RACs;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -63,6 +66,7 @@ public class UserController {
     
     public void addUser() {
         if(racs.isPermitOperation(EntityType.USERS, Operation.CREATE, null)) {
+            user.setPassword(encodePasswordSHA1(user.getPassword()));
             usersDAO.create(user);   
         }
     }
@@ -138,5 +142,17 @@ public class UserController {
     public void setOrg_id(Long org_id) {
         this.org_id = org_id;
     }
-
+    
+    private static String encodePasswordSHA1(String key) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.update(key.getBytes());
+            return new BigInteger(1, md.digest()).toString(16);
+        }
+        catch (NoSuchAlgorithmException e) {
+            // handle error case to taste
+        }
+        
+        return null;
+    }
 }
