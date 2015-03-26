@@ -137,10 +137,39 @@ $(document).ready(function() {
                 break;
         }
     });
-	
+    $("#add_enterprise_btn").on("click", function() {
+        $("#add_new_enterprise").dialog({
+            title: "Add new enterprise",
+            resizable: false,
+            height: 100,
+            width: 200,
+            modal: true
+        });
+    });
+
     $("#add_department_btn").on("click", function() {
         $("#add_new_department").dialog({
             title: "Add new department",
+            resizable: false,
+            height: 100,
+            width: 200,
+            modal: true
+        });
+    });
+    
+    $("#add_service_btn").on("click", function() {
+        $("#add_new_service").dialog({
+            title: "Add new service",
+            resizable: false,
+            height: 100,
+            width: 200,
+            modal: true
+        });
+    });
+    
+    $("#add_team_btn").on("click", function() {
+        $("#add_new_team").dialog({
+            title: "Add new team",
             resizable: false,
             height: 100,
             width: 200,
