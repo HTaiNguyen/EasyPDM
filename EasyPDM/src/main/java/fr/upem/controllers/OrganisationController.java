@@ -136,7 +136,9 @@ public class OrganisationController implements Serializable {
     public void addService() {
         if(racs.isPermitOperation(EntityType.SERVICE, Operation.CREATE, null)) {
             //Ajouter la DAO pour la création de service
+            service.setDepartment(departmentDAO.find(id));
             serviceDAO.create(service);
+            service = new Service();
         }
     }
     
@@ -165,7 +167,9 @@ public class OrganisationController implements Serializable {
     public void addTeam() {
         if(racs.isPermitOperation(EntityType.TEAM, Operation.CREATE, null)) {
             //Ajouter la DAO pour la création d'équipe
+            team.setService(serviceDAO.find(id));
             teamDAO.create(team);
+            team = new Team();
         }
     }
     
@@ -229,5 +233,4 @@ public class OrganisationController implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
 }
