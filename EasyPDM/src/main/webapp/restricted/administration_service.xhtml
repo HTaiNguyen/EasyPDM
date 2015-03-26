@@ -100,9 +100,7 @@
                             </div>
 
                             <div class="array">
-                                <h:form>
-                                    <h:commandButton value="Add a department" disabled="true" action="#{organisationController.addDepartement()}" /> <!-- POPUP pour ajouter un department -->
-                                </h:form>
+                                <input type="button" id="add_department_btn" value="Add a department" />
                                 <c:choose>
                                     <c:when test="#{organisationController.getAllDepartment().size() == 0}">
                                         <p>None</p>
@@ -257,7 +255,7 @@
                     </div>
                 </div>
                 
-                <h:form class="add_new_department" id="add_new_department">
+                <h:form class="add_new_department" id="add_new_department" style="display: none;">
                     <h:outputLabel value="Name"/><br/>
                     <h:inputText value="#{organisationController.department.name}"></h:inputText><br/>
                     <h:outputLabel value="Description"/><br/>
@@ -269,7 +267,7 @@
                     <h:commandButton action="#{organisationController.addDepartement()}" value="add"/><br/>
                 </h:form>
                 
-                <h:form class="add_new_service" id="add_new_service">
+                <h:form class="add_new_service" id="add_new_service" style="display: none;">
                     <h:outputLabel value="Name"/><br/>
                     <h:inputText value="#{organisationController.service.name}"></h:inputText><br/>
                     <h:outputLabel value="Description"/><br/>
@@ -281,7 +279,7 @@
                     <h:commandButton action="#{organisationController.addService()}" value="add"/><br/>
                 </h:form>
                 
-                <h:form class="add_new_team" id="add_new_team">
+                <h:form class="add_new_team" id="add_new_team" style="display: none;">
                     <h:outputLabel value="Name"/><br/>
                     <h:inputText value="#{organisationController.team.name}"></h:inputText><br/>
                     <h:outputLabel value="Description"/><br/>

@@ -43,6 +43,16 @@ $(window).resize(function() {
  */
  
 $(document).ready(function() {
+    $("#add_department_btn").click(function() {
+        dialog({
+            title: "Add new department",
+            resizable: false,
+            height: 100,
+            width: 200,
+            modal: true
+        });
+    });
+    
     $('.treeview').treeView();
     $('.treeview').treeView('collapseAll'); //expandAll or collapseAll
 
