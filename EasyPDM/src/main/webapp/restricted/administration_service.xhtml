@@ -254,6 +254,15 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
+                            Enterprise
+                            <h:form>
+                                <h:outputLabel value="Name"/><br/>
+                                <h:inputText value="#{organisationController.enterprise.name}"></h:inputText><br/>
+                                <h:outputLabel value="Description"/><br/>
+                                <h:inputTextarea value="#{organisationController.enterprise.description}"></h:inputTextarea><br/>
+                                <h:commandButton action="#{organisationController.addEnterprise()}" value="add"/><br/>
+                            </h:form>
+                            Department<br/>
                             <h:form>
                                 <h:outputLabel value="Name"/><br/>
                                 <h:inputText value="#{organisationController.department.name}"></h:inputText><br/>
@@ -264,6 +273,30 @@
                                                itemValue="#{entry.id}" itemLabel="#{entry.name}" />
                                 </h:selectOneMenu><br/>
                                 <h:commandButton action="#{organisationController.addDepartement()}" value="add"/><br/>
+                            </h:form>
+                            Service<br/>
+                            <h:form>
+                                <h:outputLabel value="Name"/><br/>
+                                <h:inputText value="#{organisationController.service.name}"></h:inputText><br/>
+                                <h:outputLabel value="Description"/><br/>
+                                <h:inputTextarea value="#{organisationController.service.description}"></h:inputTextarea><br/>
+                                <h:selectOneMenu value="#{organisationController.id}">
+                                <f:selectItems value="#{organisationController.getAllDepartment()}" var="entry"
+                                               itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+                                </h:selectOneMenu><br/>
+                                <h:commandButton action="#{organisationController.addService()}" value="add"/><br/>
+                            </h:form>
+                            Team<br/>
+                            <h:form>
+                                <h:outputLabel value="Name"/><br/>
+                                <h:inputText value="#{organisationController.team.name}"></h:inputText><br/>
+                                <h:outputLabel value="Description"/><br/>
+                                <h:inputTextarea value="#{organisationController.team.description}"></h:inputTextarea><br/>
+                                <h:selectOneMenu value="#{organisationController.id}">
+                                <f:selectItems value="#{organisationController.getAllService()}" var="entry"
+                                               itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+                                </h:selectOneMenu><br/>
+                                <h:commandButton action="#{organisationController.addTeam()}" value="add"/><br/>
                             </h:form>
                     </div>
                 </div>
