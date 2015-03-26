@@ -259,9 +259,9 @@
                                 <h:inputText value="#{organisationController.department.name}"></h:inputText><br/>
                                 <h:outputLabel value="Description"/><br/>
                                 <h:inputTextarea value="#{organisationController.department.description}"></h:inputTextarea><br/>
-                                <h:selectOneMenu value="#{organisationController.department.enterprise}">
+                                <h:selectOneMenu value="#{organisationController.id}">
                                 <f:selectItems value="#{organisationController.getAllEnterprise()}" var="entry"
-                                               itemValue="#{entry}" itemLabel="#{entry.name}" />
+                                               itemValue="#{entry.id}" itemLabel="#{entry.name}" />
                                 </h:selectOneMenu><br/>
                                 <h:commandButton action="#{organisationController.addDepartement()}" value="add"/><br/>
                             </h:form>

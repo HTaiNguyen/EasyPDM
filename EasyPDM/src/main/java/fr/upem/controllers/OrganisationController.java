@@ -47,6 +47,8 @@ public class OrganisationController implements Serializable {
     @EJB
     private TeamDAO teamDAO;
     
+    private Long id;
+    
     private Enterprise enterprise;
     private Department department;
     private Service service;
@@ -103,7 +105,9 @@ public class OrganisationController implements Serializable {
     public void addDepartement() {
         if(racs.isPermitOperation(EntityType.DEPARTMENT, Operation.CREATE, null)) {
             //Ajouter la DAO pour la création de département
+            department.setEnterprise(enterpriseDAO.find(id));
             departmentDAO.create(department);
+            department = new Department();
         }
     }
     
@@ -216,6 +220,14 @@ public class OrganisationController implements Serializable {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }
