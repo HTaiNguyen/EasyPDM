@@ -88,10 +88,8 @@ public class DBSetup {
         roleDAO.create(roleW);
         
         Users admin = new Users("Admin", "Admin", "admin@EasyPDM.com", "admin", encodePasswordSHA1("admin"));
-        Enterprise adminOrg = new Enterprise("Admin", "");
-        userDAO.create(admin);
-        entDAO.create(adminOrg);
-        useRoleDAO.create(new UseRole(admin, adminOrg, roleAdmin));
+
+
    
         
         //ORGANISATION
@@ -104,7 +102,8 @@ public class DBSetup {
         Team team = new Team(service, "Groupe C", "EasyPDM Groupe C");
         teamDAO.create(team);
         
-        
+        userDAO.create(admin);
+        useRoleDAO.create(new UseRole(admin, enterprise, roleAdmin));
         //USER (String firstname, String lastname, String email, String login, String password)
         Users tai = new Users("tai", "nguyen", "tai@free.fr", "tai", encodePasswordSHA1("tai"));
         userDAO.create(tai);
