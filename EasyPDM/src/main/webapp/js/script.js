@@ -141,8 +141,8 @@ $(document).ready(function() {
         $("#add_new_enterprise").dialog({
             title: "Add new enterprise",
             resizable: false,
-            height: 100,
-            width: 200,
+            height: 180,
+            width: 300,
             modal: true
         });
     });
@@ -151,8 +151,8 @@ $(document).ready(function() {
         $("#add_new_department").dialog({
             title: "Add new department",
             resizable: false,
-            height: 100,
-            width: 200,
+            height: 200,
+            width: 300,
             modal: true
         });
     });
@@ -161,8 +161,8 @@ $(document).ready(function() {
         $("#add_new_service").dialog({
             title: "Add new service",
             resizable: false,
-            height: 100,
-            width: 200,
+            height: 200,
+            width: 300,
             modal: true
         });
     });
@@ -171,8 +171,28 @@ $(document).ready(function() {
         $("#add_new_team").dialog({
             title: "Add new team",
             resizable: false,
-            height: 100,
+            height: 200,
+            width: 300,
+            modal: true
+        });
+    });
+    
+    $("#add_user_btn").on("click", function() {
+        $("#add_new_user").dialog({
+            title: "Add new user",
+            resizable: false,
+            height: 260,
             width: 200,
+            modal: true
+        });
+    });
+    
+    $("#add_role_user_btn").on("click", function() {
+        $("#add_role_user").dialog({
+            title: "Link role and organisation to user",
+            resizable: false,
+            height: 200,
+            width: 300,
             modal: true
         });
     });
