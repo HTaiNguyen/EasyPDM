@@ -233,5 +233,4 @@ public class OrganisationController implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
 }
