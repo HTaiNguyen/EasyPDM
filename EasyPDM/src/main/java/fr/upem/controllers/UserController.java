@@ -5,6 +5,8 @@
  */
 package fr.upem.controllers;
 
+import fr.upem.easypdm.dao.implement.OrganisationDAO;
+import fr.upem.easypdm.dao.implement.RoleDAO;
 import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.dao.implement.UsersDAO;
 import fr.upem.easypdm.entity.Organisation;
@@ -35,9 +37,18 @@ public class UserController {
     @EJB
     private UseRoleDAO useRoleDAO;
     
+    @EJB
+    private OrganisationDAO orgDAO;
+    
+    @EJB
+    private RoleDAO roleDAO;
     
     private RACs racs;
     private Users user;
+    
+    private Long user_id;
+    private Long role_id;
+    private Long org_id;
     
     public UserController() {
         this.user = new Users();
@@ -82,13 +93,13 @@ public class UserController {
         return new ArrayList<>();
     }
     
-    public void addUserRoleInOrganisation(Users user, Role role, Organisation org) {
+    public void addUserRoleInOrganisation() {
         if(racs.isPermitOperation(EntityType.USEROLE, Operation.CREATE, null)) {
-            useRoleDAO.create(new UseRole(user, org, role));
+            useRoleDAO.create(new UseRole(usersDAO.find(user_id), orgDAO.find(org_id), roleDAO.find(role_id)));
         }
     }
     
-    public Users getUser(long id) {
+    public Users findUserBy(long id) {
         if(racs.isPermitOperation(EntityType.USERS, Operation.READ, null)) {
             return usersDAO.find(id);   
         }
@@ -96,8 +107,36 @@ public class UserController {
         return new Users();
     }
 
+    public Users getUser() {
+        return user;
+    }
+
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public Long getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(Long role_id) {
+        this.role_id = role_id;
+    }
+
+    public Long getOrg_id() {
+        return org_id;
+    }
+
+    public void setOrg_id(Long org_id) {
+        this.org_id = org_id;
     }
 
 }

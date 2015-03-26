@@ -10,7 +10,7 @@ package fr.upem.security;
  * @author Denis
  */
 public enum EntityType {
-    BOOK,TOME,CHAPTER,PARAGRAPH,ENTERPRISE,DEPARTMENT,SERVICE,TEAM,ROLE,USERS,USEROLE;
+    BOOK,TOME,CHAPTER,PARAGRAPH,ORGANISATION,ENTERPRISE,DEPARTMENT,SERVICE,TEAM,ROLE,USERS,USEROLE;
     
     public boolean isElement() {
         return BOOK.equals(this) || TOME.equals(this) || CHAPTER.equals(this) || PARAGRAPH.equals(this);

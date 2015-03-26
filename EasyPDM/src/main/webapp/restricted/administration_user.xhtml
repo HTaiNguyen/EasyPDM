@@ -117,6 +117,34 @@
                     </div>
                 </div>
             </div>
+            
+            <h:form class="add_new_user" id="add_new_user">
+                <h:outputLabel value="firstname"/><br/>
+                <h:inputText value="#{userController.user.firstname}"></h:inputText><br/>
+                <h:outputLabel value="lastname"/><br/>
+                <h:inputText value="#{userController.user.lastname}"></h:inputText><br/>
+                <h:outputLabel value="login"/><br/>
+                <h:inputText value="#{userController.user.login}"></h:inputText><br/>
+                <h:outputLabel value="password"/><br/>
+                <h:inputSecret value="#{userController.user.password}"></h:inputSecret><br/>
+                <h:commandButton action="#{userController.addUser()}" value="add"/><br/>
+            </h:form>
+            
+            <h:form>
+                <h:selectOneMenu value="#{userController.user_id}">  
+                <f:selectItems value="#{userController.getAllUsers()}" var="entry"
+                            itemValue="#{entry.id}" itemLabel="#{entry.login}" />
+                </h:selectOneMenu><br/>
+                <h:selectOneMenu value="#{userController.org_id}">  
+                <f:selectItems value="#{organisationController.getAllOrganisation()}" var="entry"
+                            itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+                </h:selectOneMenu><br/>
+                <h:selectOneMenu value="#{userController.role_id}">  
+                    <f:selectItems value="#{roleController.getAllRole()}" var="entry"
+                            itemValue="#{entry.id}" itemLabel="#{entry.name}" />
+                </h:selectOneMenu><br/>
+                <h:commandButton action="#{userController.addUserRoleInOrganisation()}" value="add"/><br/>
+            </h:form>
 			
             <footer>
                 <p>&copy; EasyPDM - All rights reserved</p>

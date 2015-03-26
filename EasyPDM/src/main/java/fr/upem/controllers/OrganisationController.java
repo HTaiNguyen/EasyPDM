@@ -7,11 +7,13 @@ package fr.upem.controllers;
 
 import fr.upem.easypdm.dao.implement.DepartmentDAO;
 import fr.upem.easypdm.dao.implement.EnterpriseDAO;
+import fr.upem.easypdm.dao.implement.OrganisationDAO;
 import fr.upem.easypdm.dao.implement.ServiceDAO;
 import fr.upem.easypdm.dao.implement.TeamDAO;
 import fr.upem.easypdm.dao.implement.UseRoleDAO;
 import fr.upem.easypdm.entity.Department;
 import fr.upem.easypdm.entity.Enterprise;
+import fr.upem.easypdm.entity.Organisation;
 import fr.upem.easypdm.entity.Service;
 import fr.upem.easypdm.entity.Team;
 import fr.upem.easypdm.entity.Users;
@@ -46,6 +48,9 @@ public class OrganisationController implements Serializable {
     
     @EJB
     private TeamDAO teamDAO;
+    
+    @EJB
+    private OrganisationDAO orgDAO;
     
     private Long id;
     
@@ -190,6 +195,13 @@ public class OrganisationController implements Serializable {
     public List<Team> getAllTeam() {
         if(racs.isPermitOperation(EntityType.TEAM, Operation.READ, null)) {
             return teamDAO.findAll();
+        }
+        return new ArrayList<>();
+    }
+    
+    public List<Organisation> getAllOrganisation() {
+        if(racs.isPermitOperation(EntityType.ORGANISATION, Operation.READ, null)) {
+            return orgDAO.findAll();
         }
         return new ArrayList<>();
     }

@@ -16,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -54,6 +53,14 @@ public class Users implements Serializable {
         this.password = Objects.requireNonNull(password);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFirstname() {
         return firstname;
     }
@@ -86,18 +93,10 @@ public class Users implements Serializable {
         this.login = login;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
